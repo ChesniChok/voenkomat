@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Voenkomat_Kursach/Views/MainWindow.axaml" value="Voenkomat_Kursach/Voenkomat_Kursach.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
