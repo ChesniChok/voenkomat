@@ -3,6 +3,7 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="Voenkomat_Kursach/App.axaml" value="Voenkomat_Kursach/Voenkomat_Kursach.csproj" />
         <entry key="Voenkomat_Kursach/Views/MainWindow.axaml" value="Voenkomat_Kursach/Voenkomat_Kursach.csproj" />
       </map>
     </option>

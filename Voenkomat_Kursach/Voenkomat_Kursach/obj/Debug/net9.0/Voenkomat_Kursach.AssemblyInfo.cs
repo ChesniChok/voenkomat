@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Voenkomat_Kursach")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15494a180ac9deee6f00ab0fb4f8b1fd3cd99714")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f5fbe831d28a114488a18325ac129cc4db30099")]
 [assembly: System.Reflection.AssemblyProductAttribute("Voenkomat_Kursach")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Voenkomat_Kursach")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
