@@ -2,7 +2,7 @@
 
 namespace Voenkomat_Kursach.Models;
 
-public class Dude
+public class OLD_Dude
 {
     
     public int Id { get; set; }

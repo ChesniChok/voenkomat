@@ -1,19 +1,19 @@
 ﻿namespace Voenkomat_Kursach.Models;
 
-public class Role
+public class OLD_Role
 {
     
     public int Id { get; set; }
     public string Name { get; set; }
 
 
-    public Role()
+    public OLD_Role()
     {
         Id = -1;
         Name = "";
     }
     
-    public Role(int id, string name)
+    public OLD_Role(int id, string name)
     {
         Id = id;
         Name = name;
