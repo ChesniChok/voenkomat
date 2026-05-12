@@ -3,18 +3,14 @@
         xmlns:vm="using:Voenkomat_Kursach.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Voenkomat_Kursach.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Voenkomat_Kursach.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:DataType="views:MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Voenkomat_Kursach">
-
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
+                <Button Content="Войти как Врач" Width="250" Height="50" Click="OnDoctor"/>
+                <Button Content="Войти как Регистрирующий" Width="250" Height="50" Click="OnRegistrator"/>
+        </StackPanel>
 </Window>
