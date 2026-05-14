@@ -24,5 +24,11 @@ build_property.EnableCodeStyleSeverity =
 [C:/всякая фигня/учёба (точно точно)/курсач первый/папка-прослойка потому что проебался/Voenkomat_Kursach/Voenkomat_Kursach/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/всякая фигня/учёба (точно точно)/курсач первый/папка-прослойка потому что проебался/Voenkomat_Kursach/Voenkomat_Kursach/Views/DoctorWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/всякая фигня/учёба (точно точно)/курсач первый/папка-прослойка потому что проебался/Voenkomat_Kursach/Voenkomat_Kursach/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/всякая фигня/учёба (точно точно)/курсач первый/папка-прослойка потому что проебался/Voenkomat_Kursach/Voenkomat_Kursach/Views/RegistratorWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
