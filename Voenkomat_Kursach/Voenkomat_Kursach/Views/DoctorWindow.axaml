@@ -5,54 +5,145 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Voenkomat_Kursach.Views.DoctorWindow"
         Title="DoctorWindow">
+    
+    
     <TabControl>
-        <TabItem Header="Чеклист">
-            <DataGrid AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Осмотр" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Watermark="уши на месте, писюн балдеет"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridCheckBoxColumn Header="Выполнено"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </TabItem>
         
-        <TabItem Header="Дополнения">
-            <DataGrid AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Дополнение" Width="*"/>
-                    <DataGridTemplateColumn Header="Действие">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Добавить"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </TabItem>
-        
-        <TabItem Header="Завершение">
+        <!-- выбор чела -->
+        <TabItem>
+            
             <StackPanel>
-                <ItemsControl>
-                    <ItemsControl.Items>
-                        <StackPanel Orientation="Horizontal" Margin="5">
-                            <TextBlock Text="осмотр" Width="100"/>
-                            <CheckBox Margin="10,0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="5">
-                            <TextBlock Text="документы" Width="100"/>
-                            <CheckBox Margin="10,0"/>
-                        </StackPanel>
-                    </ItemsControl.Items>
-                </ItemsControl>
-                <Button Content="Завершить" Margin="5" HorizontalAlignment="Center" Width="100"/>
+                
+                <Button Content="brrr" Click="Bruh"/>
+                
+                <DataGrid AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        
+                        <DataGridTextColumn Header="11111111111111"/>
+                        
+                        <DataGridTemplateColumn Header="222222222222222222">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button Content="bruh" Click="Bruh"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        
+                    </DataGrid.Columns>
+                </DataGrid>
+                
             </StackPanel>
+            
         </TabItem>
+        
+        
+        <!-- основное окно -->
+        <TabItem x:Name="bruh">
+            
+            <TabControl>
+        
+                <!-- чеклист -->
+                <TabItem Header="Чеклист">
+                    
+                    <DataGrid AutoGenerateColumns="False">
+                        
+                        <DataGrid.Columns>
+                            
+                            <DataGridTemplateColumn Header="Осмотр" Width="*">
+                                
+                                <DataGridTemplateColumn.CellTemplate>
+                                    
+                                    <DataTemplate>
+                                        
+                                        <TextBox Watermark="уши на месте, писюн балдеет"/>
+                                        
+                                    </DataTemplate>
+                                    
+                                </DataGridTemplateColumn.CellTemplate>
+                                
+                            </DataGridTemplateColumn>
+                            
+                            <DataGridCheckBoxColumn Header="Выполнено"/>
+                            
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                    
+                </TabItem>
+                
+                
+                <!-- дополнения -->
+                <TabItem Header="Дополнения">
+                    
+                    <DataGrid AutoGenerateColumns="False">
+                        
+                        <DataGrid.Columns>
+                            
+                            <DataGridTextColumn Header="Дополнение" Width="*"/>
+                            
+                            <DataGridTemplateColumn Header="Действие">
+                                
+                                <DataGridTemplateColumn.CellTemplate>
+                                    
+                                    <DataTemplate>
+                                        
+                                        <Button Content="Добавить"/>
+                                        
+                                    </DataTemplate>
+                                    
+                                </DataGridTemplateColumn.CellTemplate>
+                                
+                            </DataGridTemplateColumn>
+                            
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                    
+                </TabItem>
+                
+                
+                <!-- завершение -->
+                <TabItem Header="Завершение">
+                    
+                    <StackPanel>
+                        
+                        <ItemsControl>
+                            
+                            <ItemsControl.Items>
+                                
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    
+                                    <TextBlock Text="осмотр" Width="100"/>
+                                    
+                                    <CheckBox Margin="10,0"/>
+                                    
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    
+                                    <TextBlock Text="документы" Width="100"/>
+                                    
+                                    <CheckBox Margin="10,0"/>
+                                    
+                                </StackPanel>
+                                
+                            </ItemsControl.Items>
+                            
+                        </ItemsControl>
+                        
+                        <Button Content="Завершить" Margin="5" HorizontalAlignment="Center" Width="100"/>
+                        
+                    </StackPanel>
+                    
+                </TabItem>
+                
+            </TabControl>
+            
+        </TabItem>
+        
     </TabControl>
 
+    
 </Window>
