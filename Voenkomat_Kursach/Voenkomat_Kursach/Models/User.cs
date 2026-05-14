@@ -1,14 +1,12 @@
-﻿namespace Voenkomat_Kursach.Models;
+﻿namespace Voenkomat.Models;
 
 public class User
 {
-    
     public int Id { get; set; }
     public Role Role { get; set; }
     public string Post { get; set; }
     public Cabinet Cabinet { get; set; }
-
-
+    
     public User()
     {
         Id = -1;
@@ -24,5 +22,4 @@ public class User
         Post = post;
         Cabinet = cabinet;
     }
-    
 }

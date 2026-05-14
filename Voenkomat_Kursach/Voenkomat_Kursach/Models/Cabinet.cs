@@ -1,25 +1,21 @@
-﻿namespace Voenkomat_Kursach.Models;
+﻿namespace Voenkomat.Models;
 
 public class Cabinet
 {
-    
-    public int Id { get; set; }
+    public int Number { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
 
-
     public Cabinet()
     {
-        Id = -1;
+        Number = -1;
         Name = "";
         Description = "";
     }
-    
-    public Cabinet(int id, string name, string description)
+    public Cabinet(int number, string name, string description)
     {
-        Id = id;
+        Number = number;
         Name = name;
         Description = description;
     }
-    
 }
