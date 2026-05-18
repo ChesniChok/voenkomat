@@ -1,25 +1,22 @@
 ﻿namespace Voenkomat_Kursach.Models;
 
-public class OLD_Cabinet
+public class Job
 {
     
     public int Id { get; set; }
     public string Name { get; set; }
-    public string Description { get; set; }
 
 
-    public OLD_Cabinet()
+    public Job()
     {
         Id = -1;
         Name = "";
-        Description = "";
     }
     
-    public OLD_Cabinet(int id, string name, string description)
+    public Job(int id, string name)
     {
         Id = id;
         Name = name;
-        Description = description;
     }
     
 }
