@@ -9,9 +9,9 @@ public class Document
     public string Type { get; set; }
     public string Number { get; set; }
     public string FileName { get; set; }
-    public Employee Author { get; set; }
-    public Dude Dude { get; set; }
-    public MedComission MedComisiion { get; set; }
+    public Employee? Author { get; set; }
+    public MedComission? MedComisiion { get; set; }
+    public Dude? Dude { get; set; }
     public string Description { get; set; }
 
 
@@ -22,20 +22,20 @@ public class Document
         Number = "";
         FileName = "";
         Author = new();
-        Dude = new();
         MedComisiion = new();
+        Dude = new();
         Description = "";
     }
     
-    public Document(int id, string type, string number, string fileName, Employee author, Dude dude, MedComission medComisiion, string description)
+    public Document(int id, string type, string number, string fileName, Employee? author, MedComission? medComisiion, Dude? dude, string description)
     {
         Id = id;
         Type = type;
         Number = number;
         FileName = fileName;
         Author = author;
-        Dude = dude;
         MedComisiion = medComisiion;
+        Dude = dude;
         Description = description;
     }
 

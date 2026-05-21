@@ -17,6 +17,7 @@ public class MedComission
     public bool Okul { get; set; }
     public DateTimeOffset? EndDate { get; set; }
     public string? Category { get; set; }
+    public string? Description { get; set; }
 
 
     public MedComission()
@@ -33,9 +34,10 @@ public class MedComission
         Okul = false;
         EndDate = null;
         Category = null;
+        Description = null;
     }
     
-    public MedComission(int id, Dude dude, DateTimeOffset startDate, bool ter, bool otor, bool psih, bool nevr, bool hir, bool stom, bool okul, DateTimeOffset? endDate, string category)
+    public MedComission(int id, Dude dude, DateTimeOffset startDate, bool ter, bool otor, bool psih, bool nevr, bool hir, bool stom, bool okul, DateTimeOffset? endDate, string category, string? description)
     {
         Id = id;
         Dude = dude;
@@ -49,6 +51,7 @@ public class MedComission
         Okul = okul;
         EndDate = endDate;
         Category = category;
+        Description = description;
     }
     
 }
