@@ -11,7 +11,7 @@ public class Document
     public string FileName { get; set; }
     public Employee? Author { get; set; }
     public MedComission? MedComisiion { get; set; }
-    public Dude? Dude { get; set; }
+    public Recruit? Recruit { get; set; }
     public string Description { get; set; }
 
 
@@ -23,11 +23,11 @@ public class Document
         FileName = "";
         Author = new();
         MedComisiion = new();
-        Dude = new();
+        Recruit = new();
         Description = "";
     }
     
-    public Document(int id, string type, string number, string fileName, Employee? author, MedComission? medComisiion, Dude? dude, string description)
+    public Document(int id, string type, string number, string fileName, Employee? author, MedComission? medComisiion, Recruit? recruit, string description)
     {
         Id = id;
         Type = type;
@@ -35,7 +35,7 @@ public class Document
         FileName = fileName;
         Author = author;
         MedComisiion = medComisiion;
-        Dude = dude;
+        Recruit = recruit;
         Description = description;
     }
 

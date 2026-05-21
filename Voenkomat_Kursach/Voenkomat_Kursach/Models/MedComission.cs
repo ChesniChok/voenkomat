@@ -6,7 +6,7 @@ public class MedComission
 {
     
     public int Id { get; set; }
-    public Dude Dude { get; set; }
+    public Recruit Recruit { get; set; }
     public DateTimeOffset StartDate { get; set; }
     public bool Ter { get; set; }
     public bool Otor { get; set; }
@@ -23,7 +23,7 @@ public class MedComission
     public MedComission()
     {
         Id = -1;
-        Dude = new();
+        Recruit = new();
         StartDate = DateTimeOffset.Now;
         Ter = false;
         Otor = false;
@@ -37,10 +37,10 @@ public class MedComission
         Description = null;
     }
     
-    public MedComission(int id, Dude dude, DateTimeOffset startDate, bool ter, bool otor, bool psih, bool nevr, bool hir, bool stom, bool okul, DateTimeOffset? endDate, string category, string? description)
+    public MedComission(int id, Recruit recruit, DateTimeOffset startDate, bool ter, bool otor, bool psih, bool nevr, bool hir, bool stom, bool okul, DateTimeOffset? endDate, string category, string? description)
     {
         Id = id;
-        Dude = dude;
+        Recruit = recruit;
         StartDate = startDate;
         Ter = ter;
         Otor = otor;
