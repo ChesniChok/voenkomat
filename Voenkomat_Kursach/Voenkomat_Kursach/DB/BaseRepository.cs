@@ -47,7 +47,7 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class
             return false;
         }
     }
-
+    
     public List<T> GetAll()
     {
         throw new NotImplementedException();
