@@ -222,3 +222,4 @@ C:\Users\kokun\Desktop\voenkomat\Voenkomat_Kursach\Voenkomat_Kursach\obj\Debug\n
 C:\Users\kokun\Desktop\voenkomat\Voenkomat_Kursach\Voenkomat_Kursach\obj\Debug\net9.0\Voenkomat_Kursach.pdb
 C:\Users\kokun\Desktop\voenkomat\Voenkomat_Kursach\Voenkomat_Kursach\obj\Debug\net9.0\Voenkomat_Kursach.genruntimeconfig.cache
 C:\Users\kokun\Desktop\voenkomat\Voenkomat_Kursach\Voenkomat_Kursach\obj\Debug\net9.0\ref\Voenkomat_Kursach.dll
+C:\всякая фигня\учёба (точно точно)\курсач первый\папка-прослойка потому что проебался\Voenkomat_Kursach\Voenkomat_Kursach\bin\Debug\net9.0\appsettings.json
