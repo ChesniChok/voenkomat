@@ -1,6 +1,16 @@
-﻿namespace Voenkomat_Kursach.ViewModels;
+﻿using System;
+using Voenkomat_Kursach.Models;
 
-public class DoctorViewModel : ViewModelBase
+namespace Voenkomat_Kursach.ViewModels;
+
+public class DoctorViewModel : UserBaseViewModel
 {
+
+    private IServiceProvider _sp;
+    
+    public DoctorViewModel(IServiceProvider sp, User user) : base(user)
+    {
+        _sp = sp;
+    }
     
 }

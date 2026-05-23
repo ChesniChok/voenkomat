@@ -28,8 +28,11 @@ sealed class Program
 
                 services.Configure<AppSettings>(context.Configuration.GetSection("AppSettings"));
 
-                services.AddTransient<MainWindowViewModel>();
                 services.AddTransient<MainWindow>();
+                services.AddTransient<MainWindowViewModel>();
+
+                services.AddTransient<DoctorWindow>();
+                services.AddTransient<DoctorViewModel>();
 
             }).Build();
         

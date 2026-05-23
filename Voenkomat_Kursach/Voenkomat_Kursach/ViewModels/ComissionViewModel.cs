@@ -1,6 +1,10 @@
-﻿namespace Voenkomat_Kursach.ViewModels;
+﻿using Voenkomat_Kursach.Models;
 
-public class ComissionViewModel : ViewModelBase
+namespace Voenkomat_Kursach.ViewModels;
+
+public class ComissionViewModel : UserBaseViewModel
 {
-    
+    public ComissionViewModel(User user) : base(user)
+    {
+    }
 }

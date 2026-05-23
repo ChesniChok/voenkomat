@@ -1,6 +1,10 @@
-﻿namespace Voenkomat_Kursach.ViewModels;
+﻿using Voenkomat_Kursach.Models;
 
-public class RegistatorViewModel : ViewModelBase
+namespace Voenkomat_Kursach.ViewModels;
+
+public class RegistatorViewModel : UserBaseViewModel
 {
-    
+    public RegistatorViewModel(User user) : base(user)
+    {
+    }
 }

@@ -1,6 +1,10 @@
-﻿namespace Voenkomat_Kursach.ViewModels;
+﻿using Voenkomat_Kursach.Models;
 
-public class ArchiverViewModel : ViewModelBase
+namespace Voenkomat_Kursach.ViewModels;
+
+public class ArchiverViewModel : UserBaseViewModel
 {
-    
+    public ArchiverViewModel(User user) : base(user)
+    {
+    }
 }
