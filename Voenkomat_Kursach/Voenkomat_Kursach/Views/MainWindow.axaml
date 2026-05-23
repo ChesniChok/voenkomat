@@ -18,12 +18,12 @@
         
         
         <!-- вход в аккаунт -->
-        <Grid RowDefinitions="* Auto Auto Auto *">
+        <Grid RowDefinitions="Auto Auto Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
                 
-                <TextBox Text="{Binding Login}" Grid.Row="1"/>
-                <TextBox Text="{Binding Password}" Grid.Row="2"/>
+                <TextBox Text="{Binding Login}" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox Text="{Binding Password}" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 
-                <Button Content="{Binding ButtonText}" Command="{Binding LogInCommand}" Grid.Row="3"/>
+                <Button Content="{Binding ButtonText}" Command="{Binding LogInCommand}" Width="220" Grid.Row="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 
         </Grid>
         

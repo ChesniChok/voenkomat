@@ -31,8 +31,23 @@ sealed class Program
                 services.AddTransient<MainWindow>();
                 services.AddTransient<MainWindowViewModel>();
 
+                services.AddTransient<AdminWIndow>();
+                services.AddTransient<AdminViewModel>();
+
+                services.AddTransient<ArchiverWindow>();
+                services.AddTransient<ArchiverViewModel>();
+
+
+                services.AddTransient<RegistratorWindow>();
+                services.AddTransient<RegistatorViewModel>();
+
+
                 services.AddTransient<DoctorWindow>();
                 services.AddTransient<DoctorViewModel>();
+
+                
+                services.AddTransient<ComissionWindow>();
+                services.AddTransient<ComissionViewModel>();
 
             }).Build();
         

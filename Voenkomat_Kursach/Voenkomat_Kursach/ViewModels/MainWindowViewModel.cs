@@ -39,22 +39,54 @@ public partial class MainWindowViewModel : ViewModelBase
     {
 
         var user = new User();//тут получаем юзера из базы
-        user.Role.Name = "Доктор";
+        user.Role.Name = "Врач";
         
         //если такой пользователь есть
-        if (/*user != null*/ true)
+        if (/*user.Id != -1*/true)
         {
 
             Window win;
             UserBaseViewModel vm;
             
-            switch (user.Role.Name)
+            switch (user.Role.Name)//проверяем роль
             {
 
-                case "Доктор":
+                case "Администратор":
+                {
+                    win = ActivatorUtilities.CreateInstance<AdminWIndow>(_sp);
+                    vm = ActivatorUtilities.CreateInstance<AdminViewModel>(_sp, user, win);
+
+                    break;
+                }
+                
+                case "Архивариус":
+                {
+                    win = ActivatorUtilities.CreateInstance<ArchiverWindow>(_sp);
+                    vm = ActivatorUtilities.CreateInstance<ArchiverViewModel>(_sp, user, win);
+
+                    break;
+                }
+                
+                case "Регистрирующий":
+                {
+                    win = ActivatorUtilities.CreateInstance<RegistratorWindow>(_sp);
+                    vm = ActivatorUtilities.CreateInstance<RegistatorViewModel>(_sp, user, win);
+
+                    break;
+                }
+                
+                case "Врач":
                 {
                     win = ActivatorUtilities.CreateInstance<DoctorWindow>(_sp);
-                    vm = ActivatorUtilities.CreateInstance<DoctorViewModel>(_sp, user);
+                    vm = ActivatorUtilities.CreateInstance<DoctorViewModel>(_sp, user, win);
+
+                    break;
+                }
+                
+                case "Комиссионщик":
+                {
+                    win = ActivatorUtilities.CreateInstance<ComissionWindow>(_sp);
+                    vm = ActivatorUtilities.CreateInstance<ComissionViewModel>(_sp, user, win);
 
                     break;
                 }
