@@ -12,11 +12,5 @@ public partial class DoctorWindow : Window
     {
         InitializeComponent();
     }
-
-
-    public void Bruh(object? sender, RoutedEventArgs routedEventArgs)
-    {
-        bruh.IsSelected = true;
-    }
     
 }

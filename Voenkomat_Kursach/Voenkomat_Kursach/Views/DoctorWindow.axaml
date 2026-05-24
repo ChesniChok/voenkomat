@@ -1,9 +1,11 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Voenkomat_Kursach.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Voenkomat_Kursach.Views.DoctorWindow"
+        x:DataType="vm:DoctorViewModel"
         Title="DoctorWindow">
     
     
@@ -12,35 +14,13 @@
         <!-- выбор чела -->
         <TabItem>
             
-            <StackPanel>
-                
-                <Button Content="brrr" Click="Bruh"/>
-                
-                <DataGrid AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        
-                        <DataGridTextColumn Header="11111111111111"/>
-                        
-                        <DataGridTemplateColumn Header="222222222222222222">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Button Content="bruh" Click="Bruh"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        
-                    </DataGrid.Columns>
-                </DataGrid>
-                
-            </StackPanel>
+            
             
         </TabItem>
         
         
         <!-- основное окно -->
-        <TabItem x:Name="bruh">
+        <TabItem>
             
             <TabControl>
         

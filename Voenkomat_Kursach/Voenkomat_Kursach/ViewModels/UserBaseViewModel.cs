@@ -6,8 +6,8 @@ namespace Voenkomat_Kursach.ViewModels;
 public abstract class UserBaseViewModel : ViewModelBase
 {
     
-    private User _user;
-    private Window _win;
+    protected User _user;
+    protected Window _win;
 
     public UserBaseViewModel(User user, Window win)
     {

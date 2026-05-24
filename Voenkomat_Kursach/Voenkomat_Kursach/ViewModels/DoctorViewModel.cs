@@ -1,10 +1,11 @@
 ﻿using System;
 using Avalonia.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Voenkomat_Kursach.Models;
 
 namespace Voenkomat_Kursach.ViewModels;
 
-public class DoctorViewModel : UserBaseViewModel
+public partial class DoctorViewModel : UserBaseViewModel
 {
 
     private IServiceProvider _sp;
@@ -14,4 +15,10 @@ public class DoctorViewModel : UserBaseViewModel
     {
         _sp = sp;
     }
+
+
+
+
+
+
 }

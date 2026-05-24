@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -17,6 +18,8 @@ public partial class MainWindowViewModel : ViewModelBase
     
     private IServiceProvider _sp;
     public MainWindow thiswin;
+    private Window nextWin;
+    
     
     public MainWindowViewModel(IServiceProvider sp)
     {
@@ -24,6 +27,14 @@ public partial class MainWindowViewModel : ViewModelBase
         _sp = sp;
 
         ButtonText = "Войти в учётную запись";
+
+        Recruits = new ObservableCollection<Recruit>();
+        Recruits.Add(new());
+        Recruits.Add(new());
+        Recruits.Add(new());
+        Recruits.Add(new());
+
+        FirstSelected = true;
 
     }
 
@@ -34,8 +45,17 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty] private string buttonText;
 
 
+    [ObservableProperty] private string searchString;
+    [ObservableProperty] private ObservableCollection<Recruit> recruits;
+    
+    [ObservableProperty] private Recruit selectedRecruit;
+
+    [ObservableProperty] private bool firstSelected;
+    [ObservableProperty] private bool secondSelected;
+
+
     [RelayCommand]
-    private void LogIn()
+    private void FindUser()
     {
 
         var user = new User();//тут получаем юзера из базы
@@ -100,13 +120,30 @@ public partial class MainWindowViewModel : ViewModelBase
 
             win.DataContext = vm;
             win.Position = thiswin.Position;
+            
+            nextWin = win;
 
-            win.Show();
-            thiswin.Close();
+            SecondSelected = true;
+
         }
         else
         {
             BlinkButton();
+        }
+        
+    }
+
+    [RelayCommand]
+    public void GoToNextWin()
+    {
+
+        if (SelectedRecruit.Id != -1)
+        {
+            
+        }
+        else
+        {
+            
         }
         
     }

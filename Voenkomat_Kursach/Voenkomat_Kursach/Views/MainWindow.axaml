@@ -17,15 +17,59 @@
         -->
         
         
-        <!-- вход в аккаунт -->
-        <Grid RowDefinitions="Auto Auto Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TabControl IsVisible="False">
                 
-                <TextBox Text="{Binding Login}" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
-                <TextBox Text="{Binding Password}" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                <!-- вход в аккаунт -->
+                <TabItem IsSelected="{Binding FirstSelected}">
+                        <Grid RowDefinitions="Auto Auto Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
                 
-                <Button Content="{Binding ButtonText}" Command="{Binding LogInCommand}" Width="220" Grid.Row="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox Text="{Binding Login}" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox Text="{Binding Password}" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 
-        </Grid>
+                                <Button Content="{Binding ButtonText}" Command="{Binding FindUserCommand}" Width="220" Grid.Row="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                
+                        </Grid>
+                </TabItem>
+                
+                <!-- выбор чела -->
+                <TabItem IsSelected="{Binding SecondSelected}">
+                        
+                        <Grid RowDefinitions="Auto *">
+                
+                                <!-- поиск и выбор -->
+                                <Grid Grid.Row="0" ColumnDefinitions="* Auto">
+                                        
+                                        <!-- поле для поиска по ФИО [ой чё придумал баляяя))))] {иф поле контеинс имя или фамилия или отчество} -->
+                                        <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Text="{Binding SearchString}"/>
+                                        
+                                        <Button Grid.Column="1" Content="Выбрать" Command="{Binding GoToNextWinCommand}"/>
+                                        
+                                </Grid>
+                
+                                <!-- список челов в отделении -->
+                                <Grid Grid.Row="1">
+                    
+                                        <ListBox ItemsSource="{Binding Recruits}" SelectedItem="{Binding SelectedRecruit}">
+                                                <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="{Binding FamilyName}"/>
+                                                                        <TextBlock Text=" "/>
+                                                                        <TextBlock Text="{Binding Name}"/>
+                                                                        <TextBlock Text=" "/>
+                                                                        <TextBlock Text="{Binding FatherName}"/>
+                                                                </StackPanel>
+                                                        </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                        </ListBox>
+
+                                </Grid>
+                                
+                        </Grid>
+                        
+                </TabItem>
+                
+        </TabControl>
         
         
 </Window>
