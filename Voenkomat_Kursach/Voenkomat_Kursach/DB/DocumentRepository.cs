@@ -8,8 +8,15 @@ namespace Voenkomat_Kursach.DB;
 
 public class DocumentRepository : BaseRepository<Document>
 {
-    public DocumentRepository(string connectionString) : base(connectionString)
+    private EmployeeRepository _employeeRepository;
+    private MedComissionRepository _medComissionRepository;
+    private RecruitRepository _recruitRepository;
+    public DocumentRepository(string connectionString, EmployeeRepository employeeRepository,
+        MedComissionRepository medComissionRepository, RecruitRepository recruitRepository) : base(connectionString)
     {
+        _employeeRepository = employeeRepository;
+        _medComissionRepository = medComissionRepository;
+        _recruitRepository = recruitRepository;
     }
     public List<Document> GetAll()
         {
@@ -17,12 +24,19 @@ public class DocumentRepository : BaseRepository<Document>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Document";
+                string sql = "SELECT * FROM documents";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
                     while (dr.Read())
                     {
+                        int employeeId = dr.GetInt32("employee");
+                        Employee employee = _employeeRepository.GetById(employeeId);
+                        int medComissionId = dr.GetInt32("medComission");
+                        MedComission medComission = _medComissionRepository.GetById(medComissionId);
+                        int recruitId = dr.GetInt32("recruit");
+                        Recruit recruit = _recruitRepository.GetById(recruitId);
+                        
                         documents.Add(new Document
                         {
                             Id = dr.GetInt32("Id"),
@@ -49,11 +63,11 @@ public class DocumentRepository : BaseRepository<Document>
 
         public Document GetById(int id)
         {
-            Document document = null;
+            Document document = new Document();
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Document WHERE id = @id";
+                string sql = "SELECT * FROM documents WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -61,6 +75,13 @@ public class DocumentRepository : BaseRepository<Document>
                     {
                         if (dr.Read())
                         {
+                            int employeeId = dr.GetInt32("employee");
+                            Employee employee = _employeeRepository.GetById(employeeId);
+                            int medComissionId = dr.GetInt32("medComission");
+                            MedComission medComission = _medComissionRepository.GetById(medComissionId);
+                            int recruitId = dr.GetInt32("recruit");
+                            Recruit recruit = _recruitRepository.GetById(recruitId);
+                            
                             document = new Document
                             {
                                 Id = dr.GetInt32("Id"),

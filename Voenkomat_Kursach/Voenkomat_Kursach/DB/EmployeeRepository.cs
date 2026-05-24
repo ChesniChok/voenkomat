@@ -8,8 +8,12 @@ namespace Voenkomat_Kursach.DB;
 
 public class EmployeeRepository : BaseRepository<Employee>
 {
-    public EmployeeRepository(string connectionString) : base(connectionString)
+    private CabinetRepository _cabinetRepository;
+    private JobRepository _jobRepository;
+    public EmployeeRepository(string connectionString, CabinetRepository cabinetRepository, JobRepository jobRepository) : base(connectionString)
     {
+        _cabinetRepository = cabinetRepository;
+        _jobRepository = jobRepository;
     }
 
     public List<Employee> GetAll()
@@ -18,12 +22,17 @@ public class EmployeeRepository : BaseRepository<Employee>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Employee";
+                string sql = "SELECT * FROM employee";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
                     while (dr.Read())
                     {
+                        int cabinetNumber = dr.GetInt32("cabinet");
+                        Cabinet cabinet = _cabinetRepository.GetById(cabinetNumber);
+                        int jobId = dr.GetInt32("job");
+                        Job job = _jobRepository.GetById(jobId);
+                        
                         employees.Add(new Employee
                         {
                             Id = dr.GetInt32("Id"),
@@ -47,11 +56,11 @@ public class EmployeeRepository : BaseRepository<Employee>
 
         public Employee GetById(int id)
         {
-            Employee employee = null;
+            Employee employee = new Employee();
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Employee WHERE id = @id";
+                string sql = "SELECT * FROM employee WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -59,6 +68,11 @@ public class EmployeeRepository : BaseRepository<Employee>
                     {
                         if (dr.Read())
                         {
+                            int cabinetNumber = dr.GetInt32("cabinet");
+                            Cabinet cabinet = _cabinetRepository.GetById(cabinetNumber);
+                            int jobId = dr.GetInt32("job");
+                            Job job = _jobRepository.GetById(jobId);
+                            
                             employee = new Employee
                             {
                                 Id = dr.GetInt32("Id"),

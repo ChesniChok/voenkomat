@@ -18,7 +18,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         try
         {
             _connection.Open();
-            string sql = "select * from Cabinet";
+            string sql = "select * from cabinets";
             using (var mc = new MySqlCommand(sql, _connection))
             using (var dr = mc.ExecuteReader())
             {
@@ -52,7 +52,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         try
         {
             _connection.Open();
-            string sql = "select * from Cabinet";
+            string sql = "select * from cabinets";
             using (var mc = new MySqlCommand(sql, _connection))
             using (var dr = mc.ExecuteReader())
             {

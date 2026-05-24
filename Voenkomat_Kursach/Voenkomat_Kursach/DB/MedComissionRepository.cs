@@ -8,8 +8,10 @@ namespace Voenkomat_Kursach.DB;
 
 public class MedComissionRepository : BaseRepository<MedComission>
 {
-    public MedComissionRepository(string connectionString) : base(connectionString)
+    private RecruitRepository _recruitRepository;
+    public MedComissionRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
     {
+        _recruitRepository = recruitRepository;
     }
     public List<MedComission> GetAll()
         {
@@ -17,12 +19,15 @@ public class MedComissionRepository : BaseRepository<MedComission>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM MedComission";
+                string sql = "SELECT * FROM medComissions";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
                     while (dr.Read())
                     {
+                        int recruitId = dr.GetInt32("recruit");
+                        Recruit recruit = _recruitRepository.GetById(recruitId);
+                        
                         medComissions.Add(new MedComission
                         {
                             Id = dr.GetInt32("Id"),
@@ -56,11 +61,11 @@ public class MedComissionRepository : BaseRepository<MedComission>
 
         public MedComission GetById(int id)
         {
-            MedComission medcomission = null;
+            MedComission medcomission = new MedComission();
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM MedComission WHERE id = @id";
+                string sql = "SELECT * FROM medComissions WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -68,6 +73,9 @@ public class MedComissionRepository : BaseRepository<MedComission>
                     {
                         if (dr.Read())
                         {
+                            int recruitId = dr.GetInt32("recruit");
+                            Recruit recruit = _recruitRepository.GetById(recruitId);
+                            
                             medcomission = new MedComission
                             {
                                 Id = dr.GetInt32("Id"),

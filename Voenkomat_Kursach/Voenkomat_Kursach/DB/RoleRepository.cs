@@ -18,7 +18,7 @@ public class RoleRepository : BaseRepository<Role>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Role";
+                string sql = "SELECT * FROM roles";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
@@ -47,11 +47,11 @@ public class RoleRepository : BaseRepository<Role>
 
         public Role GetById(int id)
         {
-            Role role = null;
+            Role role = new Role();
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Role WHERE id = @id";
+                string sql = "SELECT * FROM roles WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);

@@ -8,8 +8,10 @@ namespace Voenkomat_Kursach.DB;
 
 public class UserRepository : BaseRepository<User>
 {
-    public UserRepository(string connectionString) : base(connectionString)
+    private RoleRepository _roleRepository;
+    public UserRepository(string connectionString, RoleRepository roleRepository) : base(connectionString)
     {
+        _roleRepository = roleRepository;
     }
 
         public List<User> GetAll()
@@ -18,12 +20,15 @@ public class UserRepository : BaseRepository<User>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM User";
+                string sql = "SELECT * FROM user";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
                     while (dr.Read())
                     {
+                        int roleId = dr.GetInt32("role");
+                        Role role = _roleRepository.GetById(roleId);
+                        
                         users.Add(new User
                         {
                             Id = dr.GetInt32("Id"),
@@ -48,11 +53,11 @@ public class UserRepository : BaseRepository<User>
 
         public User GetById(int id)
         {
-            User user = null;
+            User user = new User();
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM User WHERE id = @id";
+                string sql = "SELECT * FROM user WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -60,6 +65,9 @@ public class UserRepository : BaseRepository<User>
                     {
                         if (dr.Read())
                         {
+                            int roleId = dr.GetInt32("role");
+                            Role role = _roleRepository.GetById(roleId);
+                            
                             user = new User
                             {
                                 Id = dr.GetInt32("Id"),

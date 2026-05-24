@@ -8,8 +8,10 @@ namespace Voenkomat_Kursach.DB;
 
 public class VisitRepository : BaseRepository<Visit>
 {
-    public VisitRepository(string connectionString) : base(connectionString)
+    private RecruitRepository _recruitRepository;
+    public VisitRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
     {
+        _recruitRepository = recruitRepository;
     }
     public List<Visit> GetAll()
         {
@@ -17,12 +19,15 @@ public class VisitRepository : BaseRepository<Visit>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Visit";
+                string sql = "SELECT * FROM visits";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
                     while (dr.Read())
                     {
+                        int recruitId = dr.GetInt32("recruit");
+                        Recruit recruit = _recruitRepository.GetById(recruitId);
+                        
                         visits.Add(new Visit
                         {
                             Id = dr.GetInt32("Id"),
@@ -48,11 +53,11 @@ public class VisitRepository : BaseRepository<Visit>
 
         public Visit GetById(int id)
         {
-            Visit visit = null;
+            Visit visit = new Visit();
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Visit WHERE id = @id";
+                string sql = "SELECT * FROM visits WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -60,6 +65,9 @@ public class VisitRepository : BaseRepository<Visit>
                     {
                         if (dr.Read())
                         {
+                            int recruitId = dr.GetInt32("recruit");
+                            Recruit recruit = _recruitRepository.GetById(recruitId);
+                            
                             visit = new Visit
                             {
                                 Id = dr.GetInt32("Id"),

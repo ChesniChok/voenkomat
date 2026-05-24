@@ -19,7 +19,7 @@ public class JobRepository : BaseRepository<Job>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Job";
+                string sql = "SELECT * FROM jobs";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
@@ -52,7 +52,7 @@ public class JobRepository : BaseRepository<Job>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Job WHERE id = @id";
+                string sql = "SELECT * FROM jobs WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
