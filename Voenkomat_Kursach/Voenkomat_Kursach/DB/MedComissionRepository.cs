@@ -9,9 +9,12 @@ namespace Voenkomat_Kursach.DB;
 public class MedComissionRepository : BaseRepository<MedComission>
 {
     private RecruitRepository _recruitRepository;
+    private List<MedComission> _medComissions;
     public MedComissionRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
     {
         _recruitRepository = recruitRepository;
+        _medComissions = new List<MedComission>();
+        GetAll();
     }
     public List<MedComission> GetAll()
         {

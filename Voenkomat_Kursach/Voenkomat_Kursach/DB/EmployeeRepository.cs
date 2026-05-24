@@ -10,10 +10,13 @@ public class EmployeeRepository : BaseRepository<Employee>
 {
     private CabinetRepository _cabinetRepository;
     private JobRepository _jobRepository;
+    private List<Employee> _employees;
     public EmployeeRepository(string connectionString, CabinetRepository cabinetRepository, JobRepository jobRepository) : base(connectionString)
     {
         _cabinetRepository = cabinetRepository;
         _jobRepository = jobRepository;
+        _employees = new List<Employee>();
+        GetAll();
     }
 
     public List<Employee> GetAll()

@@ -9,9 +9,12 @@ namespace Voenkomat_Kursach.DB;
 public class VisitRepository : BaseRepository<Visit>
 {
     private RecruitRepository _recruitRepository;
+    private List<Visit> _visits;
     public VisitRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
     {
         _recruitRepository = recruitRepository;
+        _visits = new List<Visit>();
+        GetAll();
     }
     public List<Visit> GetAll()
         {

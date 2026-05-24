@@ -11,12 +11,15 @@ public class DocumentRepository : BaseRepository<Document>
     private EmployeeRepository _employeeRepository;
     private MedComissionRepository _medComissionRepository;
     private RecruitRepository _recruitRepository;
+    private List<Document> _documents;
     public DocumentRepository(string connectionString, EmployeeRepository employeeRepository,
         MedComissionRepository medComissionRepository, RecruitRepository recruitRepository) : base(connectionString)
     {
         _employeeRepository = employeeRepository;
         _medComissionRepository = medComissionRepository;
         _recruitRepository = recruitRepository;
+        _documents = new List<Document>();
+        GetAll();
     }
     public List<Document> GetAll()
         {

@@ -9,9 +9,12 @@ namespace Voenkomat_Kursach.DB;
 public class UserRepository : BaseRepository<User>
 {
     private RoleRepository _roleRepository;
+    private List<User> _users;
     public UserRepository(string connectionString, RoleRepository roleRepository) : base(connectionString)
     {
         _roleRepository = roleRepository;
+        _users = new List<User>();
+        GetAll();
     }
 
         public List<User> GetAll()
