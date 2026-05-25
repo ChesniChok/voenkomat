@@ -17,7 +17,13 @@
         -->
         
         
-        <TabControl IsVisible="False">
+        <TabControl>
+                
+                <TabControl.Styles>
+                        <Style Selector="TabControl/template/ItemsPresenter#PART_ItemsPresenter">
+                                <Setter Property="IsVisible" Value="False" />
+                        </Style>
+                </TabControl.Styles>
                 
                 <!-- вход в аккаунт -->
                 <TabItem IsSelected="{Binding FirstSelected}">
@@ -26,7 +32,7 @@
                                 <TextBox Text="{Binding Login}" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                                 <TextBox Text="{Binding Password}" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 
-                                <Button Content="{Binding ButtonText}" Command="{Binding FindUserCommand}" Width="220" Grid.Row="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Button Content="{Binding LoginText}" Command="{Binding FindUserCommand}" Width="220" Grid.Row="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 
                         </Grid>
                 </TabItem>
@@ -42,7 +48,7 @@
                                         <!-- поле для поиска по ФИО [ой чё придумал баляяя))))] {иф поле контеинс имя или фамилия или отчество} -->
                                         <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Text="{Binding SearchString}"/>
                                         
-                                        <Button Grid.Column="1" Content="Выбрать" Command="{Binding GoToNextWinCommand}"/>
+                                        <Button Grid.Column="1" Content="{Binding GoToNextWinText}" Command="{Binding GoToNextWinCommand}" Width="80" HorizontalContentAlignment="Center"/>
                                         
                                 </Grid>
                 

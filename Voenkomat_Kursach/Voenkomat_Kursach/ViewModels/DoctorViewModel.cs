@@ -15,10 +15,5 @@ public partial class DoctorViewModel : UserBaseViewModel
     {
         _sp = sp;
     }
-
-
-
-
-
-
+    
 }
