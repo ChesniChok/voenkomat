@@ -11,8 +11,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
     private List<Cabinet> _cabinets;
     public CabinetRepository(string connectionString) : base(connectionString)
     {
-        _cabinets = new List<Cabinet>();
-        GetAll();
+        
     }
 
     public List<Cabinet> GetAll()

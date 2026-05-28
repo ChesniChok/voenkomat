@@ -9,50 +9,50 @@ namespace Voenkomat_Kursach.DB;
 public class UserRepository : BaseRepository<User>
 {
     private RoleRepository _roleRepository;
+    private EmployeeRepository _employeeRepository;
     private List<User> _users;
-    public UserRepository(string connectionString, RoleRepository roleRepository) : base(connectionString)
+    public UserRepository(string connectionString, RoleRepository roleRepository,EmployeeRepository employeeRepository) : base(connectionString)
     {
         _roleRepository = roleRepository;
-        _users = new List<User>();
-        GetAll();
+        _employeeRepository = employeeRepository;
     }
 
-        public List<User> GetAll()
+    public List<User> GetAll()
+    {
+        List<User> users = new List<User>();
+        try
         {
-            List<User> users = new List<User>();
-            try
+            OpenConnection();
+            string sql = "SELECT * FROM user";
+            using (var mc = new MySqlCommand(sql, _connection))
+            using (var dr = mc.ExecuteReader())
             {
-                _connection.Open();
-                string sql = "SELECT * FROM user";
-                using (var mc = new MySqlCommand(sql, _connection))
-                using (var dr = mc.ExecuteReader())
+                while (dr.Read())
                 {
-                    while (dr.Read())
-                    {
-                        int roleId = dr.GetInt32("role");
-                        Role role = _roleRepository.GetById(roleId);
-                        
-                        users.Add(new User
-                        {
-                            Id = dr.GetInt32("Id"),
-                            Login = dr.GetString("Login"),
-                            Password = dr.GetString("Password")
-                        });
-                    }
+                    int employeeId = dr.GetInt32("EmployeeId");
+                    int roleId = dr.GetInt32("RoleId");
+                    
+                    users.Add(new User(
+                        dr.GetInt32("Id"),
+                        _employeeRepository.GetById(employeeId),
+                        dr.GetString("Login"),
+                        dr.GetString("Password"),
+                        _roleRepository.GetById(roleId)
+                    ));
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            finally
-            {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
-            }
-            return users;
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+        return users;
+    }
 
         public User GetById(int id)
         {
@@ -68,9 +68,6 @@ public class UserRepository : BaseRepository<User>
                     {
                         if (dr.Read())
                         {
-                            int roleId = dr.GetInt32("role");
-                            Role role = _roleRepository.GetById(roleId);
-                            
                             user = new User
                             {
                                 Id = dr.GetInt32("Id"),

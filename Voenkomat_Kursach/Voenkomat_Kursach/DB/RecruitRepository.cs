@@ -11,8 +11,7 @@ public class RecruitRepository : BaseRepository<Recruit>
     private List<Recruit> _recruits;
     public RecruitRepository(string connectionString) : base(connectionString)
     {
-        _recruits = new List<Recruit>();
-        GetAll();
+        
     }
     public List<Recruit> GetAll()
         {

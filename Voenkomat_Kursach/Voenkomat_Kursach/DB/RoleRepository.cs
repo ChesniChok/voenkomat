@@ -11,8 +11,7 @@ public class RoleRepository : BaseRepository<Role>
     private List<Role> _roles;
     public RoleRepository(string connectionString) : base(connectionString)
     {
-        _roles = new List<Role>();
-        GetAll();
+        
     }
 
         public List<Role> GetAll()

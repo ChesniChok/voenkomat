@@ -11,8 +11,7 @@ public class JobRepository : BaseRepository<Job>
     private List<Job> _jobs;
     public JobRepository(string connectionString) : base(connectionString)
     {
-        _jobs = new List<Job>();
-        GetAll();
+        
     }
 
         public List<Job> GetAll()

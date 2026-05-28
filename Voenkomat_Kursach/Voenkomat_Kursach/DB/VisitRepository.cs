@@ -13,8 +13,6 @@ public class VisitRepository : BaseRepository<Visit>
     public VisitRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
     {
         _recruitRepository = recruitRepository;
-        _visits = new List<Visit>();
-        GetAll();
     }
     public List<Visit> GetAll()
         {
@@ -28,9 +26,6 @@ public class VisitRepository : BaseRepository<Visit>
                 {
                     while (dr.Read())
                     {
-                        int recruitId = dr.GetInt32("recruit");
-                        Recruit recruit = _recruitRepository.GetById(recruitId);
-                        
                         visits.Add(new Visit
                         {
                             Id = dr.GetInt32("Id"),
@@ -68,9 +63,6 @@ public class VisitRepository : BaseRepository<Visit>
                     {
                         if (dr.Read())
                         {
-                            int recruitId = dr.GetInt32("recruit");
-                            Recruit recruit = _recruitRepository.GetById(recruitId);
-                            
                             visit = new Visit
                             {
                                 Id = dr.GetInt32("Id"),

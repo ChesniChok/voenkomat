@@ -13,8 +13,6 @@ public class MedComissionRepository : BaseRepository<MedComission>
     public MedComissionRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
     {
         _recruitRepository = recruitRepository;
-        _medComissions = new List<MedComission>();
-        GetAll();
     }
     public List<MedComission> GetAll()
         {
@@ -28,9 +26,6 @@ public class MedComissionRepository : BaseRepository<MedComission>
                 {
                     while (dr.Read())
                     {
-                        int recruitId = dr.GetInt32("recruit");
-                        Recruit recruit = _recruitRepository.GetById(recruitId);
-                        
                         medComissions.Add(new MedComission
                         {
                             Id = dr.GetInt32("Id"),
@@ -76,9 +71,6 @@ public class MedComissionRepository : BaseRepository<MedComission>
                     {
                         if (dr.Read())
                         {
-                            int recruitId = dr.GetInt32("recruit");
-                            Recruit recruit = _recruitRepository.GetById(recruitId);
-                            
                             medcomission = new MedComission
                             {
                                 Id = dr.GetInt32("Id"),

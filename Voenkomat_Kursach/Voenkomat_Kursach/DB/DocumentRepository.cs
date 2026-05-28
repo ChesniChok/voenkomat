@@ -18,8 +18,7 @@ public class DocumentRepository : BaseRepository<Document>
         _employeeRepository = employeeRepository;
         _medComissionRepository = medComissionRepository;
         _recruitRepository = recruitRepository;
-        _documents = new List<Document>();
-        GetAll();
+        
     }
     public List<Document> GetAll()
         {
@@ -33,13 +32,6 @@ public class DocumentRepository : BaseRepository<Document>
                 {
                     while (dr.Read())
                     {
-                        int employeeId = dr.GetInt32("employee");
-                        Employee employee = _employeeRepository.GetById(employeeId);
-                        int medComissionId = dr.GetInt32("medComission");
-                        MedComission medComission = _medComissionRepository.GetById(medComissionId);
-                        int recruitId = dr.GetInt32("recruit");
-                        Recruit recruit = _recruitRepository.GetById(recruitId);
-                        
                         documents.Add(new Document
                         {
                             Id = dr.GetInt32("Id"),
@@ -78,13 +70,6 @@ public class DocumentRepository : BaseRepository<Document>
                     {
                         if (dr.Read())
                         {
-                            int employeeId = dr.GetInt32("employee");
-                            Employee employee = _employeeRepository.GetById(employeeId);
-                            int medComissionId = dr.GetInt32("medComission");
-                            MedComission medComission = _medComissionRepository.GetById(medComissionId);
-                            int recruitId = dr.GetInt32("recruit");
-                            Recruit recruit = _recruitRepository.GetById(recruitId);
-                            
                             document = new Document
                             {
                                 Id = dr.GetInt32("Id"),
