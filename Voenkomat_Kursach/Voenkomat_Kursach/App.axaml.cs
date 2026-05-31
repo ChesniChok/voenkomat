@@ -37,7 +37,7 @@ public partial class App : Application
             var win = _serviceProvider.GetRequiredService<MainWindow>();
             var vm = _serviceProvider.GetRequiredService<MainWindowViewModel>();
             
-            vm.thiswin = win;
+            vm.SetWin(win);
             
             win.DataContext = vm;
             

@@ -17,17 +17,34 @@ public partial class MainWindowViewModel : ViewModelBase
 {
     
     private IServiceProvider _sp;
-    public MainWindow thiswin;
+    private MainWindow thiswin;
     private Window nextWin;
-    
-    
+
+    public void SetWin(MainWindow win)
+    {
+        thiswin = win;
+    }
+
+
     public MainWindowViewModel(IServiceProvider sp)
     {
         
         _sp = sp;
 
+        Start();
+
+    }
+
+    public void Start()
+    {
+
+        Login = "";
+        Password = "";
+        
         LoginText = "Войти в учётную запись";
         GoToNextWinText = "Выбрать";
+
+        SearchString = "";
 
         Recruits = new ObservableCollection<Recruit>();
         
@@ -42,7 +59,7 @@ public partial class MainWindowViewModel : ViewModelBase
         Recruits.Add(r);
 
         FirstSelected = true;
-
+        
     }
 
 
@@ -83,7 +100,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "Администратор":
                 {
                     win = ActivatorUtilities.CreateInstance<AdminWIndow>(_sp);
-                    vm = ActivatorUtilities.CreateInstance<AdminViewModel>(_sp, user, win);
+                    vm = ActivatorUtilities.CreateInstance<AdminViewModel>(_sp, user, win, thiswin);
 
                     break;
                 }
@@ -91,7 +108,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "Архивариус":
                 {
                     win = ActivatorUtilities.CreateInstance<ArchiverWindow>(_sp);
-                    vm = ActivatorUtilities.CreateInstance<ArchiverViewModel>(_sp, user, win);
+                    vm = ActivatorUtilities.CreateInstance<ArchiverViewModel>(_sp, user, win, thiswin);
 
                     break;
                 }
@@ -99,7 +116,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "Регистрирующий":
                 {
                     win = ActivatorUtilities.CreateInstance<RegistratorWindow>(_sp);
-                    vm = ActivatorUtilities.CreateInstance<RegistatorViewModel>(_sp, user, win);
+                    vm = ActivatorUtilities.CreateInstance<RegistatorViewModel>(_sp, user, win, thiswin);
 
                     break;
                 }
@@ -107,7 +124,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "Врач":
                 {
                     win = ActivatorUtilities.CreateInstance<DoctorWindow>(_sp);
-                    vm = ActivatorUtilities.CreateInstance<DoctorViewModel>(_sp, user, win);
+                    vm = ActivatorUtilities.CreateInstance<DoctorViewModel>(_sp, user, win, thiswin);
 
                     break;
                 }
@@ -115,7 +132,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "Комиссионщик":
                 {
                     win = ActivatorUtilities.CreateInstance<ComissionWindow>(_sp);
-                    vm = ActivatorUtilities.CreateInstance<ComissionViewModel>(_sp, user, win);
+                    vm = ActivatorUtilities.CreateInstance<ComissionViewModel>(_sp, user, win, thiswin);
 
                     break;
                 }
@@ -151,6 +168,8 @@ public partial class MainWindowViewModel : ViewModelBase
             
             return;
         }
+        
+        if (thiswin == null) return;
 
         if (SelectedRecruit?.Id != -1)
         {
@@ -160,7 +179,7 @@ public partial class MainWindowViewModel : ViewModelBase
             (nextWin.DataContext as UserBaseViewModel)?.SetRec(SelectedRecruit);
             
             nextWin.Show();
-            thiswin.Close();
+            thiswin.Hide();
 
         }
         else

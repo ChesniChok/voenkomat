@@ -1,11 +1,12 @@
 ﻿using Avalonia.Controls;
 using Voenkomat_Kursach.Models;
+using Voenkomat_Kursach.Views;
 
 namespace Voenkomat_Kursach.ViewModels;
 
 public class RegistatorViewModel : UserBaseViewModel
 {
-    public RegistatorViewModel(User user, Window win) : base(user, win)
+    public RegistatorViewModel(User user, Window win, MainWindow backWin) : base(user, win, backWin)
     {
     }
 }

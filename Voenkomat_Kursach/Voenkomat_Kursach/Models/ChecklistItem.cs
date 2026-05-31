@@ -7,6 +7,9 @@ public class ChecklistItem
     public Job Doctor { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
+    
+    public bool IsChecked { get; set; }//для датагрида
+    public string Written { get; set; }//сюда врач оставляет запись
 
 
     public ChecklistItem()
@@ -15,6 +18,9 @@ public class ChecklistItem
         Doctor = new();
         Name = "";
         Description = "";
+        
+        IsChecked = false;
+        Written = "";
     }
     
     public ChecklistItem(int id, Job doctor, string name, string description)
@@ -23,6 +29,9 @@ public class ChecklistItem
         Doctor = doctor;
         Name = name;
         Description = description;
+        
+        IsChecked = false;
+        Written = "";
     }
     
 }
