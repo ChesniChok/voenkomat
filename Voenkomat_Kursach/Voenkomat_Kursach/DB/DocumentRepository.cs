@@ -11,35 +11,39 @@ public class DocumentRepository : BaseRepository<Document>
     private EmployeeRepository _employeeRepository;
     private MedComissionRepository _medComissionRepository;
     private RecruitRepository _recruitRepository;
-    private List<Document> _documents;
     public DocumentRepository(string connectionString, EmployeeRepository employeeRepository,
         MedComissionRepository medComissionRepository, RecruitRepository recruitRepository) : base(connectionString)
     {
         _employeeRepository = employeeRepository;
         _medComissionRepository = medComissionRepository;
         _recruitRepository = recruitRepository;
-        
     }
     public List<Document> GetAll()
-        {
+    {
             List<Document> documents = new List<Document>();
             try
             {
-                _connection.Open();
-                string sql = "SELECT * FROM documents";
+                OpenConnection();
+                string sql = "SELECT * FROM documents where id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        documents.Add(new Document
-                        {
-                            Id = dr.GetInt32("Id"),
-                            Type = dr.GetString("Type"),
-                            Number = dr.GetString("Number"),
-                            FileName = dr.GetString("FileName"),
-                            Description = dr.GetString("Description")
-                        });
+                        int medComiddionId = dr.GetInt32("MedComissionId");
+                        int recruitId = dr.GetInt32("RecruitId");
+                        int employeeId = dr.GetInt32("EmployeeId");
+                        
+                        documents.Add(new Document(
+                            dr.GetInt32("Id"),
+                            dr.GetString("Type"),
+                            dr.GetString("Number"),
+                            dr.GetString("FileName"),
+                            _employeeRepository.GetById(employeeId),
+                            _medComissionRepository.GetById(medComiddionId),
+                            _recruitRepository.GetById(recruitId),
+                            dr.GetString("Description")
+                        ));
                     }
                 }
             }
@@ -50,13 +54,12 @@ public class DocumentRepository : BaseRepository<Document>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return documents;
-        }
+    }
 
-        public Document GetById(int id)
+        public Document? GetById(int id)
         {
             Document document = new Document();
             try
@@ -70,14 +73,21 @@ public class DocumentRepository : BaseRepository<Document>
                     {
                         if (dr.Read())
                         {
-                            document = new Document
-                            {
-                                Id = dr.GetInt32("Id"),
-                                Type = dr.GetString("Type"),
-                                Number = dr.GetString("Number"),
-                                FileName = dr.GetString("FileName"),
-                                Description = dr.GetString("Description")
-                            };
+                            int medComiddionId = dr.GetInt32("MedComissionId");
+                            int recruitId = dr.GetInt32("RecruitId");
+                            int employeeId = dr.GetInt32("EmployeeId");
+                            
+                            document = new Document(
+                            
+                                dr.GetInt32("Id"),
+                                dr.GetString("Type"),
+                                dr.GetString("Number"),
+                                dr.GetString("FileName"),
+                                _employeeRepository.GetById(employeeId),
+                                _medComissionRepository.GetById(medComiddionId),
+                                _recruitRepository.GetById(recruitId),
+                                dr.GetString("Description")
+                            );
                         }
                     }
                 }
@@ -89,8 +99,7 @@ public class DocumentRepository : BaseRepository<Document>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return document;
         }

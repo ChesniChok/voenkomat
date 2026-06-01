@@ -8,7 +8,6 @@ namespace Voenkomat_Kursach.DB;
 
 public class CabinetRepository : BaseRepository<Cabinet>
 {
-    private List<Cabinet> _cabinets;
     public CabinetRepository(string connectionString) : base(connectionString)
     {
         
@@ -42,8 +41,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         }
         finally
         {
-            if (_connection.State == ConnectionState.Open)
-                _connection.Close();
+            CloseConnection();
         }
         return cabinets;
     }
@@ -74,7 +72,10 @@ public class CabinetRepository : BaseRepository<Cabinet>
             Console.WriteLine(e);
             throw;
         }
-        
+        finally
+        {
+            CloseConnection();
+        }
         return cabinet;
     }
 }

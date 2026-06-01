@@ -10,7 +10,6 @@ public class UserRepository : BaseRepository<User>
 {
     private RoleRepository _roleRepository;
     private EmployeeRepository _employeeRepository;
-    private List<User> _users;
     public UserRepository(string connectionString, RoleRepository roleRepository,EmployeeRepository employeeRepository) : base(connectionString)
     {
         _roleRepository = roleRepository;
@@ -68,12 +67,16 @@ public class UserRepository : BaseRepository<User>
                     {
                         if (dr.Read())
                         {
-                            user = new User
-                            {
-                                Id = dr.GetInt32("Id"),
-                                Login = dr.GetString("Login"),
-                                Password = dr.GetString("Password")
-                            };
+                            int employeeId = dr.GetInt32("EmployeeId");
+                            int roleId = dr.GetInt32("RoleId");
+                            user = new User(
+                            
+                                dr.GetInt32("Id"),
+                                _employeeRepository.GetById(employeeId),
+                                dr.GetString("Login"),
+                                dr.GetString("Password"),
+                                _roleRepository.GetById(roleId)
+                            );
                         }
                     }
                 }
@@ -85,8 +88,7 @@ public class UserRepository : BaseRepository<User>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return user;
         }

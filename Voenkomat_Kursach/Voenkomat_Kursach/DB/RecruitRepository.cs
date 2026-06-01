@@ -8,7 +8,6 @@ namespace Voenkomat_Kursach.DB;
 
 public class RecruitRepository : BaseRepository<Recruit>
 {
-    private List<Recruit> _recruits;
     public RecruitRepository(string connectionString) : base(connectionString)
     {
         
@@ -48,8 +47,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return recruits;
         }
@@ -92,8 +90,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return recruit;
         }

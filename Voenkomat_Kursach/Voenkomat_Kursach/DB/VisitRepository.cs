@@ -9,7 +9,6 @@ namespace Voenkomat_Kursach.DB;
 public class VisitRepository : BaseRepository<Visit>
 {
     private RecruitRepository _recruitRepository;
-    private List<Visit> _visits;
     public VisitRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
     {
         _recruitRepository = recruitRepository;
@@ -26,13 +25,14 @@ public class VisitRepository : BaseRepository<Visit>
                 {
                     while (dr.Read())
                     {
-                        visits.Add(new Visit
-                        {
-                            Id = dr.GetInt32("Id"),
-                            Date = dr.GetDateOnly("Date"),
-                            OutTime = dr.GetTimeOnly("OutTime"),
-                            InTime = dr.GetTimeOnly("InTime")
-                        });
+                        visits.Add(new Visit(
+                            dr.GetInt32("Id"),
+                            _recruitRepository.GetById(dr.GetInt32("RecruitId")),
+                            dr.GetDateOnly("Date"),
+                            dr.GetTimeOnly("OutTime"),
+                            dr.GetString("Goal"),
+                            dr.GetTimeOnly("InTime")
+                        ));
                     }
                 }
             }
@@ -43,8 +43,7 @@ public class VisitRepository : BaseRepository<Visit>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return visits;
         }
@@ -63,13 +62,14 @@ public class VisitRepository : BaseRepository<Visit>
                     {
                         if (dr.Read())
                         {
-                            visit = new Visit
-                            {
-                                Id = dr.GetInt32("Id"),
-                                Date = dr.GetDateOnly("Date"),
-                                OutTime = dr.GetTimeOnly("OutTime"),
-                                InTime = dr.GetTimeOnly("InTime")
-                            };
+                            visit = new Visit(
+                                dr.GetInt32("Id"),
+                                _recruitRepository.GetById(dr.GetInt32("RecruitId")),
+                                dr.GetDateOnly("Date"),
+                                dr.GetTimeOnly("OutTime"),
+                                dr.GetString("Goal"),
+                                dr.GetTimeOnly("InTime")
+                            );
                         }
                     }
                 }
@@ -81,8 +81,7 @@ public class VisitRepository : BaseRepository<Visit>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return visit;
         }

@@ -41,8 +41,7 @@ public class JobRepository : BaseRepository<Job>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return jobs;
         }
@@ -77,8 +76,7 @@ public class JobRepository : BaseRepository<Job>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return job;
         }

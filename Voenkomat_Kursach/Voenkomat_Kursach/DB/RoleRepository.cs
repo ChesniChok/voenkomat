@@ -8,7 +8,6 @@ namespace Voenkomat_Kursach.DB;
 
 public class RoleRepository : BaseRepository<Role>
 {
-    private List<Role> _roles;
     public RoleRepository(string connectionString) : base(connectionString)
     {
         
@@ -41,8 +40,7 @@ public class RoleRepository : BaseRepository<Role>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return roles;
         }
@@ -77,8 +75,7 @@ public class RoleRepository : BaseRepository<Role>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return role;
         }

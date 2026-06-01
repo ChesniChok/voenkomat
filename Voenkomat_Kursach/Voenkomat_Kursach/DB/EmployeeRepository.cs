@@ -11,7 +11,6 @@ public class EmployeeRepository : BaseRepository<Employee>
 {
     private CabinetRepository _cabinetRepository;
     private JobRepository _jobRepository;
-    private List<Employee> _employees;
     public EmployeeRepository(string connectionString, CabinetRepository cabinetRepository, JobRepository jobRepository) : base(connectionString)
     {
         _cabinetRepository = cabinetRepository;
@@ -54,7 +53,7 @@ public class EmployeeRepository : BaseRepository<Employee>
         return employees;
     }
 
-    public Employee GetById(int id)
+    public Employee? GetById(int id)
     {
         Employee employee = new Employee();
         try
