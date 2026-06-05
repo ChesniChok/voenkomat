@@ -2,82 +2,93 @@
 using System.Collections.Generic;
 using System.Data;
 using MySqlConnector;
+using Tmds.DBus.Protocol;
 using Voenkomat_Kursach.Models;
 
 namespace Voenkomat_Kursach.DB;
 
 public class EmployeeRepository : BaseRepository<Employee>
 {
-    public EmployeeRepository(string connectionString) : base(connectionString)
+    private CabinetRepository _cabinetRepository;
+    private JobRepository _jobRepository;
+    public EmployeeRepository(string connectionString, CabinetRepository cabinetRepository, JobRepository jobRepository) : base(connectionString)
     {
+        _cabinetRepository = cabinetRepository;
+        _jobRepository = jobRepository;
     }
 
     public List<Employee> GetAll()
+    {
+        List<Employee> employees = new List<Employee>();
+        try
         {
-            List<Employee> employees = new List<Employee>();
-            try
+            OpenConnection();
+            string sql = "SELECT * FROM employee";
+            using (var mc = new MySqlCommand(sql, _connection))
+            using (var dr = mc.ExecuteReader())
             {
-                _connection.Open();
-                string sql = "SELECT * FROM Employee";
-                using (var mc = new MySqlCommand(sql, _connection))
+                while (dr.Read())
+                {
+                    int cabinetNumber = dr.GetInt32("CabinetNumber");
+                    int jobId = dr.GetInt32("JobId");
+                    
+                    employees.Add(new Employee(
+                        dr.GetInt32("Id"),
+                        dr.GetString("FullName"),
+                        _cabinetRepository.GetById(cabinetNumber),
+                        _jobRepository.GetById(jobId)
+                    ));
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+        return employees;
+    }
+
+    public Employee? GetById(int id)
+    {
+        Employee employee = new Employee();
+        try
+        {
+            OpenConnection();
+            string sql = "SELECT * FROM employee WHERE Id = @Id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@Id", id);
                 using (var dr = mc.ExecuteReader())
                 {
-                    while (dr.Read())
+                    if (dr.Read())
                     {
-                        employees.Add(new Employee
-                        {
-                            Id = dr.GetInt32("Id"),
-                            FullName = dr.GetString("FullName")
-                        });
+                        int cabinetNumber = dr.GetInt32("CabinetNumber");
+                        int jobId = dr.GetInt32("JobId");
+                        
+                        employee = new Employee(
+                            dr.GetInt32("Id"),
+                            dr.GetString("FullName"),
+                            _cabinetRepository.GetById(cabinetNumber),
+                            _jobRepository.GetById(jobId)
+                        );
                     }
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            finally
-            {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
-            }
-            return employees;
         }
-
-        public Employee GetById(int id)
+        catch (Exception e)
         {
-            Employee employee = null;
-            try
-            {
-                _connection.Open();
-                string sql = "SELECT * FROM Employee WHERE id = @id";
-                using (var mc = new MySqlCommand(sql, _connection))
-                {
-                    mc.Parameters.AddWithValue("@Id", id);
-                    using (var dr = mc.ExecuteReader())
-                    {
-                        if (dr.Read())
-                        {
-                            employee = new Employee
-                            {
-                                Id = dr.GetInt32("Id"),
-                                FullName = dr.GetString("FullName")
-                            };
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            finally
-            {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
-            }
-            return employee;
+            Console.WriteLine(e);
+            throw;
         }
+        finally
+        {
+            CloseConnection();
+        }
+        return employee;
+    }
 }

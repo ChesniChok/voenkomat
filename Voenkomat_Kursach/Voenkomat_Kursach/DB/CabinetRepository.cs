@@ -10,6 +10,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
 {
     public CabinetRepository(string connectionString) : base(connectionString)
     {
+        
     }
 
     public List<Cabinet> GetAll()
@@ -18,7 +19,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         try
         {
             _connection.Open();
-            string sql = "select * from Cabinet";
+            string sql = "select * from cabinets";
             using (var mc = new MySqlCommand(sql, _connection))
             using (var dr = mc.ExecuteReader())
             {
@@ -40,8 +41,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         }
         finally
         {
-            if (_connection.State == ConnectionState.Open)
-                _connection.Close();
+            CloseConnection();
         }
         return cabinets;
     }
@@ -52,7 +52,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         try
         {
             _connection.Open();
-            string sql = "select * from Cabinet";
+            string sql = "select * from cabinets";
             using (var mc = new MySqlCommand(sql, _connection))
             using (var dr = mc.ExecuteReader())
             {
@@ -72,7 +72,10 @@ public class CabinetRepository : BaseRepository<Cabinet>
             Console.WriteLine(e);
             throw;
         }
-        
+        finally
+        {
+            CloseConnection();
+        }
         return cabinet;
     }
 }

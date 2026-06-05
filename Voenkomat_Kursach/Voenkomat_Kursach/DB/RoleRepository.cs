@@ -10,6 +10,7 @@ public class RoleRepository : BaseRepository<Role>
 {
     public RoleRepository(string connectionString) : base(connectionString)
     {
+        
     }
 
         public List<Role> GetAll()
@@ -18,7 +19,7 @@ public class RoleRepository : BaseRepository<Role>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Role";
+                string sql = "SELECT * FROM roles";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
@@ -39,19 +40,18 @@ public class RoleRepository : BaseRepository<Role>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return roles;
         }
 
         public Role GetById(int id)
         {
-            Role role = null;
+            Role role = new Role();
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Role WHERE id = @id";
+                string sql = "SELECT * FROM roles WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -75,8 +75,7 @@ public class RoleRepository : BaseRepository<Role>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return role;
         }

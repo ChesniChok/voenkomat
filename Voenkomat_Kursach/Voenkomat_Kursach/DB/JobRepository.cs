@@ -8,9 +8,10 @@ namespace Voenkomat_Kursach.DB;
 
 public class JobRepository : BaseRepository<Job>
 {
-
+    private List<Job> _jobs;
     public JobRepository(string connectionString) : base(connectionString)
     {
+        
     }
 
         public List<Job> GetAll()
@@ -19,7 +20,7 @@ public class JobRepository : BaseRepository<Job>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Job";
+                string sql = "SELECT * FROM jobs";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
@@ -40,8 +41,7 @@ public class JobRepository : BaseRepository<Job>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return jobs;
         }
@@ -52,7 +52,7 @@ public class JobRepository : BaseRepository<Job>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Job WHERE id = @id";
+                string sql = "SELECT * FROM jobs WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -76,8 +76,7 @@ public class JobRepository : BaseRepository<Job>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return job;
         }

@@ -10,6 +10,7 @@ public class RecruitRepository : BaseRepository<Recruit>
 {
     public RecruitRepository(string connectionString) : base(connectionString)
     {
+        
     }
     public List<Recruit> GetAll()
         {
@@ -17,7 +18,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Recruit";
+                string sql = "SELECT * FROM recruits";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
@@ -46,8 +47,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return recruits;
         }
@@ -58,7 +58,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Recruit WHERE id = @id";
+                string sql = "SELECT * FROM recruits WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -90,8 +90,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return recruit;
         }
