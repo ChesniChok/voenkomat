@@ -3261,19 +3261,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kokun\\.nuget\\packages\\": {}
+    "C:\\Users\\Чесночел\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kokun\\Desktop\\voenkomat\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj",
+      "projectUniqueName": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка потому что проебался\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj",
       "projectName": "Voenkomat_Kursach",
-      "projectPath": "C:\\Users\\kokun\\Desktop\\voenkomat\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj",
-      "packagesPath": "C:\\Users\\kokun\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kokun\\Desktop\\voenkomat\\Voenkomat_Kursach\\Voenkomat_Kursach\\obj\\",
+      "projectPath": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка потому что проебался\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj",
+      "packagesPath": "C:\\Users\\Чесночел\\.nuget\\packages\\",
+      "outputPath": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка потому что проебался\\Voenkomat_Kursach\\Voenkomat_Kursach\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kokun\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Чесночел\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3297,7 +3297,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -3351,30 +3351,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[9.0.13, 9.0.13]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[9.0.13, 9.0.13]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[9.0.13, 9.0.13]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[9.0.13, 9.0.13]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\Чесночел\\.dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

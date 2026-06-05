@@ -12,6 +12,7 @@ public class Document
     public Employee? Author { get; set; }
     public MedComission? MedComisiion { get; set; }
     public Recruit? Recruit { get; set; }
+    public string Content {get; set;}
     public string Description { get; set; }
 
 
@@ -24,10 +25,11 @@ public class Document
         Author = new();
         MedComisiion = new();
         Recruit = new();
+        Content = "";
         Description = "";
     }
     
-    public Document(int id, string type, string number, string fileName, Employee? author, MedComission? medComisiion, Recruit? recruit, string description)
+    public Document(int id, string type, string number, string fileName, Employee? author, MedComission? medComisiion, Recruit? recruit, string content, string description)
     {
         Id = id;
         Type = type;
@@ -36,6 +38,7 @@ public class Document
         Author = author;
         MedComisiion = medComisiion;
         Recruit = recruit;
+        Content = content;
         Description = description;
     }
 
