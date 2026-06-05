@@ -13,13 +13,9 @@ namespace Voenkomat_Kursach.ViewModels;
 public partial class DoctorViewModel : UserBaseViewModel
 {
 
-    private IServiceProvider _sp;
 
-
-    public DoctorViewModel(User user, Window win, Window mw, IServiceProvider sp) : base(user, win, mw)
+    public DoctorViewModel(User user, Window win, Window mw, IServiceProvider sp) : base(sp, user, win, mw)
     {
-        
-        _sp = sp;
         
         
         CheckItems = new ObservableCollection<ChecklistItem>();

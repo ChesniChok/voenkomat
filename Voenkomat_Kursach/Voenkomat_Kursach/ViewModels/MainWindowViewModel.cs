@@ -16,7 +16,6 @@ namespace Voenkomat_Kursach.ViewModels;
 public partial class MainWindowViewModel : ViewModelBase
 {
     
-    private IServiceProvider _sp;
     private MainWindow thiswin;//окно этой ВМ
     private Window nextWin;//окно выбора призывников
 
@@ -26,7 +25,7 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
 
-    public MainWindowViewModel(IServiceProvider sp)
+    public MainWindowViewModel(IServiceProvider sp) : base(sp)
     {
         
         _sp = sp;

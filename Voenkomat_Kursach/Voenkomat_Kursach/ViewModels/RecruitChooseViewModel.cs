@@ -11,14 +11,12 @@ namespace Voenkomat_Kursach.ViewModels;
 
 public partial class RecruitChooseViewModel : ViewModelBase
 {
-    
-    private IServiceProvider _sp;
 
     private MainWindow _backWin;
     private Window _thisWin;
     private Window _nextWin;
 
-    public RecruitChooseViewModel(IServiceProvider sp, MainWindow backWin, Window thisWin, Window nextWin)
+    public RecruitChooseViewModel(IServiceProvider sp, MainWindow backWin, Window thisWin, Window nextWin) : base(sp)
     {
         
         _sp = sp;

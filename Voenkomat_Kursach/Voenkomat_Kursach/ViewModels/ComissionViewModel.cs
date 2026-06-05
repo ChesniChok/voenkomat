@@ -9,11 +9,9 @@ namespace Voenkomat_Kursach.ViewModels;
 public partial class ComissionViewModel : UserBaseViewModel
 {
     
-    private IServiceProvider _sp;
-    
-    public ComissionViewModel(IServiceProvider sp, User user, Window win, Window backWin) : base(user, win, backWin)
+    public ComissionViewModel(IServiceProvider sp, User user, Window win, Window backWin) : base(sp, user, win, backWin)
     {
-        _sp = sp;
+        
     }
     
     

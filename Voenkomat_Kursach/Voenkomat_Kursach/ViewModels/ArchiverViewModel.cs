@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Voenkomat_Kursach.Models;
 using Voenkomat_Kursach.Views;
 
@@ -6,7 +7,7 @@ namespace Voenkomat_Kursach.ViewModels;
 
 public class ArchiverViewModel : UserBaseViewModel
 {
-    public ArchiverViewModel(User user, Window win, Window backWin) : base(user, win, backWin)
+    public ArchiverViewModel(IServiceProvider sp, User user, Window win, Window backWin) : base(sp, user, win, backWin)
     {
     }
 }
