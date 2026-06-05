@@ -6,7 +6,7 @@ namespace Voenkomat_Kursach.ViewModels;
 
 public class RegistatorViewModel : UserBaseViewModel
 {
-    public RegistatorViewModel(User user, Window win, MainWindow backWin) : base(user, win, backWin)
+    public RegistatorViewModel(User user, Window win, Window backWin) : base(user, win, backWin)
     {
     }
 }

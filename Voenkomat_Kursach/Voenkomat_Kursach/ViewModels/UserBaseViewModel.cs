@@ -1,18 +1,19 @@
 ﻿using Avalonia.Controls;
+using CommunityToolkit.Mvvm.Input;
 using Voenkomat_Kursach.Models;
 using Voenkomat_Kursach.Views;
 
 namespace Voenkomat_Kursach.ViewModels;
 
-public abstract class UserBaseViewModel : ViewModelBase
+public abstract partial class UserBaseViewModel : ViewModelBase
 {
     
     protected User _user;
     protected Window _win;
     protected Recruit _rec;
-    protected MainWindow _backWin;
+    protected Window _backWin;
 
-    public UserBaseViewModel(User user, Window win, MainWindow backWin)
+    public UserBaseViewModel(User user, Window win, Window backWin)
     {
         _user = user;
         _win = win;
@@ -24,15 +25,15 @@ public abstract class UserBaseViewModel : ViewModelBase
         _rec = rec;
     }
     
+    [RelayCommand]
     protected void GoBack()
     {
         
         _backWin.Position = _win.Position;
-        
-        (_backWin.DataContext as MainWindowViewModel).Start();
+
         _backWin.Show();
         
-        _win.Close();
+        _win.Hide();
         
     }
     

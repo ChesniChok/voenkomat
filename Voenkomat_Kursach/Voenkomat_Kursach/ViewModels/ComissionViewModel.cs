@@ -1,12 +1,22 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
+using Microsoft.Extensions.DependencyInjection;
 using Voenkomat_Kursach.Models;
 using Voenkomat_Kursach.Views;
 
 namespace Voenkomat_Kursach.ViewModels;
 
-public class ComissionViewModel : UserBaseViewModel
+public partial class ComissionViewModel : UserBaseViewModel
 {
-    public ComissionViewModel(User user, Window win, MainWindow backWin) : base(user, win, backWin)
+    
+    private IServiceProvider _sp;
+    
+    public ComissionViewModel(IServiceProvider sp, User user, Window win, Window backWin) : base(user, win, backWin)
     {
+        _sp = sp;
     }
+    
+    
+    
+    
 }

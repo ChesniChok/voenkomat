@@ -6,7 +6,7 @@ namespace Voenkomat_Kursach.ViewModels;
 
 public class AdminViewModel : UserBaseViewModel
 {
-    public AdminViewModel(User user, Window win, MainWindow backWin) : base(user, win, backWin)
+    public AdminViewModel(User user, Window win, Window backWin) : base(user, win, backWin)
     {
     }
 }

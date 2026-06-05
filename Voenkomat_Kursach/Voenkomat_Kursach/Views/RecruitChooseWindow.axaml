@@ -2,10 +2,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Voenkomat_Kursach.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Voenkomat_Kursach.Views.RecruitChooseWindow"
+        x:DataType="vm:RecruitChooseViewModel"
         Title="RecruitChooseWindow">
     
+        <Grid RowDefinitions="Auto *">
         
+                <!-- поиск и выбор -->
+                <Grid Grid.Row="0" ColumnDefinitions="* Auto Auto">
+                        
+                        <!-- поле для поиска по ФИО [ой чё придумал баляяя))))] {иф поле контеинс имя или фамилия или отчество} -->
+                        <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Text="{Binding SearchString}"/>
+                        
+                        <Button Grid.Column="1" Content="{Binding GoToNextWinText}" Command="{Binding GoToNextWinCommand}" Width="80" HorizontalContentAlignment="Center"/>
+                        <Button Grid.Column="2" Content="назад" Command="{Binding GoBackCommand}" Width="80" HorizontalContentAlignment="Center"/>
+                        
+                </Grid>
+
+                <!-- список челов в отделении -->
+                <Grid Grid.Row="1">
+    
+                        <ListBox ItemsSource="{Binding Recruits}" SelectedItem="{Binding SelectedRecruit}">
+                                <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding FamilyName}"/>
+                                                        <TextBlock Text=" "/>
+                                                        <TextBlock Text="{Binding Name}"/>
+                                                        <TextBlock Text=" "/>
+                                                        <TextBlock Text="{Binding FatherName}"/>
+                                                </StackPanel>
+                                        </DataTemplate>
+                                </ListBox.ItemTemplate>
+                        </ListBox>
+
+                </Grid>
+                
+        </Grid>
         
 </Window>
