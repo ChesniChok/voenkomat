@@ -55,9 +55,8 @@ public partial class MainWindowViewModel : ViewModelBase
     private void FindUser()
     {
 
-        var user = new User();//тут получаем юзера из базы
-        user.Role.Name = Login;
-        user.Role.IsMed = true;
+        //тут надо получить пользователя из базы
+        var user = GenerateUser();
         
         //если такой пользователь есть
         if (user != null)
@@ -177,6 +176,28 @@ public partial class MainWindowViewModel : ViewModelBase
         
         LoginText = "Войти в учётную запись";
         
+    }
+
+
+    private User GenerateUser()
+    {
+
+        var u = new User();
+
+        if (Login != "")
+        {
+
+            u.Role.Name = Login;
+
+            if (Login == "Врач" || Login == "Комиссионщик")
+            {
+                u.Role.IsMed = true;
+            }
+
+        }
+        
+        return u;
+
     }
 
 }
