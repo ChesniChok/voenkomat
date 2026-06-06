@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Voenkomat_Kursach.Models;
 using Voenkomat_Kursach.Views;
 
@@ -18,6 +20,7 @@ public partial class MainWindowViewModel : ViewModelBase
     
     private MainWindow thiswin;//окно этой ВМ
     private Window nextWin;//окно выбора призывников
+    private AppSettings _appSettings;
 
     public void SetWin(MainWindow win)
     {
@@ -25,10 +28,11 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
 
-    public MainWindowViewModel(IServiceProvider sp) : base(sp)
+    public MainWindowViewModel(IServiceProvider sp, IOptions<AppSettings> aps) : base(sp)
     {
         
         _sp = sp;
+        _appSettings = aps.Value;
 
         Start();
 
@@ -80,10 +84,10 @@ public partial class MainWindowViewModel : ViewModelBase
             }
             
             
-            switch (user.Role.Name)//проверяем роль и выдаём соответствующее окно
+            switch (_appSettings.Roles.GetValueOrDefault(user.Role.Name, ""))//проверяем роль и выдаём соответствующее окно
             {
 
-                case "Администратор":
+                case "admin":
                 {
                     userWin = ActivatorUtilities.CreateInstance<AdminWIndow>(_sp);
                     userVm = ActivatorUtilities.CreateInstance<AdminViewModel>(_sp, user, userWin, userBackWin);
@@ -91,7 +95,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     break;
                 }
                 
-                case "Архивариус":
+                case "arch":
                 {
                     userWin = ActivatorUtilities.CreateInstance<ArchiverWindow>(_sp);
                     userVm = ActivatorUtilities.CreateInstance<ArchiverViewModel>(_sp, user, userWin, userBackWin);
@@ -99,7 +103,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     break;
                 }
                 
-                case "Регистрирующий":
+                case "reg":
                 {
                     userWin = ActivatorUtilities.CreateInstance<RegistratorWindow>(_sp);
                     userVm = ActivatorUtilities.CreateInstance<RegistatorViewModel>(_sp, user, userWin, userBackWin);
@@ -107,7 +111,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     break;
                 }
                 
-                case "Врач":
+                case "doctor":
                 {
                     userWin = ActivatorUtilities.CreateInstance<DoctorWindow>(_sp);
                     userVm = ActivatorUtilities.CreateInstance<DoctorViewModel>(_sp, user, userWin, userBackWin);
@@ -115,7 +119,7 @@ public partial class MainWindowViewModel : ViewModelBase
                     break;
                 }
                 
-                case "Комиссионщик":
+                case "comis":
                 {
                     userWin = ActivatorUtilities.CreateInstance<ComissionWindow>(_sp);
                     userVm = ActivatorUtilities.CreateInstance<ComissionViewModel>(_sp, user, userWin, userBackWin);
@@ -125,8 +129,8 @@ public partial class MainWindowViewModel : ViewModelBase
                 
                 default:
                 {
-                    //throw new ArgumentException("нет такой роли в приложении, обратитесь к администратору базы данных, который плохо читал инструкцию");
-                    BlinkLogin();
+                    //throw new ArgumentException();
+                    BlinkLogin("нет такой роли в приложении, обратитесь к администратору базы данных, который плохо читал инструкцию", 3000);
                     return;
                 }
 
@@ -167,12 +171,12 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     
 
-    private async void BlinkLogin()
+    private async void BlinkLogin(string text = "Учётная запись не найдена", int delay = 1000)
     {
         
-        LoginText = "Учётная запись не найдена";
+        LoginText = text;
 
-        await Task.Delay(1000);
+        await Task.Delay(delay);
         
         LoginText = "Войти в учётную запись";
         
