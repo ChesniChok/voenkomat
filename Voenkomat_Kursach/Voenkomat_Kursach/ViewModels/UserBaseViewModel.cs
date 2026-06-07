@@ -37,5 +37,10 @@ public abstract partial class UserBaseViewModel : ViewModelBase
         _win.Hide();
         
     }
+
+    public void Close()
+    {
+        _win.Close();
+    }
     
 }

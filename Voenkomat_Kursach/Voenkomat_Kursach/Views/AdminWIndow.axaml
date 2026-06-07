@@ -1,9 +1,57 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Voenkomat_Kursach.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Voenkomat_Kursach.Views.AdminWIndow"
+        x:DataType="vm:AdminViewModel"
         Title="AdminWIndow">
-    Welcome to Avalonia!
+    
+        <TabControl>
+                
+                <TabItem Header="настройки">
+                        
+                        <Grid RowDefinitions="Auto Auto *">
+                                
+                                <Grid Grid.Row="0">
+                                        
+                                        <Grid RowDefinitions="Auto Auto Auto Auto" ColumnDefinitions="Auto Auto">
+                                                
+                                                <TextBox Grid.Row="0" Grid.Column="0" Text="сервер" IsReadOnly="True"/>
+                                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerVal}"/>
+                                                
+                                                <TextBox Grid.Row="1" Grid.Column="0" Text="пользователь" IsReadOnly="True"/>
+                                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding UserVal}"/>
+                                                
+                                                <TextBox Grid.Row="2" Grid.Column="0" Text="пароль" IsReadOnly="True"/>
+                                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PasswordVal}"/>
+                                                
+                                                <TextBox Grid.Row="3" Grid.Column="0" Text="база дынных" IsReadOnly="True"/>
+                                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DatabaseVal}"/>
+                                                
+                                        </Grid>
+                                        
+                                </Grid>
+                                
+                                <StackPanel Grid.Row="1">
+                
+                                        <Button Content="{Binding S}" Command="{Binding TestCommand}"/>
+                
+                                </StackPanel>
+                                
+                        </Grid>
+                        
+                </TabItem>
+                
+                
+                <TabItem Header="БД">
+                        
+                        
+                        
+                </TabItem>
+                
+                
+        </TabControl>
+        
 </Window>
