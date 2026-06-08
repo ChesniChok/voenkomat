@@ -34,9 +34,11 @@
                                         
                                 </Grid>
                                 
-                                <StackPanel Grid.Row="1">
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
                 
                                         <Button Content="{Binding S}" Command="{Binding TestCommand}"/>
+                                        
+                                        <Button Content="сохранить настройки" Command="{Binding SaveSettingsCommand}"/>
                 
                                 </StackPanel>
                                 

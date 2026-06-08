@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -27,17 +30,12 @@ public partial class AdminViewModel : UserBaseViewModel
     [ObservableProperty] private string _s;
     
 
-    [ObservableProperty] private string _server;
     [ObservableProperty] private string _serverVal;
-    
-    [ObservableProperty] private string _user;
     [ObservableProperty] private string _userVal;
-    
-    [ObservableProperty] private string _password;
     [ObservableProperty] private string _passwordVal;
-    
-    [ObservableProperty] private string _database;
     [ObservableProperty] private string _databaseVal;
+    
+    
     
     [RelayCommand]
     public void Test()
@@ -47,48 +45,83 @@ public partial class AdminViewModel : UserBaseViewModel
 
         S = _roles[_roles.Keys.ElementAt(r.Next(_roles.Count))];
         
+        ConnectionSettings();
+
+    }
+
+    private void ConnectionSettings()
+    {
         
+        var s = c.Split(";");
+
         {
+            var ss = s[0].Split("=");
             
-            var s = c.Split(";");
-
-            {
-                
-                var ss = s[0].Split("=");
-
-                Server = ss[0];
-                ServerVal = ss[1];
-                
-            }
-            
-            {
-                
-                var ss = s[1].Split("=");
-
-                User = ss[0];
-                UserVal = ss[1];
-                
-            }
-            
-            {
-                
-                var ss = s[2].Split("=");
-
-                Password = ss[0];
-                PasswordVal = ss[1];
-                
-            }
-            
-            {
-                
-                var ss = s[3].Split("=");
-
-                Database = ss[0];
-                DatabaseVal = ss[1];
-                
-            }
-            
+            ServerVal = ss[1];
         }
+            
+        {
+            var ss = s[1].Split("=");
+
+            UserVal = ss[1];
+        }
+            
+        {
+            var ss = s[2].Split("=");
+
+            PasswordVal = ss[1];
+        }
+            
+        {
+            var ss = s[3].Split("=");
+
+            DatabaseVal = ss[1];
+        }
+        
+    }
+
+
+
+    [RelayCommand]
+    public void SaveSettings()
+    {
+        
+        SerializeSettings();
+        
+    }
+
+    private void SerializeSettings()
+    {
+
+        var sets = new AppSettings(GenerateConectionString(), _roles);
+
+        using(var fs = File.Create("appsettings.json"))
+        {
+            JsonSerializer.Serialize(fs, sets);
+
+            ServerVal = fs.Name;
+        }
+
+    }
+
+    private string GenerateConectionString()
+    {
+
+        var sb = new StringBuilder();
+
+        sb.Append("server=");
+        sb.Append(ServerVal);
+        
+        sb.Append(";user=");
+        sb.Append(UserVal);
+        
+        sb.Append(";password=");
+        sb.Append(PasswordVal);
+        
+        sb.Append(";database=");
+        sb.Append(DatabaseVal);
+        
+        return sb.ToString();
 
     }
     

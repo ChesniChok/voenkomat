@@ -34,7 +34,7 @@ public abstract partial class UserBaseViewModel : ViewModelBase
 
         _backWin.Show();
         
-        _win.Hide();
+        _win.Close();
         
     }
 
