@@ -14,7 +14,7 @@ public partial class DoctorViewModel : UserBaseViewModel
 {
 
 
-    public DoctorViewModel(User user, Window win, Window mw, IServiceProvider sp) : base(sp, user, win, mw)
+    public DoctorViewModel(User user, Window win, IServiceProvider sp) : base(sp, user, win)
     {
         
         

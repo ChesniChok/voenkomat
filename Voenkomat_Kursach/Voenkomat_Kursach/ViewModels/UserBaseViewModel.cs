@@ -14,11 +14,10 @@ public abstract partial class UserBaseViewModel : ViewModelBase
     protected Recruit _rec;
     protected Window _backWin;
 
-    public UserBaseViewModel(IServiceProvider sp, User user, Window win, Window backWin) : base(sp)
+    public UserBaseViewModel(IServiceProvider sp, User user, Window win) : base(sp)
     {
         _user = user;
         _win = win;
-        _backWin = backWin;
     }
 
     public void SetRec(Recruit rec)

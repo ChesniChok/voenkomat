@@ -20,7 +20,7 @@ public partial class AdminViewModel : UserBaseViewModel
     private String c;
     private Dictionary<string, string> _roles;
 
-    public AdminViewModel(IServiceProvider sp, User user, Window win, Window backWin, IOptions<AppSettings> ap) : base(sp, user, win, backWin)
+    public AdminViewModel(IServiceProvider sp, User user, Window win, IOptions<AppSettings> ap) : base(sp, user, win)
     {
         c = ap.Value.ConnectionString;
         _roles = ap.Value.Roles;
