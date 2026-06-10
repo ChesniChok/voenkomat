@@ -16,7 +16,7 @@
                         <!-- поле для поиска по ФИО [ой чё придумал баляяя))))] {иф поле контеинс имя или фамилия или отчество} -->
                         <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Text="{Binding SearchString}"/>
                         
-                        <Button Grid.Column="1" Content="{Binding GoToNextWinText}" Command="{Binding GoToNextWinCommand}" Width="80" HorizontalContentAlignment="Center"/>
+                        <Button Grid.Column="1" Content="{Binding GoToNextWinText}" Command="{Binding GoNextCommand}" Width="80" HorizontalContentAlignment="Center"/>
                         <Button Grid.Column="2" Content="назад" Command="{Binding GoBackCommand}" Width="80" HorizontalContentAlignment="Center"/>
                         
                 </Grid>

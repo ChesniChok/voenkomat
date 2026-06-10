@@ -33,6 +33,7 @@ public partial class MainWindowViewModel : ViewModelBase
         
         _sp = sp;
         _appSettings = aps.Value;
+        
 
         Start();
 
@@ -47,6 +48,8 @@ public partial class MainWindowViewModel : ViewModelBase
         LoginText = "Войти в учётную запись";
         
     }
+
+    protected override void GoBack() => thiswin.Close();
 
 
     [ObservableProperty] private string login;
@@ -90,7 +93,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "admin":
                 {
                     userWin = ActivatorUtilities.CreateInstance<AdminWIndow>(_sp);
-                    userVm = ActivatorUtilities.CreateInstance<AdminViewModel>(_sp, user, userWin, userBackWin);
+                    userVm = ActivatorUtilities.CreateInstance<AdminViewModel>(_sp, user, userWin);
 
                     break;
                 }
@@ -98,7 +101,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "arch":
                 {
                     userWin = ActivatorUtilities.CreateInstance<ArchiverWindow>(_sp);
-                    userVm = ActivatorUtilities.CreateInstance<ArchiverViewModel>(_sp, user, userWin, userBackWin);
+                    userVm = ActivatorUtilities.CreateInstance<ArchiverViewModel>(_sp, user, userWin);
 
                     break;
                 }
@@ -106,7 +109,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "reg":
                 {
                     userWin = ActivatorUtilities.CreateInstance<RegistratorWindow>(_sp);
-                    userVm = ActivatorUtilities.CreateInstance<RegistatorViewModel>(_sp, user, userWin, userBackWin);
+                    userVm = ActivatorUtilities.CreateInstance<RegistatorViewModel>(_sp, user, userWin);
 
                     break;
                 }
@@ -114,7 +117,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "doctor":
                 {
                     userWin = ActivatorUtilities.CreateInstance<DoctorWindow>(_sp);
-                    userVm = ActivatorUtilities.CreateInstance<DoctorViewModel>(_sp, user, userWin, userBackWin);
+                    userVm = ActivatorUtilities.CreateInstance<DoctorViewModel>(_sp, user, userWin);
 
                     break;
                 }
@@ -122,7 +125,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 case "comis":
                 {
                     userWin = ActivatorUtilities.CreateInstance<ComissionWindow>(_sp);
-                    userVm = ActivatorUtilities.CreateInstance<ComissionViewModel>(_sp, user, userWin, userBackWin);
+                    userVm = ActivatorUtilities.CreateInstance<ComissionViewModel>(_sp, user, userWin);
 
                     break;
                 }
@@ -141,7 +144,7 @@ public partial class MainWindowViewModel : ViewModelBase
             if (user.Role.IsMed)//если роль человека связана с медкомиссией
             {
                 //создаём наконец ВМ для окна выбора
-                userBackWin.DataContext = ActivatorUtilities.CreateInstance<RecruitChooseViewModel>(_sp, thiswin, userBackWin, userWin);//окно возврата, окно выбора, окно пользователя
+                userBackWin.DataContext = ActivatorUtilities.CreateInstance<RecruitChooseViewModel>(_sp, userBackWin, userWin);//окно возврата, окно выбора, окно пользователя
                 nextWin = userBackWin;
             }
             else

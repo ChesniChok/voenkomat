@@ -1,20 +1,15 @@
 ﻿using System;
 using Avalonia.Controls;
-using Microsoft.Extensions.DependencyInjection;
 using Voenkomat_Kursach.Models;
-using Voenkomat_Kursach.Views;
 
 namespace Voenkomat_Kursach.ViewModels;
 
-public partial class ComissionViewModel : UserBaseViewModel
+public partial class ComissionViewModel : MedWorkersViewModel
 {
     
-    public ComissionViewModel(IServiceProvider sp, User user, Window win) : base(sp, user, win)
-    {
-        
-    }
-    
-    
-    
+    public ComissionViewModel(IServiceProvider sp, User user, Window win) : base(sp, user, win) {}
+
+
+    protected override void GoBack() => GoToChoose();
     
 }

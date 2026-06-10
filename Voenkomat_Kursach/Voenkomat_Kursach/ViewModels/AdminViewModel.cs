@@ -7,10 +7,8 @@ using System.Text.Json;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Voenkomat_Kursach.Models;
-using Voenkomat_Kursach.Views;
 
 namespace Voenkomat_Kursach.ViewModels;
 
@@ -124,6 +122,7 @@ public partial class AdminViewModel : UserBaseViewModel
         return sb.ToString();
 
     }
-    
+
+    protected override void GoBack() => GoToMain(_win);
     
 }

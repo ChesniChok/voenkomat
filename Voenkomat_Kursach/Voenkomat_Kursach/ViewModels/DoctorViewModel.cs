@@ -4,14 +4,14 @@ using System.Linq;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.DependencyInjection;
 using Voenkomat_Kursach.Models;
-using Voenkomat_Kursach.Views;
 
 namespace Voenkomat_Kursach.ViewModels;
 
-public partial class DoctorViewModel : UserBaseViewModel
+public partial class DoctorViewModel : MedWorkersViewModel
 {
+    
+    protected override void GoBack() => GoToChoose();
 
 
     public DoctorViewModel(User user, Window win, IServiceProvider sp) : base(sp, user, win)
