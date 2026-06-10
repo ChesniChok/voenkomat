@@ -29,9 +29,9 @@ public class VisitRepository : BaseRepository<Visit>
                             dr.GetInt32("Id"),
                             _recruitRepository.GetById(dr.GetInt32("RecruitId")),
                             dr.GetDateOnly("Date"),
-                            dr.GetTimeOnly("OutTime"),
+                            dr.GetTimeOnly("InTime"),
                             dr.GetString("Goal"),
-                            dr.GetTimeOnly("InTime")
+                            dr.GetTimeOnly("OutTime")
                         ));
                     }
                 }
@@ -66,9 +66,9 @@ public class VisitRepository : BaseRepository<Visit>
                                 dr.GetInt32("Id"),
                                 _recruitRepository.GetById(dr.GetInt32("RecruitId")),
                                 dr.GetDateOnly("Date"),
-                                dr.GetTimeOnly("OutTime"),
+                                dr.GetTimeOnly("InTime"),
                                 dr.GetString("Goal"),
-                                dr.GetTimeOnly("InTime")
+                                dr.GetTimeOnly("OutTime")
                             );
                         }
                     }
@@ -84,5 +84,48 @@ public class VisitRepository : BaseRepository<Visit>
                 CloseConnection();
             }
             return visit;
+        }
+        public List<Visit> GetVisitsToday()
+        {
+            List<Visit> visits = new List<Visit>();
+            try
+            {
+                OpenConnection();
+                
+                DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+                TimeOnly currentTime = TimeOnly.FromDateTime(DateTime.Now);
+                
+                string sql = @"SELECT * FROM visits WHERE Date = @today AND OutTime > @currentTime";
+                using (var mc = new MySqlCommand(sql, _connection))
+                {
+                    mc.Parameters.AddWithValue("@today", today);
+                    mc.Parameters.AddWithValue("@currentTime", currentTime);
+            
+                    using (var dr = mc.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            visits.Add(new Visit(
+                                dr.GetInt32("Id"),
+                                _recruitRepository.GetById(dr.GetInt32("RecruitId")),
+                                dr.GetDateOnly("Date"),
+                                dr.GetTimeOnly("InTime"),
+                                dr.GetString("Goal"),
+                                dr.GetTimeOnly("OutTime")
+                            ));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return visits;
         }
 }

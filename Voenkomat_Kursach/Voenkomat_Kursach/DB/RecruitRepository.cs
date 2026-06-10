@@ -24,19 +24,18 @@ public class RecruitRepository : BaseRepository<Recruit>
                 {
                     while (dr.Read())
                     {
-                        recruits.Add(new Recruit
-                        {
-                            Id = dr.GetInt32("Id"),
-                            FamilyName = dr.GetString("FamilyName"),
-                            Name = dr.GetString("Name"),
-                            FatherName = dr.GetString("FatherName"),
-                            DateOfBirth = dr.GetDateOnly("DateOfBirth"),
-                            PhoneNumber = dr.GetString("PhoneNumber"),
-                            Adress = dr.GetString("Adress"),
-                            Passport = dr.GetString("Passport"),
-                            SNILS = dr.GetString("SNILS"),
-                            INN = dr.GetString("INN")
-                        });
+                        recruits.Add(new Recruit(
+                            dr.GetInt32("Id"),
+                            dr.GetString("FamilyName"),
+                            dr.GetString("Name"),
+                            dr.GetString("FatherName"),
+                            dr.GetDateOnly("DateOfBirth"),
+                            dr.GetString("PhoneNumber"),
+                            dr.GetString("Adress"),
+                            dr.GetString("Passport"),
+                            dr.GetString("SNILS"),
+                            dr.GetString("INN")
+                        ));
                     }
                 }
             }
@@ -66,19 +65,19 @@ public class RecruitRepository : BaseRepository<Recruit>
                     {
                         if (dr.Read())
                         {
-                            recruit = new Recruit
-                            {
-                                Id = dr.GetInt32("Id"),
-                                FamilyName = dr.GetString("FamilyName"),
-                                Name = dr.GetString("Name"),
-                                FatherName = dr.GetString("FatherName"),
-                                DateOfBirth = dr.GetDateOnly("DateOfBirth"),
-                                PhoneNumber = dr.GetString("PhoneNumber"),
-                                Adress = dr.GetString("Adress"),
-                                Passport = dr.GetString("Passport"),
-                                SNILS = dr.GetString("SNILS"),
-                                INN = dr.GetString("INN")
-                            };
+                            recruit = new Recruit(
+                            
+                                dr.GetInt32("Id"),
+                                dr.GetString("FamilyName"),
+                                dr.GetString("Name"),
+                                dr.GetString("FatherName"),
+                                dr.GetDateOnly("DateOfBirth"),
+                                dr.GetString("PhoneNumber"),
+                                dr.GetString("Adress"),
+                                dr.GetString("Passport"),
+                                dr.GetString("SNILS"),
+                                dr.GetString("INN")
+                            );
                         }
                     }
                 }

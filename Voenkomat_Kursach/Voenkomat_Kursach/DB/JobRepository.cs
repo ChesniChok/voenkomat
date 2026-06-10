@@ -26,11 +26,11 @@ public class JobRepository : BaseRepository<Job>
                 {
                     while (dr.Read())
                     {
-                        jobs.Add(new Job
-                        {
-                            Id = dr.GetInt32("id"),
-                            Name = dr.GetString("Name")
-                        });
+                        jobs.Add(new Job(
+                        
+                            dr.GetInt32("id"),
+                            dr.GetString("Name")
+                        ));
                     }
                 }
             }
@@ -60,11 +60,11 @@ public class JobRepository : BaseRepository<Job>
                     {
                         if (dr.Read())
                         {
-                            job = new Job
-                            {
-                                Id = dr.GetInt32("Id"),
-                                Name = dr.GetString("Name")
-                            };
+                            job = new Job(
+                            
+                                dr.GetInt32("id"),
+                                dr.GetString("Name")
+                            );
                         }
                     }
                 }

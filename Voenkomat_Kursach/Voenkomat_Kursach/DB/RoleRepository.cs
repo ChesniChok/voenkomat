@@ -25,11 +25,12 @@ public class RoleRepository : BaseRepository<Role>
                 {
                     while (dr.Read())
                     {
-                        roles.Add(new Role
-                        {
-                            Id = dr.GetInt32("Id"),
-                            Name = dr.GetString("Name")
-                        });
+                        roles.Add(new Role(
+                        
+                            dr.GetInt32("Id"),
+                            dr.GetString("Name"),
+                            dr.GetBoolean("IsMed")
+                        ));
                     }
                 }
             }
@@ -59,11 +60,12 @@ public class RoleRepository : BaseRepository<Role>
                     {
                         if (dr.Read())
                         {
-                            role = new Role
-                            {
-                                Id = dr.GetInt32("Id"),
-                                Name = dr.GetString("Name")
-                            };
+                            role = new Role(
+                            
+                                dr.GetInt32("Id"),
+                                dr.GetString("Name"),
+                                dr.GetBoolean("IsMed")
+                            );
                         }
                     }
                 }

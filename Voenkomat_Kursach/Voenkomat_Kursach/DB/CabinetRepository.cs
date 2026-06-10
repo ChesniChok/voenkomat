@@ -25,12 +25,12 @@ public class CabinetRepository : BaseRepository<Cabinet>
             {
                 while (dr.Read())
                 {
-                    cabinets.Add(new Cabinet
-                    {
-                        Description = dr.GetString("Description"),
-                        Name = dr.GetString("Name"),
-                        Number = dr.GetInt32("Number")
-                    });
+                    cabinets.Add(new Cabinet(
+                    
+                        dr.GetInt32("Number"),
+                        dr.GetString("Name"),
+                        dr.GetString("Description")
+                    ));
                 }
             }
         }
@@ -58,12 +58,12 @@ public class CabinetRepository : BaseRepository<Cabinet>
             {
                 while (dr.Read())
                 {
-                    cabinet = new Cabinet()
-                    {
-                        Description = dr.GetString("Description"),
-                        Name = dr.GetString("Name"),
-                        Number = dr.GetInt32("Number")
-                    };
+                    cabinet = new Cabinet(
+                    
+                        dr.GetInt32("Number"),
+                        dr.GetString("Name"),
+                        dr.GetString("Description")
+                    );
                 }
             }
         }
