@@ -29,6 +29,7 @@ public abstract class MedWorkersViewModel : UserBaseViewModel
 
         chooseWin.Show();
         _win.Close();
+        
     }
 
     protected override void GoBack() => GoToChoose();

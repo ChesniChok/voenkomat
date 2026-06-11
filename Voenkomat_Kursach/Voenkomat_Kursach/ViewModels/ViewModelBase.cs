@@ -32,6 +32,7 @@ public abstract partial class ViewModelBase : ObservableObject
 
         win.Show();
         UsedWin.Close();
+        
     }
     
 }
