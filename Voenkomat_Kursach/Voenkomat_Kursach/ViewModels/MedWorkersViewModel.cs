@@ -20,14 +20,15 @@ public abstract class MedWorkersViewModel : UserBaseViewModel
     protected void GoToChoose()
     {
         
-        var win = ActivatorUtilities.CreateInstance<RecruitChooseWindow>(_sp);
-        var vm = ActivatorUtilities.CreateInstance<RecruitChooseViewModel>(_sp, win, _win);
+        var chooseWin = ActivatorUtilities.CreateInstance<RecruitChooseWindow>(_sp);
+        var vm = ActivatorUtilities.CreateInstance<RecruitChooseViewModel>(_sp, chooseWin, _win.GetType(), this.GetType(), _user);
         
-        win.DataContext = vm;
+        chooseWin.DataContext = vm;
 
-        _win.Hide();
-        win.Show();
-        
+        chooseWin.Position = _win.Position;
+
+        chooseWin.Show();
+        _win.Close();
     }
 
     protected override void GoBack() => GoToChoose();

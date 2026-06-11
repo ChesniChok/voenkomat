@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 using Voenkomat_Kursach.Models;
 
 namespace Voenkomat_Kursach.ViewModels;
@@ -12,15 +13,22 @@ public partial class RecruitChooseViewModel : ViewModelBase
 {
 
     private Window _thisWin;
-    private Window _nextWin;
+    
+    private Type _winT;
+    private Type _vmT;
+    private User _u;
+    
 
-    public RecruitChooseViewModel(IServiceProvider sp, Window thisWin, Window nextWin) : base(sp)
+    public RecruitChooseViewModel(IServiceProvider sp, Window thisWin, Type winT, Type vmT, User u) : base(sp)
     {
         
         _sp = sp;
 
         _thisWin = thisWin;
-        _nextWin = nextWin;
+        
+        _winT = winT;
+        _vmT = vmT;
+        _u = u;
 
         Start();
         
@@ -62,12 +70,7 @@ public partial class RecruitChooseViewModel : ViewModelBase
     [ObservableProperty] private Recruit _selectedRecruit;
 
 
-    protected override void GoBack()
-    {
-        _nextWin.Close();
-        
-        GoToMain(_thisWin);
-    }
+    protected override void GoBack() => GoToMain(_thisWin);
 
 
     [RelayCommand]
@@ -85,12 +88,17 @@ public partial class RecruitChooseViewModel : ViewModelBase
 
         if (SelectedRecruit?.Id != -1)
         {
+            
+            var win = ActivatorUtilities.CreateInstance(_sp, _winT) as Window;
+            var vm = ActivatorUtilities.CreateInstance(_sp, _vmT, win, _u) as MedWorkersViewModel;
+            win.DataContext = vm;
 
-            _nextWin.Position = _thisWin.Position;
+            vm.SetRec(SelectedRecruit);
             
-            (_nextWin.DataContext as MedWorkersViewModel)?.SetRec(SelectedRecruit);
             
-            _nextWin.Show();
+            win.Position = _thisWin.Position;
+
+            win.Show();
             _thisWin.Close();
 
         }

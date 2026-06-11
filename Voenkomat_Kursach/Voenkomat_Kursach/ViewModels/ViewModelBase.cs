@@ -30,9 +30,8 @@ public abstract partial class ViewModelBase : ObservableObject
         vm.SetWin(win);
         win.Position = UsedWin.Position;
 
-        UsedWin.Close();
         win.Show();
-
+        UsedWin.Close();
     }
     
 }

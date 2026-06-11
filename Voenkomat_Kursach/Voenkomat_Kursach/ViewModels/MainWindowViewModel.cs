@@ -66,7 +66,7 @@ public partial class MainWindowViewModel : ViewModelBase
         var user = GenerateUser();
         
         //если такой пользователь есть
-        if (user != null)
+        if (user.Id != -1)
         {
 
             Window userWin;
@@ -163,13 +163,104 @@ public partial class MainWindowViewModel : ViewModelBase
         
     }
 
+    [RelayCommand]
+    private void A()
+    {
+        
+        var user = GenerateUser();
+
+        if (user.Id != -1)
+        {
+            
+            Type userWinT;//сюда запишем тип окна пользователя
+            Type userVmT;//а сюда ВМ для него
+        
+            //если пользователь является мед работником, значит ему нужно окно выбора призывников
+            //user.Role.IsMed
+
+            //проверка роли и сохранение типа 
+            switch (_appSettings.Roles.GetValueOrDefault(user.Role.Name, ""))
+            {
+
+                case "admin":
+                {
+                    userWinT = typeof(AdminWIndow);
+                    userVmT = typeof(AdminViewModel);
+                    
+                    break;
+                }
+
+                case "arch":
+                {
+                    userWinT = typeof(ArchiverWindow);
+                    userVmT = typeof(ArchiverViewModel);
+                    
+                    break;
+                }
+
+                case "reg":
+                {
+                    userWinT = typeof(RegistratorWindow);
+                    userVmT = typeof(RegistatorViewModel);
+                    
+                    break;
+                }
+
+                case "doctor":
+                {
+                    userWinT = typeof(DoctorWindow);
+                    userVmT = typeof(DoctorViewModel);
+                    
+                    break;
+                }
+
+                case "comis":
+                {
+                    userWinT = typeof(ComissionWindow);
+                    userVmT = typeof(ComissionViewModel);
+                    
+                    break;
+                }
+
+                default:
+                {
+                    BlinkLogin("нет такой роли в приложении, обратитесь к администратору базы данных, который плохо читал инструкцию", 3000);
+                    
+                    return;
+                }
+                
+            }
+            
+            
+            if (user.Role.IsMed)//если мед работник
+            {
+                nextWin = ActivatorUtilities.CreateInstance<RecruitChooseWindow>(_sp);
+                nextWin.DataContext = ActivatorUtilities.CreateInstance<RecruitChooseViewModel>(_sp, nextWin, userWinT, userVmT, user);
+            }
+            else
+            {
+                nextWin = ActivatorUtilities.GetServiceOrCreateInstance(_sp, userWinT) as Window;
+                nextWin.DataContext = ActivatorUtilities.CreateInstance(_sp, userVmT, nextWin, user) as UserBaseViewModel;
+            }
+            
+            
+            GoToNextWin();
+            
+        }
+        else
+        {
+            BlinkLogin();
+        }
+
+    }
+
     private void GoToNextWin()
     {
 
         nextWin.Position = thiswin.Position;
         
         nextWin.Show();
-        thiswin.Hide();
+        thiswin.Close();
 
     }
     
@@ -193,6 +284,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
         if (Login != "")
         {
+
+            u.Id = 1;
 
             u.Role.Name = Login;
 
