@@ -21,8 +21,9 @@
                 
                         <TabItem Header="настройки">
                                 
-                                <Grid ColumnDefinitions="Auto *">
+                                <Grid ColumnDefinitions="* *">
                                         
+                                        <!-- настройки подключения -->
                                         <Grid Grid.Column="0" RowDefinitions="Auto Auto Auto *">
                                         
                                                 <Grid Grid.Row="0">
@@ -58,6 +59,33 @@
                                                 
                                                 
                                                 <TextBox Grid.Row="2" Watermark="путь к файлу" Text="{Binding FilePath}"/>
+                                                
+                                        </Grid>
+                                        
+                                        <!-- настройки словаря -->
+                                        <Grid Grid.Column="1" ColumnDefinitions="Auto Auto">
+                                                
+                                                <StackPanel Grid.Column="0">
+                                                        
+                                                        <TextBox Text="название из базы"/>
+                                                        <TextBox Text="{Binding Adm}"/>
+                                                        <TextBox Text="{Binding Arc}"/>
+                                                        <TextBox Text="{Binding Reg}"/>
+                                                        <TextBox Text="{Binding Doc}"/>
+                                                        <TextBox Text="{Binding Com}"/>
+                                                        
+                                                </StackPanel>
+                                                
+                                                <StackPanel Grid.Column="1">
+                                                        
+                                                        <TextBox Text="для этой роли"/>
+                                                        <TextBox Text="админимтратор"/>
+                                                        <TextBox Text="архивариус"/>
+                                                        <TextBox Text="регистрирующий"/>
+                                                        <TextBox Text="врач"/>
+                                                        <TextBox Text="медкомиссия"/>
+                                                        
+                                                </StackPanel>
                                                 
                                         </Grid>
                                         

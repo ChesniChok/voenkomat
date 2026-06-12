@@ -25,18 +25,27 @@ public partial class AdminViewModel : UserBaseViewModel
         _roles = ap.Value.Roles;
         
         GetConnectionSettings();
+        GetDictionarySettings();
         
     }
 
 
-    [ObservableProperty] private string _filePath;
+    [ObservableProperty] private string _systemMessage;
 
     [ObservableProperty] private string _serverVal;
     [ObservableProperty] private string _userVal;
     [ObservableProperty] private string _passwordVal;
     [ObservableProperty] private string _databaseVal;
     
-    [ObservableProperty] private string _systemMessage;
+    [ObservableProperty] private string _filePath;
+    
+    [ObservableProperty] private string _adm;
+    [ObservableProperty] private string _arc;
+    [ObservableProperty] private string _reg;
+    [ObservableProperty] private string _doc;
+    [ObservableProperty] private string _com;
+    
+    
 
     
 
@@ -68,6 +77,23 @@ public partial class AdminViewModel : UserBaseViewModel
 
             DatabaseVal = ss[1];
         }
+        
+    }
+
+    private void GetDictionarySettings()
+    {
+        
+
+            Adm = _roles.First(r => r.Value == "admin").Key;
+
+            Arc = _roles.First(r => r.Value == "arch").Key;
+
+            Reg = _roles.First(r => r.Value == "reg").Key;
+
+            Doc = _roles.First(r => r.Value == "doctor").Key;
+
+            Com = _roles.First(r => r.Value == "comis").Key;
+ 
         
     }
 
