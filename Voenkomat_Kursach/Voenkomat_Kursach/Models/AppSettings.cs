@@ -11,8 +11,16 @@ public class AppSettings
 
     public AppSettings()
     {
-        ConnectionString = "";
+        
+        ConnectionString = "server=hypixel;user=reus;password=qwerty;database=baza";
         Roles = new Dictionary<string, string>();
+        
+        Roles.Add("админ", "admin");
+        Roles.Add("архивариус", "arch");
+        Roles.Add("регистрирующий", "reg");
+        Roles.Add("Врач", "doctor");
+        Roles.Add("комиссионщик", "comis");
+        
     }
 
     public AppSettings(string connectionString,  Dictionary<string, string> roles)
