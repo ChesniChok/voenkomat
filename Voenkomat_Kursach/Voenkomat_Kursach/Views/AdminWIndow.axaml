@@ -8,52 +8,73 @@
         x:DataType="vm:AdminViewModel"
         Title="AdminWIndow">
     
-        <TabControl>
+        <Grid RowDefinitions="Auto *">
                 
-                <TabItem Header="настройки">
+                <StackPanel Grid.Row="0">
                         
-                        <Grid RowDefinitions="Auto Auto *">
+                        <TextBox Watermark="системные сообщения" Text="{Binding SystemMessage}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"/>
+                        
+                </StackPanel>
+                
+                
+                <TabControl Grid.Row="1">
+                
+                        <TabItem Header="настройки">
                                 
-                                <Grid Grid.Row="0">
+                                <Grid ColumnDefinitions="Auto *">
                                         
-                                        <Grid RowDefinitions="Auto Auto Auto Auto" ColumnDefinitions="Auto Auto">
+                                        <Grid Grid.Column="0" RowDefinitions="Auto Auto Auto *">
+                                        
+                                                <Grid Grid.Row="0">
+                                                        
+                                                        <Grid RowDefinitions="Auto Auto Auto Auto" ColumnDefinitions="Auto Auto">
+                                                                
+                                                                <TextBox Grid.Row="0" Grid.Column="0" Text="сервер" IsReadOnly="True"/>
+                                                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerVal}"/>
+                                                                
+                                                                <TextBox Grid.Row="1" Grid.Column="0" Text="пользователь" IsReadOnly="True"/>
+                                                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding UserVal}"/>
+                                                                
+                                                                <TextBox Grid.Row="2" Grid.Column="0" Text="пароль" IsReadOnly="True"/>
+                                                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PasswordVal}"/>
+                                                                
+                                                                <TextBox Grid.Row="3" Grid.Column="0" Text="база дынных" IsReadOnly="True"/>
+                                                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DatabaseVal}"/>
+                                                                
+                                                        </Grid>
+                                                        
+                                                </Grid>
                                                 
-                                                <TextBox Grid.Row="0" Grid.Column="0" Text="сервер" IsReadOnly="True"/>
-                                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerVal}"/>
                                                 
-                                                <TextBox Grid.Row="1" Grid.Column="0" Text="пользователь" IsReadOnly="True"/>
-                                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding UserVal}"/>
+                                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                                        
+                                                        <Button Content="сохранить настройки" Command="{Binding SaveSettingsCommand}"/>
+                                                        
+                                                        <Button Content="экспротировать настройки" Command="{Binding ExportSettingsCommand}"/>
+                                                        
+                                                        <Button Content="импортировать настройки" Command="{Binding ImportSettingsCommand}"/>
+                                
+                                                </StackPanel>
                                                 
-                                                <TextBox Grid.Row="2" Grid.Column="0" Text="пароль" IsReadOnly="True"/>
-                                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PasswordVal}"/>
                                                 
-                                                <TextBox Grid.Row="3" Grid.Column="0" Text="база дынных" IsReadOnly="True"/>
-                                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DatabaseVal}"/>
+                                                <TextBox Grid.Row="2" Watermark="путь к файлу" Text="{Binding FilePath}"/>
                                                 
                                         </Grid>
                                         
                                 </Grid>
                                 
-                                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                
-                                        <Button Content="{Binding S}" Command="{Binding TestCommand}"/>
-                                        
-                                        <Button Content="сохранить настройки" Command="{Binding SaveSettingsCommand}"/>
-                
-                                </StackPanel>
+                        </TabItem>
+                        
+                        
+                        <TabItem Header="БД">
                                 
-                        </Grid>
-                        
-                </TabItem>
-                
-                
-                <TabItem Header="БД">
+                                
+                                
+                        </TabItem>
                         
                         
-                        
-                </TabItem>
+                </TabControl>
                 
-                
-        </TabControl>
+        </Grid>
         
 </Window>

@@ -15,42 +15,35 @@ namespace Voenkomat_Kursach.ViewModels;
 public partial class AdminViewModel : UserBaseViewModel
 {
 
-    private String c;
+    private String _connectionString;
     private Dictionary<string, string> _roles;
 
     public AdminViewModel(IServiceProvider sp, User user, Window win, IOptions<AppSettings> ap) : base(sp, user, win)
     {
-        c = ap.Value.ConnectionString;
+        
+        _connectionString = ap.Value.ConnectionString;
         _roles = ap.Value.Roles;
+        
+        GetConnectionSettings();
+        
     }
 
 
-    [ObservableProperty] private string _s;
-    
+    [ObservableProperty] private string _filePath;
 
     [ObservableProperty] private string _serverVal;
     [ObservableProperty] private string _userVal;
     [ObservableProperty] private string _passwordVal;
     [ObservableProperty] private string _databaseVal;
     
+    [ObservableProperty] private string _systemMessage;
+
     
-    
-    [RelayCommand]
-    public void Test()
-    {
 
-        var r = new Random();
-
-        S = _roles[_roles.Keys.ElementAt(r.Next(_roles.Count))];
-        
-        ConnectionSettings();
-
-    }
-
-    private void ConnectionSettings()
+    private void GetConnectionSettings()
     {
         
-        var s = c.Split(";");
+        var s = _connectionString.Split(";");
 
         {
             var ss = s[0].Split("=");
@@ -81,23 +74,66 @@ public partial class AdminViewModel : UserBaseViewModel
 
 
     [RelayCommand]
-    public void SaveSettings()
+    public void SaveSettings() => SerializeSettings();//сохранить введённые знаечения в файл настроек
+    
+    [RelayCommand]
+    public void ExportSettings()//сохранить файл настроек в указанный путь
     {
+        
+        try
+        {
+            SerializeSettings(FilePath);
+        }
+        catch (Exception e)
+        {
+            SystemMessage = e.Message;
+            Pilin();
+        }
+        
+    }
+
+    [RelayCommand]
+    public void ImportSettings()//загрузка настроек из файла по указанному пути в файл настроек
+    {
+
+        AppSettings sets = new AppSettings();
+        
+        try
+        {
+            using (var fs = File.OpenRead(FilePath))
+            {
+                
+                sets = JsonSerializer.Deserialize<AppSettings>(fs);
+                
+                _connectionString = sets.ConnectionString;
+                _roles = sets.Roles;
+                
+            }
+        }
+        catch (Exception e)
+        {
+            SystemMessage = e.Message;
+            Pilin();
+            return;
+        }
+        
+        
+        
+        GetConnectionSettings();
         
         SerializeSettings();
         
     }
 
-    private void SerializeSettings()
+
+    private void SerializeSettings(string path = "appsettings.json")//сохранить настройки в файл
     {
 
         var sets = new AppSettings(GenerateConectionString(), _roles);
 
-        using(var fs = File.Create("appsettings.json"))
+        using(var fs = File.Create(path))
         {
             JsonSerializer.Serialize(fs, sets);
-
-            ServerVal = fs.Name;
         }
 
     }
@@ -121,6 +157,11 @@ public partial class AdminViewModel : UserBaseViewModel
         
         return sb.ToString();
 
+    }
+
+    private void Pilin()//издать системгный звук
+    {
+        Console.WriteLine('\a');
     }
 
     protected override void GoBack() => GoToMain(_win);
