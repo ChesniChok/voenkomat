@@ -28,11 +28,13 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
 
-    public MainWindowViewModel(IServiceProvider sp, IOptions<AppSettings> aps) : base(sp)
+    public MainWindowViewModel(IServiceProvider sp, AppSettings aps) : base(sp)
     {
         
         _sp = sp;
-        _appSettings = aps.Value;
+        _appSettings = aps;
+        
+        _appSettings.Load("appsettings.json");
         
 
         Start();

@@ -14,15 +14,13 @@ namespace Voenkomat_Kursach.ViewModels;
 
 public partial class AdminViewModel : UserBaseViewModel
 {
+    
+    private AppSettings _ap;
 
-    private String _connectionString;
-    private Dictionary<string, string> _roles;
-
-    public AdminViewModel(IServiceProvider sp, User user, Window win, IOptions<AppSettings> ap) : base(sp, user, win)
+    public AdminViewModel(IServiceProvider sp, User user, Window win, AppSettings ap) : base(sp, user, win)
     {
         
-        _connectionString = ap.Value.ConnectionString;
-        _roles = ap.Value.Roles;
+        _ap = ap;
         
         GetConnectionSettings();
         GetDictionarySettings();
@@ -52,7 +50,7 @@ public partial class AdminViewModel : UserBaseViewModel
     private void GetConnectionSettings()
     {
         
-        var s = _connectionString.Split(";");
+        var s = _ap.ConnectionString.Split(";");
 
         {
             var ss = s[0].Split("=");
@@ -83,17 +81,15 @@ public partial class AdminViewModel : UserBaseViewModel
     private void GetDictionarySettings()
     {
         
+        Adm = _ap.Roles.First(r => r.Value == "admin").Key;
 
-            Adm = _roles.First(r => r.Value == "admin").Key;
+        Arc = _ap.Roles.First(r => r.Value == "arch").Key;
 
-            Arc = _roles.First(r => r.Value == "arch").Key;
+        Reg = _ap.Roles.First(r => r.Value == "reg").Key;
 
-            Reg = _roles.First(r => r.Value == "reg").Key;
+        Doc = _ap.Roles.First(r => r.Value == "doctor").Key;
 
-            Doc = _roles.First(r => r.Value == "doctor").Key;
-
-            Com = _roles.First(r => r.Value == "comis").Key;
- 
+        Com = _ap.Roles.First(r => r.Value == "comis").Key;
         
     }
 
@@ -131,8 +127,8 @@ public partial class AdminViewModel : UserBaseViewModel
                 
                 sets = JsonSerializer.Deserialize<AppSettings>(fs);
                 
-                _connectionString = sets.ConnectionString;
-                _roles = sets.Roles;
+                _ap.ConnectionString = sets.ConnectionString;
+                _ap.Roles = sets.Roles;
                 
             }
         }
@@ -146,6 +142,7 @@ public partial class AdminViewModel : UserBaseViewModel
         
         
         GetConnectionSettings();
+        GetDictionarySettings();
         
         SerializeSettings();
         
@@ -155,7 +152,7 @@ public partial class AdminViewModel : UserBaseViewModel
     private void SerializeSettings(string path = "appsettings.json")//сохранить настройки в файл
     {
 
-        var sets = new AppSettings(GenerateConectionString(), _roles);
+        var sets = new AppSettings(GenerateConectionString(), GenerateDictionary());
 
         using(var fs = File.Create(path))
         {
@@ -183,6 +180,21 @@ public partial class AdminViewModel : UserBaseViewModel
         
         return sb.ToString();
 
+    }
+
+    private Dictionary<string, string> GenerateDictionary()
+    {
+        
+        Dictionary<string, string> dict = new();
+        
+        dict.Add(Adm, "admin");
+        dict.Add(Arc, "arch");
+        dict.Add(Reg, "reg");
+        dict.Add(Doc, "doctor");
+        dict.Add(Com, "comis");
+        
+        return dict;
+        
     }
 
     private void Pilin()//издать системгный звук

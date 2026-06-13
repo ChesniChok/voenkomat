@@ -21,73 +21,72 @@
                 
                         <TabItem Header="настройки">
                                 
-                                <Grid ColumnDefinitions="* *">
-                                        
-                                        <!-- настройки подключения -->
-                                        <Grid Grid.Column="0" RowDefinitions="Auto Auto Auto *">
-                                        
-                                                <Grid Grid.Row="0">
+                                <Grid RowDefinitions="Auto 10 Auto 10 Auto Auto *">
+                                
+                                        <!-- подключение -->
+                                        <Grid Grid.Row="0">
+                                                
+                                                <Grid RowDefinitions="Auto Auto Auto Auto" ColumnDefinitions="Auto Auto">
                                                         
-                                                        <Grid RowDefinitions="Auto Auto Auto Auto" ColumnDefinitions="Auto Auto">
-                                                                
-                                                                <TextBox Grid.Row="0" Grid.Column="0" Text="сервер" IsReadOnly="True"/>
-                                                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerVal}"/>
-                                                                
-                                                                <TextBox Grid.Row="1" Grid.Column="0" Text="пользователь" IsReadOnly="True"/>
-                                                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding UserVal}"/>
-                                                                
-                                                                <TextBox Grid.Row="2" Grid.Column="0" Text="пароль" IsReadOnly="True"/>
-                                                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PasswordVal}"/>
-                                                                
-                                                                <TextBox Grid.Row="3" Grid.Column="0" Text="база дынных" IsReadOnly="True"/>
-                                                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DatabaseVal}"/>
-                                                                
-                                                        </Grid>
+                                                        <TextBox Grid.Row="0" Grid.Column="0" Text="сервер" IsReadOnly="True"/>
+                                                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerVal}"/>
+                                                        
+                                                        <TextBox Grid.Row="1" Grid.Column="0" Text="пользователь" IsReadOnly="True"/>
+                                                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding UserVal}"/>
+                                                        
+                                                        <TextBox Grid.Row="2" Grid.Column="0" Text="пароль" IsReadOnly="True"/>
+                                                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PasswordVal}"/>
+                                                        
+                                                        <TextBox Grid.Row="3" Grid.Column="0" Text="база дынных" IsReadOnly="True"/>
+                                                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DatabaseVal}"/>
                                                         
                                                 </Grid>
                                                 
-                                                
-                                                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                                        
-                                                        <Button Content="сохранить настройки" Command="{Binding SaveSettingsCommand}"/>
-                                                        
-                                                        <Button Content="экспротировать настройки" Command="{Binding ExportSettingsCommand}"/>
-                                                        
-                                                        <Button Content="импортировать настройки" Command="{Binding ImportSettingsCommand}"/>
-                                
-                                                </StackPanel>
-                                                
-                                                
-                                                <TextBox Grid.Row="2" Watermark="путь к файлу" Text="{Binding FilePath}"/>
-                                                
                                         </Grid>
                                         
-                                        <!-- настройки словаря -->
-                                        <Grid Grid.Column="1" ColumnDefinitions="Auto Auto">
-                                                
+                                        
+                                        <!-- словарь -->
+                                        <Grid Grid.Row="2" ColumnDefinitions="Auto Auto">
+                                        
                                                 <StackPanel Grid.Column="0">
-                                                        
-                                                        <TextBox Text="название из базы"/>
+                                                
+                                                        <TextBox Text="роль в приложении" IsReadOnly="True"/>
+                                                        <TextBox Text="админимтратор" IsReadOnly="True"/>
+                                                        <TextBox Text="архивариус" IsReadOnly="True"/>
+                                                        <TextBox Text="регистрирующий" IsReadOnly="True"/>
+                                                        <TextBox Text="врач" IsReadOnly="True"/>
+                                                        <TextBox Text="медкомиссия" IsReadOnly="True"/>
+                                                
+                                                </StackPanel>
+                                        
+                                                <StackPanel Grid.Column="1">
+                                                
+                                                        <TextBox Text="называется:"/>
                                                         <TextBox Text="{Binding Adm}"/>
                                                         <TextBox Text="{Binding Arc}"/>
                                                         <TextBox Text="{Binding Reg}"/>
                                                         <TextBox Text="{Binding Doc}"/>
                                                         <TextBox Text="{Binding Com}"/>
-                                                        
-                                                </StackPanel>
                                                 
-                                                <StackPanel Grid.Column="1">
-                                                        
-                                                        <TextBox Text="для этой роли"/>
-                                                        <TextBox Text="админимтратор"/>
-                                                        <TextBox Text="архивариус"/>
-                                                        <TextBox Text="регистрирующий"/>
-                                                        <TextBox Text="врач"/>
-                                                        <TextBox Text="медкомиссия"/>
-                                                        
                                                 </StackPanel>
-                                                
+                                        
                                         </Grid>
+                                        
+                                        
+                                        <!-- кнопки для файла -->
+                                        <StackPanel Grid.Row="4" Orientation="Horizontal">
+                                                
+                                                <Button Content="сохранить настройки" Command="{Binding SaveSettingsCommand}"/>
+                                                
+                                                <Button Content="экспротировать настройки" Command="{Binding ExportSettingsCommand}"/>
+                                                
+                                                <Button Content="импортировать настройки" Command="{Binding ImportSettingsCommand}"/>
+                        
+                                        </StackPanel>
+                                        
+                                        
+                                        <!-- путь к файлу -->
+                                        <TextBox Grid.Row="5" Watermark="путь к файлу" Text="{Binding FilePath}"/>
                                         
                                 </Grid>
                                 

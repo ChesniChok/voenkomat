@@ -35,18 +35,10 @@ sealed class Program
         }
 
         var host = Host.CreateDefaultBuilder()
-            .ConfigureAppConfiguration((hostingContext, config) =>
-            {
-                //config.Sources.Clear();
-                //config.SetBasePath();
-                config.SetBasePath(AppContext.BaseDirectory).AddJsonFile("appsettings.json").AddEnvironmentVariables();
-                Console.WriteLine(AppContext.BaseDirectory);
-                config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-            })
             .ConfigureServices((context, services) =>
             {
 
-                services.Configure<AppSettings>(context.Configuration.GetSection("AppSettings"));
+                services.AddSingleton<AppSettings>();
 
                 services.AddTransient<MainWindow>();
                 services.AddTransient<MainWindowViewModel>();

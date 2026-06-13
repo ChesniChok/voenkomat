@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 
 namespace Voenkomat_Kursach.Models;
 
@@ -8,11 +10,11 @@ public class AppSettings
     public string ConnectionString { get; set; }
     public Dictionary<string, string> Roles { get; set; }
 
-
+    
     public AppSettings()
     {
         
-        ConnectionString = "server=hypixel;user=reus;password=qwerty;database=baza";
+        ConnectionString = "server=revres;user=reus;password=drowssap;database=esabatad";
         Roles = new Dictionary<string, string>();
         
         Roles.Add("админ", "admin");
@@ -27,6 +29,19 @@ public class AppSettings
     {
         ConnectionString = connectionString;
         Roles = roles;
+    }
+
+
+    public void Load(string path)
+    {
+        using (var fs = File.OpenRead(path))
+        {
+            var sets = JsonSerializer.Deserialize<AppSettings>(fs);
+            
+            
+            ConnectionString = sets.ConnectionString;
+            Roles = sets.Roles;
+        }
     }
     
 }
