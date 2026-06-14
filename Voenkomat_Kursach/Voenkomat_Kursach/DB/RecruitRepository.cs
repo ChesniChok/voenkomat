@@ -10,6 +10,7 @@ public class RecruitRepository : BaseRepository<Recruit>
 {
     public RecruitRepository(string connectionString) : base(connectionString)
     {
+        
     }
     public List<Recruit> GetAll()
         {
@@ -17,25 +18,24 @@ public class RecruitRepository : BaseRepository<Recruit>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Recruit";
+                string sql = "SELECT * FROM recruits";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        recruits.Add(new Recruit
-                        {
-                            Id = dr.GetInt32("Id"),
-                            FamilyName = dr.GetString("FamilyName"),
-                            Name = dr.GetString("Name"),
-                            FatherName = dr.GetString("FatherName"),
-                            DateOfBirth = dr.GetDateOnly("DateOfBirth"),
-                            PhoneNumber = dr.GetString("PhoneNumber"),
-                            Adress = dr.GetString("Adress"),
-                            Passport = dr.GetString("Passport"),
-                            SNILS = dr.GetString("SNILS"),
-                            INN = dr.GetString("INN")
-                        });
+                        recruits.Add(new Recruit(
+                            dr.GetInt32("Id"),
+                            dr.GetString("FamilyName"),
+                            dr.GetString("Name"),
+                            dr.GetString("FatherName"),
+                            dr.GetDateOnly("DateOfBirth"),
+                            dr.GetString("PhoneNumber"),
+                            dr.GetString("Adress"),
+                            dr.GetString("Passport"),
+                            dr.GetString("SNILS"),
+                            dr.GetString("INN")
+                        ));
                     }
                 }
             }
@@ -46,8 +46,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return recruits;
         }
@@ -58,7 +57,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM Recruit WHERE id = @id";
+                string sql = "SELECT * FROM recruits WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -66,19 +65,19 @@ public class RecruitRepository : BaseRepository<Recruit>
                     {
                         if (dr.Read())
                         {
-                            recruit = new Recruit
-                            {
-                                Id = dr.GetInt32("Id"),
-                                FamilyName = dr.GetString("FamilyName"),
-                                Name = dr.GetString("Name"),
-                                FatherName = dr.GetString("FatherName"),
-                                DateOfBirth = dr.GetDateOnly("DateOfBirth"),
-                                PhoneNumber = dr.GetString("PhoneNumber"),
-                                Adress = dr.GetString("Adress"),
-                                Passport = dr.GetString("Passport"),
-                                SNILS = dr.GetString("SNILS"),
-                                INN = dr.GetString("INN")
-                            };
+                            recruit = new Recruit(
+                            
+                                dr.GetInt32("Id"),
+                                dr.GetString("FamilyName"),
+                                dr.GetString("Name"),
+                                dr.GetString("FatherName"),
+                                dr.GetDateOnly("DateOfBirth"),
+                                dr.GetString("PhoneNumber"),
+                                dr.GetString("Adress"),
+                                dr.GetString("Passport"),
+                                dr.GetString("SNILS"),
+                                dr.GetString("INN")
+                            );
                         }
                     }
                 }
@@ -90,8 +89,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return recruit;
         }

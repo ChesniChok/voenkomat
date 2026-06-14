@@ -8,59 +8,62 @@ namespace Voenkomat_Kursach.DB;
 
 public class MedComissionRepository : BaseRepository<MedComission>
 {
-    public MedComissionRepository(string connectionString) : base(connectionString)
+    private RecruitRepository _recruitRepository;
+    public MedComissionRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
     {
+        _recruitRepository = recruitRepository;
     }
     public List<MedComission> GetAll()
+    {
+        List<MedComission> medComissions = new List<MedComission>();
+        try
         {
-            List<MedComission> medComissions = new List<MedComission>();
-            try
+            _connection.Open();
+            string sql = "SELECT * FROM medComissions";
+            using (var mc = new MySqlCommand(sql, _connection))
+            using (var dr = mc.ExecuteReader())
             {
-                _connection.Open();
-                string sql = "SELECT * FROM MedComission";
-                using (var mc = new MySqlCommand(sql, _connection))
-                using (var dr = mc.ExecuteReader())
+                while (dr.Read())
                 {
-                    while (dr.Read())
-                    {
-                        medComissions.Add(new MedComission
-                        {
-                            Id = dr.GetInt32("Id"),
-                            Ter= dr.GetBoolean("Ter"),
-                            Otor = dr.GetBoolean("Otor"),
-                            Psih = dr.GetBoolean("Psih"),
-                            Nevr= dr.GetBoolean("Nevr"),
-                            Hir = dr.GetBoolean("Hir"),
-                            Stom = dr.GetBoolean("Stom"),
-                            Okul = dr.GetBoolean("Okul"),
-                            StartDate = dr.GetDateTimeOffset("StartDate"),
-                            EndDate = dr.GetDateTimeOffset("EndDate"),
-                            Category = dr.GetString("Category"),
-                            Description = dr.GetString("Category")
-                        });
-                    }
+                    int recruitId = dr.GetInt32("RecruitId");
+                    medComissions.Add(new MedComission(
+                    
+                        dr.GetInt32("Id"),
+                        _recruitRepository.GetById(recruitId),
+                        dr.GetDateTimeOffset("StartDate"),
+                        dr.GetBoolean("Ter"),
+                        dr.GetBoolean("Otor"),
+                        dr.GetBoolean("Psih"),
+                        dr.GetBoolean("Nevr"),
+                        dr.GetBoolean("Hir"),
+                        dr.GetBoolean("Stom"),
+                        dr.GetBoolean("Okul"),
+                        dr.GetDateTimeOffset("EndDate"),
+                        dr.GetString("Category"),
+                        dr.GetString("Category")
+                    ));
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            finally
-            {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
-            }
-            return medComissions;
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+        return medComissions;
+    }
 
         public MedComission GetById(int id)
         {
-            MedComission medcomission = null;
+            MedComission medcomission = new MedComission();
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM MedComission WHERE id = @id";
+                string sql = "SELECT * FROM medComissions WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -68,21 +71,23 @@ public class MedComissionRepository : BaseRepository<MedComission>
                     {
                         if (dr.Read())
                         {
-                            medcomission = new MedComission
-                            {
-                                Id = dr.GetInt32("Id"),
-                                Ter= dr.GetBoolean("Ter"),
-                                Otor = dr.GetBoolean("Otor"),
-                                Psih = dr.GetBoolean("Psih"),
-                                Nevr= dr.GetBoolean("Nevr"),
-                                Hir = dr.GetBoolean("Hir"),
-                                Stom = dr.GetBoolean("Stom"),
-                                Okul = dr.GetBoolean("Okul"),
-                                StartDate = dr.GetDateTimeOffset("StartDate"),
-                                EndDate = dr.GetDateTimeOffset("EndDate"),
-                                Category = dr.GetString("Category"),
-                                Description = dr.GetString("Category")
-                            };
+                            int recruitId = dr.GetInt32("RecruitId");
+                            medcomission = new MedComission(
+                            
+                                dr.GetInt32("Id"),
+                                _recruitRepository.GetById(recruitId),
+                                dr.GetDateTimeOffset("StartDate"),
+                                dr.GetBoolean("Ter"),
+                                dr.GetBoolean("Otor"),
+                                dr.GetBoolean("Psih"),
+                                dr.GetBoolean("Nevr"),
+                                dr.GetBoolean("Hir"),
+                                dr.GetBoolean("Stom"),
+                                dr.GetBoolean("Okul"),
+                                dr.GetDateTimeOffset("EndDate"),
+                                dr.GetString("Category"),
+                                dr.GetString("Category")
+                            );
                         }
                     }
                 }
@@ -94,8 +99,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
             }
             finally
             {
-                if (_connection.State == ConnectionState.Open)
-                    _connection.Close();
+                CloseConnection();
             }
             return medcomission;
         }

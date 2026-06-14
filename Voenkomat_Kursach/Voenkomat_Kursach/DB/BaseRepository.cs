@@ -9,6 +9,7 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class
 {
     protected MySqlConnection _connection;
     protected string _connectionString;
+    private bool _disposed = false;
 
     public BaseRepository(string connectionString)
     {
@@ -46,6 +47,30 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class
         {
             return false;
         }
+    }
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!_disposed)
+        {
+            if (disposing)
+            {
+                if (_connection != null)
+                {
+                    if (_connection.State != ConnectionState.Closed)
+                    {
+                        _connection.Close();
+                    }
+                    _connection.Dispose();
+                    _connection = null;
+                }
+            }
+            _disposed = true;
+        }
+    }
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
     
     public List<T> GetAll()

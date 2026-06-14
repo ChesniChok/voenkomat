@@ -10,6 +10,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
 {
     public CabinetRepository(string connectionString) : base(connectionString)
     {
+        
     }
 
     public List<Cabinet> GetAll()
@@ -18,18 +19,18 @@ public class CabinetRepository : BaseRepository<Cabinet>
         try
         {
             _connection.Open();
-            string sql = "select * from Cabinet";
+            string sql = "select * from cabinets";
             using (var mc = new MySqlCommand(sql, _connection))
             using (var dr = mc.ExecuteReader())
             {
                 while (dr.Read())
                 {
-                    cabinets.Add(new Cabinet
-                    {
-                        Description = dr.GetString("Description"),
-                        Name = dr.GetString("Name"),
-                        Number = dr.GetInt32("Number")
-                    });
+                    cabinets.Add(new Cabinet(
+                    
+                        dr.GetInt32("Number"),
+                        dr.GetString("Name"),
+                        dr.GetString("Description")
+                    ));
                 }
             }
         }
@@ -40,8 +41,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         }
         finally
         {
-            if (_connection.State == ConnectionState.Open)
-                _connection.Close();
+            CloseConnection();
         }
         return cabinets;
     }
@@ -52,18 +52,18 @@ public class CabinetRepository : BaseRepository<Cabinet>
         try
         {
             _connection.Open();
-            string sql = "select * from Cabinet";
+            string sql = "select * from cabinets";
             using (var mc = new MySqlCommand(sql, _connection))
             using (var dr = mc.ExecuteReader())
             {
                 while (dr.Read())
                 {
-                    cabinet = new Cabinet()
-                    {
-                        Description = dr.GetString("Description"),
-                        Name = dr.GetString("Name"),
-                        Number = dr.GetInt32("Number")
-                    };
+                    cabinet = new Cabinet(
+                    
+                        dr.GetInt32("Number"),
+                        dr.GetString("Name"),
+                        dr.GetString("Description")
+                    );
                 }
             }
         }
@@ -72,7 +72,10 @@ public class CabinetRepository : BaseRepository<Cabinet>
             Console.WriteLine(e);
             throw;
         }
-        
+        finally
+        {
+            CloseConnection();
+        }
         return cabinet;
     }
 }
