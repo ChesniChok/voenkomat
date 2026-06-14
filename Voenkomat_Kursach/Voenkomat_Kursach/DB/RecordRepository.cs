@@ -6,21 +6,21 @@ using Voenkomat_Kursach.Models;
 
 namespace Voenkomat_Kursach.DB;
 
-public class DocumentRepository : BaseRepository<Document>
+public class RecordRepository : BaseRepository<Record>
 {
     private EmployeeRepository _employeeRepository;
     private MedComissionRepository _medComissionRepository;
     private RecruitRepository _recruitRepository;
-    public DocumentRepository(string connectionString, EmployeeRepository employeeRepository,
+    public RecordRepository(string connectionString, EmployeeRepository employeeRepository,
         MedComissionRepository medComissionRepository, RecruitRepository recruitRepository) : base(connectionString)
     {
         _employeeRepository = employeeRepository;
         _medComissionRepository = medComissionRepository;
         _recruitRepository = recruitRepository;
     }
-    public List<Document> GetAll()
+    public List<Record> GetAll()
     {
-            List<Document> documents = new List<Document>();
+            List<Record> documents = new List<Record>();
             try
             {
                 OpenConnection();
@@ -34,11 +34,9 @@ public class DocumentRepository : BaseRepository<Document>
                         int recruitId = dr.GetInt32("RecruitId");
                         int employeeId = dr.GetInt32("EmployeeId");
                         
-                        documents.Add(new Document(
+                        documents.Add(new Record(
                             dr.GetInt32("Id"),
                             dr.GetString("Type"),
-                            dr.GetString("Number"),
-                            dr.GetString("FileName"),
                             _employeeRepository.GetById(employeeId),
                             _medComissionRepository.GetById(medComiddionId),
                             _recruitRepository.GetById(recruitId),
@@ -60,9 +58,9 @@ public class DocumentRepository : BaseRepository<Document>
             return documents;
     }
 
-        public Document? GetById(int id)
+        public Record? GetById(int id)
         {
-            Document document = new Document();
+            Record record = new Record();
             try
             {
                 _connection.Open();
@@ -78,12 +76,10 @@ public class DocumentRepository : BaseRepository<Document>
                             int recruitId = dr.GetInt32("RecruitId");
                             int employeeId = dr.GetInt32("EmployeeId");
                             
-                            document = new Document(
+                            record = new Record(
                             
                                 dr.GetInt32("Id"),
                                 dr.GetString("Type"),
-                                dr.GetString("Number"),
-                                dr.GetString("FileName"),
                                 _employeeRepository.GetById(employeeId),
                                 _medComissionRepository.GetById(medComiddionId),
                                 _recruitRepository.GetById(recruitId),
@@ -103,6 +99,6 @@ public class DocumentRepository : BaseRepository<Document>
             {
                 CloseConnection();
             }
-            return document;
+            return record;
         }
 }

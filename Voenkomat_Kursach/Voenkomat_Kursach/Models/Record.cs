@@ -2,13 +2,11 @@
 
 namespace Voenkomat_Kursach.Models;
 
-public class Document
+public class Record
 {
     
     public int Id { get; set; }
     public string Type { get; set; }
-    public string Number { get; set; }
-    public string FileName { get; set; }
     public Employee? Author { get; set; }
     public MedComission? MedComisiion { get; set; }
     public Recruit? Recruit { get; set; }
@@ -16,12 +14,10 @@ public class Document
     public string Description { get; set; }
 
 
-    public Document()
+    public Record()
     {
         Id = -1;
         Type = "";
-        Number = "";
-        FileName = "";
         Author = new();
         MedComisiion = new();
         Recruit = new();
@@ -29,12 +25,10 @@ public class Document
         Description = "";
     }
     
-    public Document(int id, string type, string number, string fileName, Employee? author, MedComission? medComisiion, Recruit? recruit, string content, string description)
+    public Record(int id, string type, Employee? author, MedComission? medComisiion, Recruit? recruit, string content, string description)
     {
         Id = id;
         Type = type;
-        Number = number;
-        FileName = fileName;
         Author = author;
         MedComisiion = medComisiion;
         Recruit = recruit;
