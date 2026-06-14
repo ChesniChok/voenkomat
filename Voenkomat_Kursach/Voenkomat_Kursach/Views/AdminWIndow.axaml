@@ -6,7 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Voenkomat_Kursach.Views.AdminWIndow"
         x:DataType="vm:AdminViewModel"
-        Title="AdminWIndow">
+        Title="AdminWindow">
     
         <Grid RowDefinitions="Auto *">
                 
@@ -93,12 +93,88 @@
                         </TabItem>
                         
                         
-                        <TabItem Header="БД">
+                        <TabItem Header="база данных">
                                 
-                                
+                                <TabControl>
+                                        
+                                        <TabItem Header="кабинеты">
+                                                
+                                                
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="должности">
+                                                
+                                                <Grid ColumnDefinitions="Auto *">
+                                                        
+                                                        <StackPanel Grid.Column="0">
+                                                                
+                                                                <TextBox Watermark="id" Text=""/>
+                                                                
+                                                                <TextBox Watermark="название" Text=""/>
+                                                                
+                                                                
+                                                                <StackPanel Orientation="Horizontal">
+                                                                        
+                                                                        <Button Content="добавить"/>
+                                                                        
+                                                                        <Button Content="обновить"/>
+                                                                        
+                                                                        <Button Content="удалить"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </StackPanel>
+                                                        
+                                                        
+                                                        <DataGrid Grid.Column="1" AutoGenerateColumns="False">
+                                                                
+                                                                <DataGrid.Columns>
+                                                                        
+                                                                        <DataGridTextColumn Header="id" Binding=""/>
+                                                                        
+                                                                        <DataGridTextColumn Header="название" Binding=""/>
+                                                                        
+                                                                </DataGrid.Columns>
+                                                                
+                                                        </DataGrid>
+                                                        
+                                                </Grid>
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="пункты осмотра">
+                                                
+                                                
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="сотрудники">
+                                                
+                                                
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="пользователи">
+                                                
+                                                
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="роли">
+                                                
+                                                
+                                                
+                                        </TabItem>
+                                        
+                                </TabControl>
                                 
                         </TabItem>
-                        
                         
                 </TabControl>
                 
