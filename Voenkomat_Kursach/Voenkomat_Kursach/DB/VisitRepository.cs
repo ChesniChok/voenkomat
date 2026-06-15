@@ -27,7 +27,7 @@ public class VisitRepository : BaseRepository<Visit>
                     {
                         visits.Add(new Visit(
                             dr.GetInt32("Id"),
-                            _recruitRepository.GetById(dr.GetInt32("RecruitId")),
+                            _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
                             dr.GetDateOnly("Date"),
                             dr.GetTimeOnly("InTime"),
                             dr.GetString("Goal"),
@@ -64,7 +64,7 @@ public class VisitRepository : BaseRepository<Visit>
                         {
                             visit = new Visit(
                                 dr.GetInt32("Id"),
-                                _recruitRepository.GetById(dr.GetInt32("RecruitId")),
+                                _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
                                 dr.GetDateOnly("Date"),
                                 dr.GetTimeOnly("InTime"),
                                 dr.GetString("Goal"),
@@ -107,7 +107,7 @@ public class VisitRepository : BaseRepository<Visit>
                         {
                             visits.Add(new Visit(
                                 dr.GetInt32("Id"),
-                                _recruitRepository.GetById(dr.GetInt32("RecruitId")),
+                                _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
                                 dr.GetDateOnly("Date"),
                                 dr.GetTimeOnly("InTime"),
                                 dr.GetString("Goal"),

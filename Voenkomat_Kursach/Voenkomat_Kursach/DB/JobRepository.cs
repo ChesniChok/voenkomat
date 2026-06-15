@@ -28,7 +28,7 @@ public class JobRepository : BaseRepository<Job>
                     {
                         jobs.Add(new Job(
                         
-                            dr.GetInt32("id"),
+                            dr.GetInt32("Id"),
                             dr.GetString("Name")
                         ));
                     }
@@ -48,7 +48,7 @@ public class JobRepository : BaseRepository<Job>
         
         public List<Job> GetPage(int offset, int limit)
         {
-            List<Job> cabinets = new();
+            List<Job> jobs = new();
             try
             {
                 OpenConnection();
@@ -59,11 +59,11 @@ public class JobRepository : BaseRepository<Job>
                     mc.Parameters.AddWithValue("@offset", offset);
                     using (var dr = mc.ExecuteReader())
                     {
-                        if (dr.Read())
+                        while (dr.Read())
                         {
-                            cabinets.Add(new Job
+                            jobs.Add(new Job
                             (
-                                dr.GetInt32("id"),
+                                dr.GetInt32("Id"),
                                 dr.GetString("Name")
                             ));
                         }
@@ -76,7 +76,7 @@ public class JobRepository : BaseRepository<Job>
                 Console.WriteLine(e);
                 throw;
             }
-            return cabinets;
+            return jobs;
         }
 
         public Job GetById(int id)
@@ -95,7 +95,7 @@ public class JobRepository : BaseRepository<Job>
                         {
                             job = new Job(
                             
-                                dr.GetInt32("id"),
+                                dr.GetInt32("Id"),
                                 dr.GetString("Name")
                             );
                         }

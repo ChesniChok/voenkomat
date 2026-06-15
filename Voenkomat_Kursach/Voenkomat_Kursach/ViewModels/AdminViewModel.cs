@@ -123,17 +123,12 @@ public partial class AdminViewModel : UserBaseViewModel
     private void GetCollections()
     {
 
-        Cabs = new();
-        Jobs = new();
-        Checks = new();
-        Emps = new();
-        Users = new();
-        Roles = new();
-        
-        
-        Jobs.Add(new());
-        Jobs.Add(new());
-        Jobs.Add(new());
+        Cabs = new(_cr.GetPage(0, 10));
+        Jobs = new(_jr.GetPage(0, 10));
+        Checks = new(_chr.GetPage(0, 10));
+        Emps = new(_er.GetPage(0, 10));
+        Users = new(_ur.GetPage(0, 10));
+        Roles = new(_rr.GetPage(0, 10));
 
     }
 

@@ -59,7 +59,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
                 mc.Parameters.AddWithValue("@offset", offset);
                 using (var dr = mc.ExecuteReader())
                 {
-                    if (dr.Read())
+                    while (dr.Read())
                     {
                         cabinets.Add(new Cabinet
                         (

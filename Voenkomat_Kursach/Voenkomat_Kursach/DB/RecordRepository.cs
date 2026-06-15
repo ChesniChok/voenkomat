@@ -20,21 +20,21 @@ public class RecordRepository : BaseRepository<Record>
     }
     public List<Record> GetAll()
     {
-            List<Record> documents = new List<Record>();
+            List<Record> records = new List<Record>();
             try
             {
                 OpenConnection();
-                string sql = "SELECT * FROM documents where id = @id";
+                string sql = "SELECT * FROM records where id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        int medComiddionId = dr.GetInt32("MedComissionId");
-                        int recruitId = dr.GetInt32("RecruitId");
-                        int employeeId = dr.GetInt32("EmployeeId");
+                        int medComiddionId = dr.GetInt32("MedComission_Id");
+                        int recruitId = dr.GetInt32("Recruit_Id");
+                        int employeeId = dr.GetInt32("Employee_Id");
                         
-                        documents.Add(new Record(
+                        records.Add(new Record(
                             dr.GetInt32("Id"),
                             dr.GetString("Type"),
                             _employeeRepository.GetById(employeeId),
@@ -55,7 +55,7 @@ public class RecordRepository : BaseRepository<Record>
             {
                 CloseConnection();
             }
-            return documents;
+            return records;
     }
 
         public Record? GetById(int id)
@@ -64,7 +64,7 @@ public class RecordRepository : BaseRepository<Record>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM documents WHERE id = @id";
+                string sql = "SELECT * FROM records WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -72,9 +72,9 @@ public class RecordRepository : BaseRepository<Record>
                     {
                         if (dr.Read())
                         {
-                            int medComiddionId = dr.GetInt32("MedComissionId");
-                            int recruitId = dr.GetInt32("RecruitId");
-                            int employeeId = dr.GetInt32("EmployeeId");
+                            int medComiddionId = dr.GetInt32("Med_ComissionId");
+                            int recruitId = dr.GetInt32("Recruit_Id");
+                            int employeeId = dr.GetInt32("Employee_Id");
                             
                             record = new Record(
                             

@@ -29,8 +29,8 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
                 while (dr.Read())
                 {
                     checks.Add(new ChecklistItem(
-                        dr.GetInt32("id"),
-                        _jr.GetById(dr.GetInt32("job_id")),
+                        dr.GetInt32("Id"),
+                        _jr.GetById(dr.GetInt32("Job_Id")),
                         dr.GetString("Name"),
                         dr.GetString("Description")
                     ));
@@ -51,7 +51,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
     
     public List<ChecklistItem> GetPage(int offset, int limit)
     {
-        List<ChecklistItem> cabinets = new();
+        List<ChecklistItem> checks = new();
         try
         {
             OpenConnection();
@@ -62,12 +62,12 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
                 mc.Parameters.AddWithValue("@offset", offset);
                 using (var dr = mc.ExecuteReader())
                 {
-                    if (dr.Read())
+                    while (dr.Read())
                     {
-                        cabinets.Add(new ChecklistItem
+                        checks.Add(new ChecklistItem
                         (
-                            dr.GetInt32("id"),
-                            _jr.GetById(dr.GetInt32("job_id")),
+                            dr.GetInt32("Id"),
+                            _jr.GetById(dr.GetInt32("Job_Id")),
                             dr.GetString("Name"),
                             dr.GetString("Description")
                         ));
@@ -81,7 +81,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
             Console.WriteLine(e);
             throw;
         }
-        return cabinets;
+        return checks;
     }
 
     public ChecklistItem GetById(int id)
@@ -99,8 +99,8 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
                     if (dr.Read())
                     {
                         check = new ChecklistItem(
-                            dr.GetInt32("id"),
-                            _jr.GetById(dr.GetInt32("job_id")),
+                            dr.GetInt32("Id"),
+                            _jr.GetById(dr.GetInt32("Job_Id")),
                             dr.GetString("Name"),
                             dr.GetString("Description")
                         );

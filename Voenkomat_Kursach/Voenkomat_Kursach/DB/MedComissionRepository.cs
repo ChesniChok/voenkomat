@@ -19,7 +19,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
         try
         {
             _connection.Open();
-            string sql = "SELECT * FROM medComissions";
+            string sql = "SELECT * FROM medcomissions";
             using (var mc = new MySqlCommand(sql, _connection))
             using (var dr = mc.ExecuteReader())
             {
@@ -40,7 +40,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
                         dr.GetBoolean("Okul"),
                         dr.GetDateTimeOffset("EndDate"),
                         dr.GetString("Category"),
-                        dr.GetString("Category")
+                        dr.GetString("Description")
                     ));
                 }
             }
@@ -63,7 +63,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM medComissions WHERE id = @id";
+                string sql = "SELECT * FROM medcomissions WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
@@ -71,7 +71,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
                     {
                         if (dr.Read())
                         {
-                            int recruitId = dr.GetInt32("RecruitId");
+                            int recruitId = dr.GetInt32("Recruit_Id");
                             medcomission = new MedComission(
                             
                                 dr.GetInt32("Id"),
@@ -86,7 +86,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
                                 dr.GetBoolean("Okul"),
                                 dr.GetDateTimeOffset("EndDate"),
                                 dr.GetString("Category"),
-                                dr.GetString("Category")
+                                dr.GetString("Description")
                             );
                         }
                     }

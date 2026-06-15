@@ -29,7 +29,7 @@ public class RoleRepository : BaseRepository<Role>
                         
                             dr.GetInt32("Id"),
                             dr.GetString("Name"),
-                            dr.GetBoolean("IsMed")
+                            dr.GetBoolean("Is_Med")
                         ));
                     }
                 }
@@ -48,7 +48,7 @@ public class RoleRepository : BaseRepository<Role>
         
         public List<Role> GetPage(int offset, int limit)
         {
-            List<Role> cabinets = new();
+            List<Role> roles = new();
             try
             {
                 OpenConnection();
@@ -59,13 +59,13 @@ public class RoleRepository : BaseRepository<Role>
                     mc.Parameters.AddWithValue("@offset", offset);
                     using (var dr = mc.ExecuteReader())
                     {
-                        if (dr.Read())
+                        while (dr.Read())
                         {
-                            cabinets.Add(new Role
+                            roles.Add(new Role
                             (
                                 dr.GetInt32("Id"),
                                 dr.GetString("Name"),
-                                dr.GetBoolean("IsMed")
+                                dr.GetBoolean("Is_Med")
                             ));
                         }
                     }
@@ -77,7 +77,7 @@ public class RoleRepository : BaseRepository<Role>
                 Console.WriteLine(e);
                 throw;
             }
-            return cabinets;
+            return roles;
         }
 
         public Role GetById(int id)
@@ -98,7 +98,7 @@ public class RoleRepository : BaseRepository<Role>
                             
                                 dr.GetInt32("Id"),
                                 dr.GetString("Name"),
-                                dr.GetBoolean("IsMed")
+                                dr.GetBoolean("Is_Med")
                             );
                         }
                     }

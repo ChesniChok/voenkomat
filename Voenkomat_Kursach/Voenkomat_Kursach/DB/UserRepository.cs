@@ -22,14 +22,14 @@ public class UserRepository : BaseRepository<User>
         try
         {
             OpenConnection();
-            string sql = "SELECT * FROM user";
+            string sql = "SELECT * FROM users";
             using (var mc = new MySqlCommand(sql, _connection))
             using (var dr = mc.ExecuteReader())
             {
                 while (dr.Read())
                 {
-                    int employeeId = dr.GetInt32("EmployeeId");
-                    int roleId = dr.GetInt32("RoleId");
+                    int employeeId = dr.GetInt32("Employee_Id");
+                    int roleId = dr.GetInt32("Role_Id");
                     
                     users.Add(new User(
                         dr.GetInt32("Id"),
@@ -55,7 +55,7 @@ public class UserRepository : BaseRepository<User>
     
     public List<User> GetPage(int offset, int limit)
     {
-        List<User> cabinets = new();
+        List<User> users = new();
         try
         {
             OpenConnection();
@@ -66,9 +66,9 @@ public class UserRepository : BaseRepository<User>
                 mc.Parameters.AddWithValue("@offset", offset);
                 using (var dr = mc.ExecuteReader())
                 {
-                    if (dr.Read())
+                    while (dr.Read())
                     {
-                        cabinets.Add(new User
+                        users.Add(new User
                         (
                             dr.GetInt32("Id"),
                             _employeeRepository.GetById(dr.GetInt32("EmployeeId")),
@@ -86,7 +86,7 @@ public class UserRepository : BaseRepository<User>
             Console.WriteLine(e);
             throw;
         }
-        return cabinets;
+        return users;
     }
 
         public User GetById(int id)
@@ -95,7 +95,7 @@ public class UserRepository : BaseRepository<User>
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM user WHERE id = @id";
+                string sql = "SELECT * FROM users WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@Id", id);
