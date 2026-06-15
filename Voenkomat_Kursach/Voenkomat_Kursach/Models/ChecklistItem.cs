@@ -16,11 +16,11 @@ public class ChecklistItem
     {
         Id = -1;
         Doctor = new();
-        Name = "";
-        Description = "";
+        Name = "название";
+        Description = "описание";
         
         IsChecked = false;
-        Written = "";
+        Written = "запись";
     }
     
     public ChecklistItem(int id, Job doctor, string name, string description)

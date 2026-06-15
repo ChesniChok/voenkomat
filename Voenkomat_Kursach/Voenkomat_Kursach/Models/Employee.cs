@@ -12,7 +12,7 @@ public class Employee
     public Employee()
     {
         Id = -1;
-        FullName = "";
+        FullName = "имя";
         Cabinet = new();
         Job = new();
     }

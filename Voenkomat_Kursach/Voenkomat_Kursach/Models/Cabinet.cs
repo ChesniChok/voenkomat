@@ -13,8 +13,8 @@ public class Cabinet
     public Cabinet()
     {
         Number = -1;
-        Name = "";
-        Description = "";
+        Name = "название";
+        Description = "описание";
     }
     
     public Cabinet(int number, string name, string description)

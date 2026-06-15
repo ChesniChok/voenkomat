@@ -128,17 +128,36 @@
                                                         </StackPanel>
                                                         
                                                         
-                                                        <DataGrid Grid.Column="1" AutoGenerateColumns="False">
+                                                        <Grid Grid.Column="1" RowDefinitions="* Auto">
                                                                 
-                                                                <DataGrid.Columns>
-                                                                        
-                                                                        <DataGridTextColumn Header="id" Binding=""/>
-                                                                        
-                                                                        <DataGridTextColumn Header="название" Binding=""/>
-                                                                        
-                                                                </DataGrid.Columns>
+                                                                <DataGrid Grid.Row="0" ItemsSource="{Binding Jobs}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
                                                                 
-                                                        </DataGrid>
+                                                                        <DataGrid.Columns>
+                                                                        
+                                                                                <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
+                                                                        
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Name}"/>
+                                                                        
+                                                                        </DataGrid.Columns>
+                                                                
+                                                                </DataGrid>
+                                                                
+                                                                
+                                                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                                        
+                                                                        <Button Content="«"/>
+                                                                        
+                                                                        <Button Content="&lt;"/>
+                                                                        
+                                                                        <Button Content="обновить"/>
+                                                                        
+                                                                        <Button Content="&gt;"/>
+                                                                        
+                                                                        <Button Content="»"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </Grid>
                                                         
                                                 </Grid>
                                                 

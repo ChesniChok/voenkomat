@@ -11,7 +11,7 @@ public class Role
     public Role()
     {
         Id = -1;
-        Name = "";
+        Name = "название";
         IsMed = false;
     }
     

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ public partial class AdminViewModel : UserBaseViewModel
         
         GetConnectionSettings();
         GetDictionarySettings();
+        GetCollections();
         
     }
 
@@ -43,9 +45,17 @@ public partial class AdminViewModel : UserBaseViewModel
     [ObservableProperty] private string _doc;
     [ObservableProperty] private string _com;
     
-    
 
-    
+    [ObservableProperty] private ObservableCollection<Cabinet> _cabs;
+    [ObservableProperty] private ObservableCollection<Job> _jobs;
+    [ObservableProperty] private ObservableCollection<ChecklistItem> _checks;
+    [ObservableProperty] private ObservableCollection<Employee> _emps;
+    [ObservableProperty] private ObservableCollection<User> _users;
+    [ObservableProperty] private ObservableCollection<Role> _roles;
+
+
+
+
 
     private void GetConnectionSettings()
     {
@@ -91,6 +101,23 @@ public partial class AdminViewModel : UserBaseViewModel
 
         Com = _ap.Roles.First(r => r.Value == "comis").Key;
         
+    }
+
+    private void GetCollections()
+    {
+
+        Cabs = new();
+        Jobs = new();
+        Checks = new();
+        Emps = new();
+        Users = new();
+        Roles = new();
+        
+        
+        Jobs.Add(new());
+        Jobs.Add(new());
+        Jobs.Add(new());
+
     }
 
 

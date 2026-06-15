@@ -14,8 +14,8 @@ public class User
     {
         Id = -1;
         Employee = new();
-        Login = "";
-        Password = "";
+        Login = "логин";
+        Password = "пароль";
         Role = new();
     }
     

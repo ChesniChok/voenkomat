@@ -10,7 +10,7 @@ public class Job
     public Job()
     {
         Id = -1;
-        Name = "";
+        Name = "название";
     }
     
     public Job(int id, string name)
