@@ -120,6 +120,13 @@ public partial class AdminViewModel : UserBaseViewModel
 
     }
 
+    private void GetNewPageJobs(int offset)
+    {
+
+        Jobs = new ObservableCollection<Job>();
+
+    }
+
 
 
     [RelayCommand]
@@ -128,17 +135,14 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand]
     public void ExportSettings()//сохранить файл настроек в указанный путь
     {
-        
         try
         {
             SerializeSettings(FilePath);
         }
         catch (Exception e)
         {
-            SystemMessage = e.Message;
-            Pilin();
+            Error(e.Message);
         }
-        
     }
 
     [RelayCommand]
@@ -161,8 +165,7 @@ public partial class AdminViewModel : UserBaseViewModel
         }
         catch (Exception e)
         {
-            SystemMessage = e.Message;
-            Pilin();
+            Error(e.Message);
             return;
         }
         
@@ -224,9 +227,10 @@ public partial class AdminViewModel : UserBaseViewModel
         
     }
 
-    private void Pilin()//издать системгный звук
+    private void Error(string message)
     {
-        Console.WriteLine('\a');
+        SystemMessage = message;
+        Console.WriteLine('\a');//издать системгный звук
     }
 
     protected override void GoBack() => GoToMain(_win);
