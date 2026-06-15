@@ -1,33 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using MySqlConnector;
 using Voenkomat_Kursach.Models;
 
 namespace Voenkomat_Kursach.DB;
 
-public class CabinetRepository : BaseRepository<Cabinet>
+public class ChecklistItemRepository : BaseRepository<ChecklistItem>
 {
-    public CabinetRepository(string connectionString) : base(connectionString)
-    {
-        
-    }
 
-    public List<Cabinet> GetAll()
+    private JobRepository _jr;
+
+    public ChecklistItemRepository(string connectionString, JobRepository jr) : base(connectionString)
     {
-        List<Cabinet> cabinets = new List<Cabinet>();
+        _jr = jr;
+    }
+    
+    
+    public List<ChecklistItem> GetAll()
+    {
+        List<ChecklistItem> checks = new List<ChecklistItem>();
         try
         {
             _connection.Open();
-            string sql = "select * from cabinets";
+            string sql = "SELECT * FROM checkitems";
             using (var mc = new MySqlCommand(sql, _connection))
             using (var dr = mc.ExecuteReader())
             {
                 while (dr.Read())
                 {
-                    cabinets.Add(new Cabinet(
-                    
-                        dr.GetInt32("Number"),
+                    checks.Add(new ChecklistItem(
+                        dr.GetInt32("id"),
+                        _jr.GetById(dr.GetInt32("job_id")),
                         dr.GetString("Name"),
                         dr.GetString("Description")
                     ));
@@ -43,16 +46,16 @@ public class CabinetRepository : BaseRepository<Cabinet>
         {
             CloseConnection();
         }
-        return cabinets;
+        return checks;
     }
-
-    public List<Cabinet> GetPage(int offset, int limit)
+    
+    public List<ChecklistItem> GetPage(int offset, int limit)
     {
-        List<Cabinet> cabinets = new();
+        List<ChecklistItem> cabinets = new();
         try
         {
             OpenConnection();
-            string sql = "select * from cabinets limit @limit offset @offset";
+            string sql = "select * from checkitems limit @limit offset @offset";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@limit", limit);
@@ -61,9 +64,10 @@ public class CabinetRepository : BaseRepository<Cabinet>
                 {
                     if (dr.Read())
                     {
-                        cabinets.Add(new Cabinet
+                        cabinets.Add(new ChecklistItem
                         (
-                            dr.GetInt32("Number"),
+                            dr.GetInt32("id"),
+                            _jr.GetById(dr.GetInt32("job_id")),
                             dr.GetString("Name"),
                             dr.GetString("Description")
                         ));
@@ -80,24 +84,27 @@ public class CabinetRepository : BaseRepository<Cabinet>
         return cabinets;
     }
 
-    public Cabinet GetById()
+    public ChecklistItem GetById(int id)
     {
-        Cabinet cabinet = new Cabinet();
+        ChecklistItem check = new ChecklistItem();
         try
         {
             _connection.Open();
-            string sql = "select * from cabinets";
+            string sql = "SELECT * FROM checkitems WHERE id = @id";
             using (var mc = new MySqlCommand(sql, _connection))
-            using (var dr = mc.ExecuteReader())
             {
-                while (dr.Read())
+                mc.Parameters.AddWithValue("@Id", id);
+                using (var dr = mc.ExecuteReader())
                 {
-                    cabinet = new Cabinet(
-                    
-                        dr.GetInt32("Number"),
-                        dr.GetString("Name"),
-                        dr.GetString("Description")
-                    );
+                    if (dr.Read())
+                    {
+                        check = new ChecklistItem(
+                            dr.GetInt32("id"),
+                            _jr.GetById(dr.GetInt32("job_id")),
+                            dr.GetString("Name"),
+                            dr.GetString("Description")
+                        );
+                    }
                 }
             }
         }
@@ -110,6 +117,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         {
             CloseConnection();
         }
-        return cabinet;
+        return check;
     }
+    
 }

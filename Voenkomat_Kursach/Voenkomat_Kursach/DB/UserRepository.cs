@@ -52,6 +52,42 @@ public class UserRepository : BaseRepository<User>
         }
         return users;
     }
+    
+    public List<User> GetPage(int offset, int limit)
+    {
+        List<User> cabinets = new();
+        try
+        {
+            OpenConnection();
+            string sql = "select * from users limit @limit offset @offset";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@limit", limit);
+                mc.Parameters.AddWithValue("@offset", offset);
+                using (var dr = mc.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        cabinets.Add(new User
+                        (
+                            dr.GetInt32("Id"),
+                            _employeeRepository.GetById(dr.GetInt32("EmployeeId")),
+                            dr.GetString("Login"),
+                            dr.GetString("Password"),
+                            _roleRepository.GetById(dr.GetInt32("RoleId"))
+                        ));
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            CloseConnection();
+            Console.WriteLine(e);
+            throw;
+        }
+        return cabinets;
+    }
 
         public User GetById(int id)
         {

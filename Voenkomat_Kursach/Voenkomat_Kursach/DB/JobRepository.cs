@@ -45,6 +45,39 @@ public class JobRepository : BaseRepository<Job>
             }
             return jobs;
         }
+        
+        public List<Job> GetPage(int offset, int limit)
+        {
+            List<Job> cabinets = new();
+            try
+            {
+                OpenConnection();
+                string sql = "select * from jobs limit @limit offset @offset";
+                using (var mc = new MySqlCommand(sql, _connection))
+                {
+                    mc.Parameters.AddWithValue("@limit", limit);
+                    mc.Parameters.AddWithValue("@offset", offset);
+                    using (var dr = mc.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            cabinets.Add(new Job
+                            (
+                                dr.GetInt32("id"),
+                                dr.GetString("Name")
+                            ));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                CloseConnection();
+                Console.WriteLine(e);
+                throw;
+            }
+            return cabinets;
+        }
 
         public Job GetById(int id)
         {
