@@ -5,6 +5,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Voenkomat_Kursach.DB;
 using Voenkomat_Kursach.Models;
 using Voenkomat_Kursach.ViewModels;
 using Voenkomat_Kursach.Views;
@@ -40,6 +41,7 @@ sealed class Program
 
                 services.AddSingleton<AppSettings>();
 
+                
                 services.AddTransient<MainWindow>();
                 services.AddTransient<MainWindowViewModel>();
 
@@ -49,18 +51,27 @@ sealed class Program
                 services.AddTransient<ArchiverWindow>();
                 services.AddTransient<ArchiverViewModel>();
 
-
                 services.AddTransient<RegistratorWindow>();
                 services.AddTransient<RegistatorViewModel>();
 
-
                 services.AddTransient<DoctorWindow>();
                 services.AddTransient<DoctorViewModel>();
-
                 
                 services.AddTransient<ComissionWindow>();
                 services.AddTransient<ComissionViewModel>();
 
+
+                services.AddSingleton<RecruitRepository>();
+                services.AddSingleton<RoleRepository>();
+                services.AddSingleton<CabinetRepository>();
+                services.AddSingleton<JobRepository>();
+                services.AddSingleton<ChecklistItemRepository>();
+                services.AddSingleton<EmployeeRepository>();
+                services.AddSingleton<UserRepository>();
+                services.AddSingleton<MedComissionRepository>();
+                services.AddSingleton<RecordRepository>();
+                services.AddSingleton<VisitRepository>();
+                
             }).Build();
         
         BuildAvaloniaApp(host.Services)
