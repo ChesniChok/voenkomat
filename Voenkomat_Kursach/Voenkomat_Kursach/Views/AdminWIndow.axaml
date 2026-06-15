@@ -110,9 +110,9 @@
                                                         
                                                         <StackPanel Grid.Column="0">
                                                                 
-                                                                <TextBox Watermark="id" Text=""/>
+                                                                <TextBox Watermark="id" Text="{Binding SelectedJob.Id}" IsReadOnly="True"/>
                                                                 
-                                                                <TextBox Watermark="название" Text=""/>
+                                                                <TextBox Watermark="название" Text="{Binding SelectedJob.Name}"/>
                                                                 
                                                                 
                                                                 <StackPanel Orientation="Horizontal">
@@ -130,7 +130,7 @@
                                                         
                                                         <Grid Grid.Column="1" RowDefinitions="* Auto">
                                                                 
-                                                                <DataGrid Grid.Row="0" ItemsSource="{Binding Jobs}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                                                                <DataGrid Grid.Row="0" ItemsSource="{Binding Jobs}" SelectedItem="{Binding SelectedJob}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
                                                                 
                                                                         <DataGrid.Columns>
                                                                         

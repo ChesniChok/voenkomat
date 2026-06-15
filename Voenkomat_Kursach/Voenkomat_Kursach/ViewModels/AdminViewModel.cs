@@ -132,12 +132,7 @@ public partial class AdminViewModel : UserBaseViewModel
 
     }
 
-    private void GetNewPageJobs(int offset)
-    {
-
-        Jobs = new ObservableCollection<Job>();
-
-    }
+    [ObservableProperty] private Job _selectedJob;
 
 
 
