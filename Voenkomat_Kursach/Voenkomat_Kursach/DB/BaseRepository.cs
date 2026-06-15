@@ -78,6 +78,11 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class
         throw new NotImplementedException();
     }
 
+    public List<T> GetPage(int offset, int limit)
+    {
+        throw new NotImplementedException();
+    }
+
     public T GetById(int id)
     {
         throw new NotImplementedException();
