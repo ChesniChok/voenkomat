@@ -8,7 +8,7 @@ namespace Voenkomat_Kursach.DB;
 
 public class RoleRepository : BaseRepository<Role>
 {
-    public RoleRepository(string connectionString) : base(connectionString)
+    public RoleRepository(AppSettings appSettings) : base(appSettings)
     {
         
     }

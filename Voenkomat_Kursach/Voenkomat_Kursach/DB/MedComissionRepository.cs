@@ -9,7 +9,7 @@ namespace Voenkomat_Kursach.DB;
 public class MedComissionRepository : BaseRepository<MedComission>
 {
     private RecruitRepository _recruitRepository;
-    public MedComissionRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
+    public MedComissionRepository(AppSettings appSettings, RecruitRepository recruitRepository) : base(appSettings)
     {
         _recruitRepository = recruitRepository;
     }

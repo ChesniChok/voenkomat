@@ -11,7 +11,7 @@ public class EmployeeRepository : BaseRepository<Employee>
 {
     private CabinetRepository _cabinetRepository;
     private JobRepository _jobRepository;
-    public EmployeeRepository(string connectionString, CabinetRepository cabinetRepository, JobRepository jobRepository) : base(connectionString)
+    public EmployeeRepository(AppSettings appSettings, CabinetRepository cabinetRepository, JobRepository jobRepository) : base(appSettings)
     {
         _cabinetRepository = cabinetRepository;
         _jobRepository = jobRepository;

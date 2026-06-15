@@ -9,7 +9,7 @@ namespace Voenkomat_Kursach.DB;
 public class VisitRepository : BaseRepository<Visit>
 {
     private RecruitRepository _recruitRepository;
-    public VisitRepository(string connectionString, RecruitRepository recruitRepository) : base(connectionString)
+    public VisitRepository(AppSettings appSettings, RecruitRepository recruitRepository) : base(appSettings)
     {
         _recruitRepository = recruitRepository;
     }

@@ -10,7 +10,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
 
     private JobRepository _jr;
 
-    public ChecklistItemRepository(string connectionString, JobRepository jr) : base(connectionString)
+    public ChecklistItemRepository(AppSettings appSettings, JobRepository jr) : base(appSettings)
     {
         _jr = jr;
     }

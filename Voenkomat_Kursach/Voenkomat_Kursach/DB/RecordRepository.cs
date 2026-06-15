@@ -11,8 +11,8 @@ public class RecordRepository : BaseRepository<Record>
     private EmployeeRepository _employeeRepository;
     private MedComissionRepository _medComissionRepository;
     private RecruitRepository _recruitRepository;
-    public RecordRepository(string connectionString, EmployeeRepository employeeRepository,
-        MedComissionRepository medComissionRepository, RecruitRepository recruitRepository) : base(connectionString)
+    public RecordRepository(AppSettings appSettings, EmployeeRepository employeeRepository,
+        MedComissionRepository medComissionRepository, RecruitRepository recruitRepository) : base(appSettings)
     {
         _employeeRepository = employeeRepository;
         _medComissionRepository = medComissionRepository;

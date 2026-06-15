@@ -9,6 +9,7 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Options;
+using Voenkomat_Kursach.DB;
 using Voenkomat_Kursach.Models;
 
 namespace Voenkomat_Kursach.ViewModels;
@@ -18,10 +19,26 @@ public partial class AdminViewModel : UserBaseViewModel
     
     private AppSettings _ap;
 
-    public AdminViewModel(IServiceProvider sp, User user, Window win, AppSettings ap) : base(sp, user, win)
+    private CabinetRepository _cr;
+    private JobRepository _jr;
+    private ChecklistItemRepository _chr;
+    private EmployeeRepository _er;
+    private UserRepository _ur;
+    private RoleRepository _rr;
+
+    public AdminViewModel(IServiceProvider sp, 
+        CabinetRepository cr, JobRepository jr, ChecklistItemRepository chr, EmployeeRepository er, UserRepository ur, RoleRepository rr,
+        User user, Window win, AppSettings ap) : base(sp, user, win)
     {
         
         _ap = ap;
+        
+        _cr = cr;
+        _jr = jr;
+        _chr = chr;
+        _er = er;
+        _ur = ur;
+        _rr = rr;
         
         GetConnectionSettings();
         GetDictionarySettings();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using MySqlConnector;
+using Voenkomat_Kursach.Models;
 
 namespace Voenkomat_Kursach.DB;
 
@@ -11,9 +12,9 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class
     protected string _connectionString;
     private bool _disposed = false;
 
-    public BaseRepository(string connectionString)
+    public BaseRepository(AppSettings appSettings)
     {
-        _connectionString = connectionString;
+        _connectionString = appSettings.ConnectionString;
         _connection = new MySqlConnection(_connectionString);
     }
 

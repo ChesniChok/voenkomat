@@ -10,7 +10,7 @@ public class UserRepository : BaseRepository<User>
 {
     private RoleRepository _roleRepository;
     private EmployeeRepository _employeeRepository;
-    public UserRepository(string connectionString, RoleRepository roleRepository,EmployeeRepository employeeRepository) : base(connectionString)
+    public UserRepository(AppSettings appSettings, RoleRepository roleRepository,EmployeeRepository employeeRepository) : base(appSettings)
     {
         _roleRepository = roleRepository;
         _employeeRepository = employeeRepository;

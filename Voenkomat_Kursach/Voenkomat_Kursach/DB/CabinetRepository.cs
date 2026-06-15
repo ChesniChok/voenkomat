@@ -8,7 +8,7 @@ namespace Voenkomat_Kursach.DB;
 
 public class CabinetRepository : BaseRepository<Cabinet>
 {
-    public CabinetRepository(string connectionString) : base(connectionString)
+    public CabinetRepository(AppSettings appSettings) : base(appSettings)
     {
         
     }

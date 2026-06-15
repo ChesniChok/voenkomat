@@ -8,7 +8,7 @@ namespace Voenkomat_Kursach.DB;
 
 public class RecruitRepository : BaseRepository<Recruit>
 {
-    public RecruitRepository(string connectionString) : base(connectionString)
+    public RecruitRepository(AppSettings appSettings) : base(appSettings)
     {
         
     }
