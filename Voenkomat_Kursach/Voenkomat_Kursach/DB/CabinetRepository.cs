@@ -192,7 +192,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         try
         {
             OpenConnection();
-            string sql = "select count (*) as counted from cabinets";
+            string sql = "select count(*) as counted from cabinets";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 using (var r = mc.ExecuteReader())

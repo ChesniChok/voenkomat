@@ -212,7 +212,7 @@ public class UserRepository : BaseRepository<User>
         try
         {
             OpenConnection();
-            string sql = "select count (*) as counted from users";
+            string sql = "select count(*) as counted from users";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 using (var r = mc.ExecuteReader())

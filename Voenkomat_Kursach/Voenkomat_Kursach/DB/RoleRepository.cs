@@ -195,7 +195,7 @@ public class RoleRepository : BaseRepository<Role>
         try
         {
             OpenConnection();
-            string sql = "select count (*) as counted from roles";
+            string sql = "select count(*) as counted from roles";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 using (var r = mc.ExecuteReader())

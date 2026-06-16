@@ -117,11 +117,11 @@
                                                                 
                                                                 <StackPanel Orientation="Horizontal">
                                                                         
-                                                                        <Button Content="добавить"/>
+                                                                        <Button Content="добавить" Command="{Binding AddJobCommand}"/>
                                                                         
-                                                                        <Button Content="обновить"/>
+                                                                        <Button Content="обновить" Command="{Binding UpdateJobCommand}"/>
                                                                         
-                                                                        <Button Content="удалить"/>
+                                                                        <Button Content="удалить" Command="{Binding DeleteJobCommand}"/>
                                                                         
                                                                 </StackPanel>
                                                                 
@@ -145,15 +145,15 @@
                                                                 
                                                                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                                                                         
-                                                                        <Button Content="«"/>
+                                                                        <Button Content="«" Command="{Binding FirstPageJobCommand}"/>
                                                                         
-                                                                        <Button Content="&lt;"/>
+                                                                        <Button Content="&lt;" Command="{Binding PrevPageJobCommand}"/>
                                                                         
-                                                                        <Button Content="обновить"/>
+                                                                        <Button Content="обновить" Command="{Binding UpdateJobsCommand}"/>
                                                                         
-                                                                        <Button Content="&gt;"/>
+                                                                        <Button Content="&gt;" Command="{Binding NextPageJobCommand}"/>
                                                                         
-                                                                        <Button Content="»"/>
+                                                                        <Button Content="»" Command="{Binding LastPageJobCommand}"/>
                                                                         
                                                                 </StackPanel>
                                                                 

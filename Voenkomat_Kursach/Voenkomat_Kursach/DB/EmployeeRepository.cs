@@ -209,7 +209,7 @@ public class EmployeeRepository : BaseRepository<Employee>
         try
         {
             OpenConnection();
-            string sql = "select count (*) as counted from employees";
+            string sql = "select count(*) as counted from employees";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 using (var r = mc.ExecuteReader())

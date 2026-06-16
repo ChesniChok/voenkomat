@@ -191,7 +191,7 @@ public class JobRepository : BaseRepository<Job>
         try
         {
             OpenConnection();
-            string sql = "select count (*) as counted from jobs";
+            string sql = "select count(*) as counted from jobs";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 using (var r = mc.ExecuteReader())

@@ -201,7 +201,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         try
         {
             OpenConnection();
-            string sql = "select count (*) as counted from checkitems";
+            string sql = "select count(*) as counted from checkitems";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 using (var r = mc.ExecuteReader())

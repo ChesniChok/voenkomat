@@ -134,17 +134,19 @@ public partial class AdminViewModel : UserBaseViewModel
 
     [ObservableProperty] private Cabinet _selectedCab;
     [ObservableProperty] private int _cabPage;
-    private void UpdateCabs() => Cabs = new(_cr.GetPage(CabPage, 10));
+    [RelayCommand] private void UpdateCabs() => Cabs = new(_cr.GetPage(CabPage, 10));
     [RelayCommand]
     public void NextPageCab()
     {
-        CabPage++;
+        if (CabPage == _cr.Count() / 10) return;
+        CabPage += 10;
         UpdateCabs();
     }
     [RelayCommand]
     public void PrevPageCab()
     {
-        CabPage--;
+        if (CabPage == 0) return;
+        CabPage -= 10;
         UpdateCabs();
     }
     [RelayCommand]
@@ -156,7 +158,7 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand]
     public void LastPageCab()
     {
-        CabPage = _cr.Count() / 10;
+        CabPage = (_cr.Count()-1) / 10 * 10;
         UpdateJobs();
     }
     [RelayCommand] public void AddCab()
@@ -178,17 +180,19 @@ public partial class AdminViewModel : UserBaseViewModel
     
     [ObservableProperty] private Job _selectedJob;
     [ObservableProperty] private int _jobPage;
-    private void UpdateJobs() => Jobs = new(_jr.GetPage(JobPage, 10));
+    [RelayCommand] private void UpdateJobs() => Jobs = new(_jr.GetPage(JobPage, 10));
     [RelayCommand]
     public void NextPageJob()
     {
-        JobPage++;
+        if (JobPage >= _jr.Count() / 10) return;
+        JobPage += 10;
         UpdateJobs();
     }
     [RelayCommand]
     public void PrevPageJob()
     {
-        JobPage--;
+        if (JobPage == 0) return;
+        JobPage -= 10;
         UpdateJobs();
     }
     [RelayCommand]
@@ -200,7 +204,7 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand]
     public void LastPageJob()
     {
-        JobPage = _jr.Count() / 10;
+        JobPage = (_jr.Count()-1) / 10 * 10;
         UpdateJobs();
     }
     [RelayCommand] public void AddJob()
@@ -222,17 +226,19 @@ public partial class AdminViewModel : UserBaseViewModel
     
     [ObservableProperty] private ChecklistItem _selectedCheck;
     [ObservableProperty] private int _checkPage;
-    private void UpdateChecks() => Checks = new(_chr.GetPage(CheckPage, 10));
+    [RelayCommand] private void UpdateChecks() => Checks = new(_chr.GetPage(CheckPage, 10));
     [RelayCommand]
     public void NextPageCheck()
     {
-        CheckPage++;
+        if (CheckPage == _chr.Count() / 10) return;
+        CheckPage += 10;
         UpdateCabs();
     }
     [RelayCommand]
     public void PrevPageCheck()
     {
-        CheckPage--;
+        if (CheckPage == 0) return;
+        CheckPage -= 10;
         UpdateChecks();
     }
     [RelayCommand]
@@ -244,7 +250,7 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand]
     public void LastPageCheck()
     {
-        CheckPage = _chr.Count() / 10;
+        CheckPage = (_chr.Count()-1) / 10 * 10;
         UpdateChecks();
     }
     [RelayCommand] public void AddCheck()
@@ -266,17 +272,19 @@ public partial class AdminViewModel : UserBaseViewModel
     
     [ObservableProperty] private Employee _selectedEmp;
     [ObservableProperty] private int _empPage;
-    private void UpdateEmps() => Emps = new(_er.GetPage(EmpPage, 10));
+    [RelayCommand] private void UpdateEmps() => Emps = new(_er.GetPage(EmpPage, 10));
     [RelayCommand]
     public void NextPageEmp()
     {
-        EmpPage++;
+        if (EmpPage == _er.Count() / 10) return;
+        EmpPage += 10;
         UpdateEmps();
     }
     [RelayCommand]
     public void PrevPageEmp()
     {
-        EmpPage--;
+        if (EmpPage == 0) return;
+        EmpPage -= 10;
         UpdateEmps();
     }
     [RelayCommand]
@@ -288,7 +296,7 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand]
     public void LastPageEmp()
     {
-        EmpPage = _er.Count() / 10;
+        EmpPage = (_er.Count()-1) / 10 * 10;
         UpdateEmps();
     }
     [RelayCommand] public void AddEmp()
@@ -310,17 +318,19 @@ public partial class AdminViewModel : UserBaseViewModel
     
     [ObservableProperty] private User _selectedUser;
     [ObservableProperty] private int _userPage;
-    private void UpdateUsers() => Users = new(_ur.GetPage(EmpPage, 10));
+    [RelayCommand] private void UpdateUsers() => Users = new(_ur.GetPage(EmpPage, 10));
     [RelayCommand]
     public void NextPageUser()
     {
-        UserPage++;
+        if (UserPage == _ur.Count() / 10) return;
+        UserPage += 10;
         UpdateUsers();
     }
     [RelayCommand]
     public void PrevPageUser()
     {
-        UserPage--;
+        if (EmpPage == 0) return;
+        UserPage -= 10;
         UpdateUsers();
     }
     [RelayCommand]
@@ -332,7 +342,7 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand]
     public void LastPageUser()
     {
-        UserPage = _ur.Count() / 10;
+        UserPage = (_ur.Count()-1) / 10 * 10;
         UpdateUsers();
     }
     [RelayCommand] public void AddUser()
@@ -354,17 +364,19 @@ public partial class AdminViewModel : UserBaseViewModel
     
     [ObservableProperty] private Role _selectedRole;
     [ObservableProperty] private int _rolePage;
-    private void UpdateRoles() => Roles = new(_rr.GetPage(EmpPage, 10));
+    [RelayCommand] private void UpdateRoles() => Roles = new(_rr.GetPage(EmpPage, 10));
     [RelayCommand]
     public void NextPageRole()
     {
-        RolePage++;
+        if (RolePage == _rr.Count() / 10) return;
+        RolePage += 10;
         UpdateRoles();
     }
     [RelayCommand]
     public void PrevPageRole()
     {
-        RolePage--;
+        if (RolePage == 0) return;
+        RolePage -= 10;
         UpdateRoles();
     }
     [RelayCommand]
@@ -376,7 +388,7 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand]
     public void LastPageRole()
     {
-        RolePage = _rr.Count() / 10;
+        RolePage = (_rr.Count()-1) / 10 * 10;
         UpdateRoles();
     }
     [RelayCommand] public void AddRole()
