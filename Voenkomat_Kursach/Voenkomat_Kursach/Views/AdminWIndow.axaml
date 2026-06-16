@@ -99,7 +99,64 @@
                                         
                                         <TabItem Header="кабинеты">
                                                 
-                                                
+                                                <Grid ColumnDefinitions="Auto *">
+                                                        
+                                                        <StackPanel Grid.Column="0">
+                                                                
+                                                                <TextBox Watermark="id" Text="{Binding SelectedCab.Number}"/>
+                                                                
+                                                                <TextBox Watermark="название" Text="{Binding SelectedCab.Name}"/>
+                                                                
+                                                                <TextBox Watermark="описание" Text="{Binding SelectedCab.Description}"/>
+                                                                
+                                                                
+                                                                <StackPanel Orientation="Horizontal">
+                                                                        
+                                                                        <Button Content="добавить" Command="{Binding AddCabCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateCabCommand}"/>
+                                                                        
+                                                                        <Button Content="удалить" Command="{Binding DeleteCabCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </StackPanel>
+                                                        
+                                                        
+                                                        <Grid Grid.Column="1" RowDefinitions="* Auto">
+                                                                
+                                                                <DataGrid Grid.Row="0" ItemsSource="{Binding Cabs}" SelectedItem="{Binding SelectedCab}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                                                                
+                                                                        <DataGrid.Columns>
+                                                                        
+                                                                                <DataGridTextColumn Header="id" Binding="{Binding Number}"/>
+                                                                        
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Name}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="описание" Binding="{Binding Description}"/>
+                                                                        
+                                                                        </DataGrid.Columns>
+                                                                
+                                                                </DataGrid>
+                                                                
+                                                                
+                                                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                                        
+                                                                        <Button Content="«" Command="{Binding FirstPageCabCommand}"/>
+                                                                        
+                                                                        <Button Content="&lt;" Command="{Binding PrevPageCabCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateCabsCommand}"/>
+                                                                        
+                                                                        <Button Content="&gt;" Command="{Binding NextPageCabCommand}"/>
+                                                                        
+                                                                        <Button Content="»" Command="{Binding LastPageCabCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </Grid>
+                                                        
+                                                </Grid>
                                                 
                                         </TabItem>
                                         
@@ -166,28 +223,272 @@
                                         
                                         <TabItem Header="пункты осмотра">
                                                 
-                                                
+                                                <Grid ColumnDefinitions="Auto *">
+                                                        
+                                                        <StackPanel Grid.Column="0">
+                                                                
+                                                                <TextBox Watermark="id" Text="{Binding SelectedCheck.Id}" IsReadOnly="True"/>
+                                                                
+                                                                <TextBox Watermark="для врача" Text="{Binding SelectedCheck.Doctor.Id}"/>
+                                                                
+                                                                <TextBox Watermark="название" Text="{Binding SelectedCheck.Name}"/>
+                                                                
+                                                                <TextBox Watermark="описание" Text="{Binding SelectedCheck.Description}"/>
+                                                                
+                                                                
+                                                                <StackPanel Orientation="Horizontal">
+                                                                        
+                                                                        <Button Content="добавить" Command="{Binding AddCheckCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateCheckCommand}"/>
+                                                                        
+                                                                        <Button Content="удалить" Command="{Binding DeleteCheckCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </StackPanel>
+                                                        
+                                                        
+                                                        <Grid Grid.Column="1" RowDefinitions="* Auto">
+                                                                
+                                                                <DataGrid Grid.Row="0" ItemsSource="{Binding Checks}" SelectedItem="{Binding SelectedCheck}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                                                                
+                                                                        <DataGrid.Columns>
+                                                                        
+                                                                                <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
+                                                                        
+                                                                                <DataGridTextColumn Header="для врача" Binding="{Binding Doctor.Id}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Name}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="описание" Binding="{Binding Description}"/>
+                                                                        
+                                                                        </DataGrid.Columns>
+                                                                
+                                                                </DataGrid>
+                                                                
+                                                                
+                                                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                                        
+                                                                        <Button Content="«" Command="{Binding FirstPageCheckCommand}"/>
+                                                                        
+                                                                        <Button Content="&lt;" Command="{Binding PrevPageCheckCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateChecksCommand}"/>
+                                                                        
+                                                                        <Button Content="&gt;" Command="{Binding NextPageCheckCommand}"/>
+                                                                        
+                                                                        <Button Content="»" Command="{Binding LastPageCheckCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </Grid>
+                                                        
+                                                </Grid>
                                                 
                                         </TabItem>
                                         
                                         
                                         <TabItem Header="сотрудники">
                                                 
-                                                
+                                                <Grid ColumnDefinitions="Auto *">
+                                                        
+                                                        <StackPanel Grid.Column="0">
+                                                                
+                                                                <TextBox Watermark="id" Text="{Binding SelectedEmp.Id}" IsReadOnly="True"/>
+                                                                
+                                                                <TextBox Watermark="название" Text="{Binding SelectedEmp.Cabinet}"/>
+                                                                
+                                                                <TextBox Watermark="название" Text="{Binding SelectedEmp.Job}"/>
+                                                                
+                                                                <TextBox Watermark="название" Text="{Binding SelectedEmp.FullName}"/>
+                                                                
+                                                                
+                                                                <StackPanel Orientation="Horizontal">
+                                                                        
+                                                                        <Button Content="добавить" Command="{Binding AddEmpCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateEmpCommand}"/>
+                                                                        
+                                                                        <Button Content="удалить" Command="{Binding DeleteEmpCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </StackPanel>
+                                                        
+                                                        
+                                                        <Grid Grid.Column="1" RowDefinitions="* Auto">
+                                                                
+                                                                <DataGrid Grid.Row="0" ItemsSource="{Binding Emps}" SelectedItem="{Binding SelectedEmp}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                                                                
+                                                                        <DataGrid.Columns>
+                                                                        
+                                                                                <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
+                                                                        
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Cabinet}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Job}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding FullName}"/>
+                                                                        
+                                                                        </DataGrid.Columns>
+                                                                
+                                                                </DataGrid>
+                                                                
+                                                                
+                                                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                                        
+                                                                        <Button Content="«" Command="{Binding FirstPageEmpCommand}"/>
+                                                                        
+                                                                        <Button Content="&lt;" Command="{Binding PrevPageEmpCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateEmpsCommand}"/>
+                                                                        
+                                                                        <Button Content="&gt;" Command="{Binding NextPageEmpCommand}"/>
+                                                                        
+                                                                        <Button Content="»" Command="{Binding LastPageEmpCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </Grid>
+                                                        
+                                                </Grid>
                                                 
                                         </TabItem>
                                         
                                         
                                         <TabItem Header="пользователи">
                                                 
-                                                
+                                                <Grid ColumnDefinitions="Auto *">
+                                                        
+                                                        <StackPanel Grid.Column="0">
+                                                                
+                                                                <TextBox Watermark="id" Text="{Binding SelectedUser.Id}" IsReadOnly="True"/>
+
+                                                                <TextBox Watermark="название" Text="{Binding SelectedUser.Login}"/>
+
+                                                                <TextBox Watermark="название" Text="{Binding SelectedUser.Password}"/>
+                                                                
+                                                                <TextBox Watermark="название" Text="{Binding SelectedUser.Role.Id}"/>
+                                                                
+                                                                <TextBox Watermark="название" Text="{Binding SelectedUser.Employee.Id}"/>
+
+
+                                                                <StackPanel Orientation="Horizontal">
+                                                                        
+                                                                        <Button Content="добавить" Command="{Binding AddUserCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateUserCommand}"/>
+                                                                        
+                                                                        <Button Content="удалить" Command="{Binding DeleteUserCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </StackPanel>
+                                                        
+                                                        
+                                                        <Grid Grid.Column="1" RowDefinitions="* Auto">
+                                                                
+                                                                <DataGrid Grid.Row="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                                                                
+                                                                        <DataGrid.Columns>
+                                                                        
+                                                                                <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
+                                                                        
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Login}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Password}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Role.Id}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Employee.Id}"/>
+                                                                        
+                                                                        </DataGrid.Columns>
+                                                                
+                                                                </DataGrid>
+                                                                
+                                                                
+                                                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                                        
+                                                                        <Button Content="«" Command="{Binding FirstPageUserCommand}"/>
+                                                                        
+                                                                        <Button Content="&lt;" Command="{Binding PrevPageUserCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateUsersCommand}"/>
+                                                                        
+                                                                        <Button Content="&gt;" Command="{Binding NextPageUserCommand}"/>
+                                                                        
+                                                                        <Button Content="»" Command="{Binding LastPageUserCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </Grid>
+                                                        
+                                                </Grid>
                                                 
                                         </TabItem>
                                         
                                         
                                         <TabItem Header="роли">
                                                 
-                                                
+                                                <Grid ColumnDefinitions="Auto *">
+                                                        
+                                                        <StackPanel Grid.Column="0">
+                                                                
+                                                                <TextBox Watermark="id" Text="{Binding SelectedRole.Id}" IsReadOnly="True"/>
+
+                                                                <TextBox Watermark="название" Text="{Binding SelectedRole.Name}"/>
+
+                                                                <TextBox Watermark="название" Text="{Binding SelectedRole.IsMed}"/>
+
+
+                                                                <StackPanel Orientation="Horizontal">
+                                                                        
+                                                                        <Button Content="добавить" Command="{Binding AddRoleCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateRoleCommand}"/>
+                                                                        
+                                                                        <Button Content="удалить" Command="{Binding DeleteRoleCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </StackPanel>
+                                                        
+                                                        
+                                                        <Grid Grid.Column="1" RowDefinitions="* Auto">
+                                                                
+                                                                <DataGrid Grid.Row="0" ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRole}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                                                                
+                                                                        <DataGrid.Columns>
+                                                                        
+                                                                                <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
+                                                                        
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding Name}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="название" Binding="{Binding IsMed}"/>
+                                                                        
+                                                                        </DataGrid.Columns>
+                                                                
+                                                                </DataGrid>
+                                                                
+                                                                
+                                                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                                        
+                                                                        <Button Content="«" Command="{Binding FirstPageRoleCommand}"/>
+                                                                        
+                                                                        <Button Content="&lt;" Command="{Binding PrevPageRoleCommand}"/>
+                                                                        
+                                                                        <Button Content="обновить" Command="{Binding UpdateRolesCommand}"/>
+                                                                        
+                                                                        <Button Content="&gt;" Command="{Binding NextPageRoleCommand}"/>
+                                                                        
+                                                                        <Button Content="»" Command="{Binding LastPageRoleCommand}"/>
+                                                                        
+                                                                </StackPanel>
+                                                                
+                                                        </Grid>
+                                                        
+                                                </Grid>
                                                 
                                         </TabItem>
                                         

@@ -169,12 +169,12 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand] public void UpdateCab()
     {
         _cr.Update(SelectedCab);
-        UpdateJobs();
+        UpdateCabs();
     }
     [RelayCommand] public void DeleteCab()
     {
         _cr.Delete(SelectedCab);
-        UpdateJobs();
+        UpdateCabs();
     }
     
     
