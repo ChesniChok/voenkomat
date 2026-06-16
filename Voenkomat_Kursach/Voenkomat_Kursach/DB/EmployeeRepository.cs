@@ -202,4 +202,31 @@ public class EmployeeRepository : BaseRepository<Employee>
             CloseConnection();
         }
     }
+    
+    public int Count()
+    {
+        int res = 0;
+        try
+        {
+            OpenConnection();
+            string sql = "select count (*) as counted from employees";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                using (var r = mc.ExecuteReader())
+                {
+                    if  (r.Read()) res = r.GetInt32("counted");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+        return res;
+    }
 }

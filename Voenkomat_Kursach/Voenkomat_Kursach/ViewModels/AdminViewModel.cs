@@ -132,10 +132,274 @@ public partial class AdminViewModel : UserBaseViewModel
 
     }
 
+    [ObservableProperty] private Cabinet _selectedCab;
+    [ObservableProperty] private int _cabPage;
+    private void UpdateCabs() => Cabs = new(_cr.GetPage(CabPage, 10));
+    [RelayCommand]
+    public void NextPageCab()
+    {
+        CabPage++;
+        UpdateCabs();
+    }
+    [RelayCommand]
+    public void PrevPageCab()
+    {
+        CabPage--;
+        UpdateCabs();
+    }
+    [RelayCommand]
+    public void FirstPageCab()
+    {
+        CabPage = 0;
+        UpdateCabs();
+    }
+    [RelayCommand]
+    public void LastPageCab()
+    {
+        CabPage = _cr.Count() / 10;
+        UpdateJobs();
+    }
+    [RelayCommand] public void AddCab()
+    {
+        _cr.Add(new(0, "название", "описание"));
+        UpdateCabs();
+    }
+    [RelayCommand] public void UpdateCab()
+    {
+        _cr.Update(SelectedCab);
+        UpdateJobs();
+    }
+    [RelayCommand] public void DeleteCab()
+    {
+        _cr.Delete(SelectedCab);
+        UpdateJobs();
+    }
+    
+    
     [ObservableProperty] private Job _selectedJob;
+    [ObservableProperty] private int _jobPage;
+    private void UpdateJobs() => Jobs = new(_jr.GetPage(JobPage, 10));
+    [RelayCommand]
+    public void NextPageJob()
+    {
+        JobPage++;
+        UpdateJobs();
+    }
+    [RelayCommand]
+    public void PrevPageJob()
+    {
+        JobPage--;
+        UpdateJobs();
+    }
+    [RelayCommand]
+    public void FirstPageJob()
+    {
+        JobPage = 0;
+        UpdateJobs();
+    }
+    [RelayCommand]
+    public void LastPageJob()
+    {
+        JobPage = _jr.Count() / 10;
+        UpdateJobs();
+    }
+    [RelayCommand] public void AddJob()
+    {
+        _jr.Add(new(0, "должность"));
+        UpdateJobs();
+    }
+    [RelayCommand] public void UpdateJob()
+    {
+        _jr.Update(SelectedJob);
+        UpdateJobs();
+    }
+    [RelayCommand] public void DeleteJob()
+    {
+        _jr.Delete(SelectedJob);
+        UpdateJobs();
+    }
+    
+    
+    [ObservableProperty] private ChecklistItem _selectedCheck;
+    [ObservableProperty] private int _checkPage;
+    private void UpdateChecks() => Checks = new(_chr.GetPage(CheckPage, 10));
+    [RelayCommand]
+    public void NextPageCheck()
+    {
+        CheckPage++;
+        UpdateCabs();
+    }
+    [RelayCommand]
+    public void PrevPageCheck()
+    {
+        CheckPage--;
+        UpdateChecks();
+    }
+    [RelayCommand]
+    public void FirstPageCheck()
+    {
+        CheckPage = 0;
+        UpdateChecks();
+    }
+    [RelayCommand]
+    public void LastPageCheck()
+    {
+        CheckPage = _chr.Count() / 10;
+        UpdateChecks();
+    }
+    [RelayCommand] public void AddCheck()
+    {
+        _chr.Add(new(0, new Job(), "название", "описание"));
+        UpdateChecks();
+    }
+    [RelayCommand] public void UpdateCheck()
+    {
+        _chr.Update(SelectedCheck);
+        UpdateChecks();
+    }
+    [RelayCommand] public void DeleteCheck()
+    {
+        _chr.Delete(SelectedCheck);
+        UpdateChecks();
+    }
+    
+    
+    [ObservableProperty] private Employee _selectedEmp;
+    [ObservableProperty] private int _empPage;
+    private void UpdateEmps() => Emps = new(_er.GetPage(EmpPage, 10));
+    [RelayCommand]
+    public void NextPageEmp()
+    {
+        EmpPage++;
+        UpdateEmps();
+    }
+    [RelayCommand]
+    public void PrevPageEmp()
+    {
+        EmpPage--;
+        UpdateEmps();
+    }
+    [RelayCommand]
+    public void FirstPageEmp()
+    {
+        EmpPage = 0;
+        UpdateEmps();
+    }
+    [RelayCommand]
+    public void LastPageEmp()
+    {
+        EmpPage = _er.Count() / 10;
+        UpdateEmps();
+    }
+    [RelayCommand] public void AddEmp()
+    {
+        _er.Add(new(0, "Иван Иванович Иванов", new(), new()));
+        UpdateChecks();
+    }
+    [RelayCommand] public void UpdateEmp()
+    {
+        _er.Update(SelectedEmp);
+        UpdateEmps();
+    }
+    [RelayCommand] public void DeleteEmp()
+    {
+        _er.Delete(SelectedEmp);
+        UpdateEmps();
+    }
+    
+    
+    [ObservableProperty] private User _selectedUser;
+    [ObservableProperty] private int _userPage;
+    private void UpdateUsers() => Users = new(_ur.GetPage(EmpPage, 10));
+    [RelayCommand]
+    public void NextPageUser()
+    {
+        UserPage++;
+        UpdateUsers();
+    }
+    [RelayCommand]
+    public void PrevPageUser()
+    {
+        UserPage--;
+        UpdateUsers();
+    }
+    [RelayCommand]
+    public void FirstPageUser()
+    {
+        UserPage = 0;
+        UpdateUsers();
+    }
+    [RelayCommand]
+    public void LastPageUser()
+    {
+        UserPage = _ur.Count() / 10;
+        UpdateUsers();
+    }
+    [RelayCommand] public void AddUser()
+    {
+        _ur.Add(new(0, new(), "", "", new()));
+        UpdateChecks();
+    }
+    [RelayCommand] public void UpdateUser()
+    {
+        _ur.Update(SelectedUser);
+        UpdateUsers();
+    }
+    [RelayCommand] public void DeleteUser()
+    {
+        _ur.Delete(SelectedUser);
+        UpdateUsers();
+    }
+    
+    
+    [ObservableProperty] private Role _selectedRole;
+    [ObservableProperty] private int _rolePage;
+    private void UpdateRoles() => Roles = new(_rr.GetPage(EmpPage, 10));
+    [RelayCommand]
+    public void NextPageRole()
+    {
+        RolePage++;
+        UpdateRoles();
+    }
+    [RelayCommand]
+    public void PrevPageRole()
+    {
+        RolePage--;
+        UpdateRoles();
+    }
+    [RelayCommand]
+    public void FirstPageRole()
+    {
+        RolePage = 0;
+        UpdateRoles();
+    }
+    [RelayCommand]
+    public void LastPageRole()
+    {
+        RolePage = _rr.Count() / 10;
+        UpdateRoles();
+    }
+    [RelayCommand] public void AddRole()
+    {
+        _rr.Add(new(0, "", false));
+        UpdateRoles();
+    }
+    [RelayCommand] public void UpdateRole()
+    {
+        _rr.Update(SelectedRole);
+        UpdateRoles();
+    }
+    [RelayCommand] public void DeleteRole()
+    {
+        _rr.Delete(SelectedRole);
+        UpdateRoles();
+    }
 
 
-
+    
+    
+    
+    
     [RelayCommand]
     public void SaveSettings() => SerializeSettings();//сохранить введённые знаечения в файл настроек
     
