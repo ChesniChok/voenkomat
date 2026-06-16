@@ -113,4 +113,75 @@ public class JobRepository : BaseRepository<Job>
             }
             return job;
         }
+        
+    public void Add(Job j)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "insert into jobs values(@id, @name)";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", j.Id);
+                mc.Parameters.AddWithValue("@name", j.Name);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Update(Job j)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "update jobs set Name = @name where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", j.Id);
+                mc.Parameters.AddWithValue("@name", j.Name);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Delete(Job j)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "delete from jobs where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", j.Id);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
 }

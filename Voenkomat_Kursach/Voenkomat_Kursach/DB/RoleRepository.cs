@@ -115,6 +115,79 @@ public class RoleRepository : BaseRepository<Role>
             }
             return role;
         }
+        
+    public void Add(Role r)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "insert into roles values(@id, @name, @im)";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", r.Id);
+                mc.Parameters.AddWithValue("@name", r.Name);
+                mc.Parameters.AddWithValue("@im", r.IsMed);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Update(Role r)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "update roles set Name = @name, Is_Med = @im where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", r.Id);
+                mc.Parameters.AddWithValue("@name", r.Name);
+                mc.Parameters.AddWithValue("@im", r.IsMed);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Delete(Role r)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "delete from roles where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", r.Id);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
 }
 
 

@@ -127,4 +127,79 @@ public class EmployeeRepository : BaseRepository<Employee>
         }
         return employee;
     }
+    
+    public void Add(Employee e)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "insert into employees values(@id, @fname, @cnum, @jid)";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", e.Id);
+                mc.Parameters.AddWithValue("@fname", e.FullName);
+                mc.Parameters.AddWithValue("@cnum", e.Cabinet.Number);
+                mc.Parameters.AddWithValue("@jid", e.Job.Id);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Update(Employee e)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "update employees set FullName = @fname, Cabinet_Number = @cnum, Job_Id = @jid where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", e.Id);
+                mc.Parameters.AddWithValue("@fname", e.FullName);
+                mc.Parameters.AddWithValue("@cnum", e.Cabinet.Number);
+                mc.Parameters.AddWithValue("@jid", e.Job.Id);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Delete(Employee e)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "delete from employees where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", e.Id);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
 }

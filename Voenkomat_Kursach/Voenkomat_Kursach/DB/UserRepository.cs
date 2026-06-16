@@ -128,4 +128,81 @@ public class UserRepository : BaseRepository<User>
             }
             return user;
         }
+    
+    public void Add(User u)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "insert into users values(@id, @eid, @jog, @pas, @rid)";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", u.Id);
+                mc.Parameters.AddWithValue("@eid", u.Employee.Id);
+                mc.Parameters.AddWithValue("@log", u.Login);
+                mc.Parameters.AddWithValue("@pas", u.Password);
+                mc.Parameters.AddWithValue("@rid", u.Role.Id);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Update(User u)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "update users set Employee_Id = @eid, Login = @log, Password = @pas, Role_Id = @rid where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", u.Id);
+                mc.Parameters.AddWithValue("@eid", u.Employee.Id);
+                mc.Parameters.AddWithValue("@log", u.Login);
+                mc.Parameters.AddWithValue("@pas", u.Password);
+                mc.Parameters.AddWithValue("@rid", u.Role.Id);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Delete(User u)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "delete from users where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", u.Id);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
 }

@@ -112,4 +112,77 @@ public class CabinetRepository : BaseRepository<Cabinet>
         }
         return cabinet;
     }
+    
+    public void Add(Cabinet c)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "insert into cabinets values(@num, @name, @desc)";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@num", c.Number);
+                mc.Parameters.AddWithValue("@name", c.Name);
+                mc.Parameters.AddWithValue("@desc", c.Description);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+    
+    public void Update(Cabinet c)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "update cabinets set Name = @name, Description = @desc where Number = @num";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@num", c.Number);
+                mc.Parameters.AddWithValue("@name", c.Name);
+                mc.Parameters.AddWithValue("@desc", c.Description);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Delete(Cabinet c)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "delete from cabinets where Number = @num";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@num", c.Number);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
 }

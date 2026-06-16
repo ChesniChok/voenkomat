@@ -120,4 +120,78 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         return check;
     }
     
+    public void Add(ChecklistItem c)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "insert into checkitems values(@id, @jid, @name, @description)";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", c.Id);
+                mc.Parameters.AddWithValue("@jid", c.Doctor.Id);
+                mc.Parameters.AddWithValue("@name", c.Name);
+                mc.Parameters.AddWithValue("@desc", c.Description);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Update(ChecklistItem c)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "update checkitems set Job_Id = @jid, Name = @name, Description = @desc where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", c.Id);
+                mc.Parameters.AddWithValue("@jid", c.Doctor.Id);
+                mc.Parameters.AddWithValue("@name", c.Name);
+                mc.Parameters.AddWithValue("@desc", c.Description);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+
+    public void Delete(ChecklistItem c)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "delete from checkitems where Id = @id";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", c.Id);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
 }
