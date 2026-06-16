@@ -156,7 +156,7 @@ public partial class AdminViewModel : UserBaseViewModel
     public void ImportSettings()//загрузка настроек из файла по указанному пути в файл настроек
     {
 
-        AppSettings sets = new AppSettings();
+        AppSettings sets;
         
         try
         {
@@ -164,10 +164,9 @@ public partial class AdminViewModel : UserBaseViewModel
             {
                 
                 sets = JsonSerializer.Deserialize<AppSettings>(fs);
-                
-                _ap.ConnectionString = sets.ConnectionString;
-                _ap.Roles = sets.Roles;
-                
+
+                _ap = sets;
+
             }
         }
         catch (Exception e)
@@ -189,7 +188,7 @@ public partial class AdminViewModel : UserBaseViewModel
     private void SerializeSettings(string path = "appsettings.json")//сохранить настройки в файл
     {
 
-        var sets = new AppSettings(GenerateConectionString(), GenerateDictionary());
+        var sets = new AppSettings(GenerateConnectionString(), GenerateDictionary());
 
         using(var fs = File.Create(path))
         {
@@ -198,7 +197,7 @@ public partial class AdminViewModel : UserBaseViewModel
 
     }
 
-    private string GenerateConectionString()
+    private string GenerateConnectionString()
     {
 
         var sb = new StringBuilder();
@@ -237,7 +236,7 @@ public partial class AdminViewModel : UserBaseViewModel
     private void Error(string message)
     {
         SystemMessage = message;
-        Console.WriteLine('\a');//издать системгный звук
+        Console.WriteLine('\a');
     }
 
     protected override void GoBack() => GoToMain(_win);

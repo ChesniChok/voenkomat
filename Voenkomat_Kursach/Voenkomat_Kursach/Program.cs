@@ -32,7 +32,6 @@ sealed class Program
         {
             Console.WriteLine(e);
             MakeMtFile();
-            Console.WriteLine('\a');
         }
 
         var host = Host.CreateDefaultBuilder()
