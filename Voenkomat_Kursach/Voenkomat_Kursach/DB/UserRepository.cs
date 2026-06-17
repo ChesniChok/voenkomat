@@ -44,7 +44,7 @@ public class UserRepository : BaseRepository<User>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -84,7 +84,7 @@ public class UserRepository : BaseRepository<User>
         {
             CloseConnection();
             Console.WriteLine(e);
-            throw;
+            
         }
         return users;
     }
@@ -120,7 +120,7 @@ public class UserRepository : BaseRepository<User>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {
@@ -148,7 +148,7 @@ public class UserRepository : BaseRepository<User>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -175,7 +175,7 @@ public class UserRepository : BaseRepository<User>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -198,7 +198,7 @@ public class UserRepository : BaseRepository<User>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -224,7 +224,7 @@ public class UserRepository : BaseRepository<User>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {

@@ -42,7 +42,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {
@@ -85,7 +85,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {

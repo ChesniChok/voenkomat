@@ -44,7 +44,7 @@ public class EmployeeRepository : BaseRepository<Employee>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -84,7 +84,7 @@ public class EmployeeRepository : BaseRepository<Employee>
         {
             CloseConnection();
             Console.WriteLine(e);
-            throw;
+            
         }
         return employees;
     }
@@ -119,7 +119,7 @@ public class EmployeeRepository : BaseRepository<Employee>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -146,7 +146,7 @@ public class EmployeeRepository : BaseRepository<Employee>
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            throw;
+            
         }
         finally
         {
@@ -172,7 +172,7 @@ public class EmployeeRepository : BaseRepository<Employee>
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            throw;
+            
         }
         finally
         {
@@ -195,7 +195,7 @@ public class EmployeeRepository : BaseRepository<Employee>
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            throw;
+            
         }
         finally
         {
@@ -221,7 +221,7 @@ public class EmployeeRepository : BaseRepository<Employee>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {

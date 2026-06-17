@@ -37,7 +37,7 @@ public class RoleRepository : BaseRepository<Role>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {
@@ -75,7 +75,7 @@ public class RoleRepository : BaseRepository<Role>
             {
                 CloseConnection();
                 Console.WriteLine(e);
-                throw;
+                
             }
             return roles;
         }
@@ -107,7 +107,7 @@ public class RoleRepository : BaseRepository<Role>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {
@@ -133,7 +133,7 @@ public class RoleRepository : BaseRepository<Role>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -158,7 +158,7 @@ public class RoleRepository : BaseRepository<Role>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -181,7 +181,7 @@ public class RoleRepository : BaseRepository<Role>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -207,7 +207,7 @@ public class RoleRepository : BaseRepository<Role>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {

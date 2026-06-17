@@ -37,7 +37,7 @@ public class JobRepository : BaseRepository<Job>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {
@@ -74,7 +74,7 @@ public class JobRepository : BaseRepository<Job>
             {
                 CloseConnection();
                 Console.WriteLine(e);
-                throw;
+                
             }
             return jobs;
         }
@@ -105,7 +105,7 @@ public class JobRepository : BaseRepository<Job>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {
@@ -130,7 +130,7 @@ public class JobRepository : BaseRepository<Job>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -154,7 +154,7 @@ public class JobRepository : BaseRepository<Job>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -177,7 +177,7 @@ public class JobRepository : BaseRepository<Job>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -203,7 +203,7 @@ public class JobRepository : BaseRepository<Job>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {

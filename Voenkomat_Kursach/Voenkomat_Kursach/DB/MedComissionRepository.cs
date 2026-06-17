@@ -48,7 +48,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -95,7 +95,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {

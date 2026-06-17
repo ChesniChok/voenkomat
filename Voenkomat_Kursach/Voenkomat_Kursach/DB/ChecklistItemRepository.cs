@@ -40,7 +40,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -79,7 +79,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         {
             CloseConnection();
             Console.WriteLine(e);
-            throw;
+            
         }
         return checks;
     }
@@ -111,7 +111,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -138,7 +138,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -164,7 +164,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -187,7 +187,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -213,7 +213,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {

@@ -39,7 +39,7 @@ public class VisitRepository : BaseRepository<Visit>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {
@@ -77,7 +77,7 @@ public class VisitRepository : BaseRepository<Visit>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {
@@ -120,7 +120,7 @@ public class VisitRepository : BaseRepository<Visit>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {

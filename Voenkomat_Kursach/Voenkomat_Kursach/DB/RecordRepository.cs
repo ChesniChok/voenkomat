@@ -49,7 +49,7 @@ public class RecordRepository : BaseRepository<Record>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {
@@ -93,7 +93,7 @@ public class RecordRepository : BaseRepository<Record>
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                
             }
             finally
             {

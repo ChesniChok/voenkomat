@@ -75,7 +75,6 @@ public class CabinetRepository : BaseRepository<Cabinet>
         {
             CloseConnection();
             Console.WriteLine(e);
-            throw;
         }
         return cabinets;
     }
@@ -104,7 +103,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -130,7 +129,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -155,7 +154,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -178,7 +177,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
@@ -204,7 +203,7 @@ public class CabinetRepository : BaseRepository<Cabinet>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            
         }
         finally
         {
