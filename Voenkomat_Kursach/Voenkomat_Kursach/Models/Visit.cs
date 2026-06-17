@@ -15,7 +15,7 @@ public class Visit
 
     public Visit()
     {
-        Id = -1;
+        Id = 0;
         MedComission = new();
         Date = DateOnly.FromDateTime(DateTime.Now);
         InTime = TimeOnly.FromDateTime(DateTime.Now);

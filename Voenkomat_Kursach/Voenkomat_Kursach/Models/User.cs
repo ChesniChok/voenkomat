@@ -12,7 +12,7 @@ public class User
 
     public User()
     {
-        Id = -1;
+        Id = 0;
         Employee = new();
         Login = "логин";
         Password = "пароль";

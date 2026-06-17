@@ -19,16 +19,16 @@ public class Recruit
 
     public Recruit()
     {
-        Id = -1;
-        FamilyName = "зубенко";
-        Name = "михаил";
-        FatherName = "петрович";
+        Id = 0;
+        FamilyName = "Такоев";
+        Name = "Такой";
+        FatherName = "Такоевич";
         DateOfBirth = DateOnly.FromDateTime(DateTime.Now);
         PhoneNumber = "88005553535";
-        Adress = "чуркин/65/5/27";
-        Passport = "26 05  123456";
-        SNILS = "00000000000";
-        INN = "9999999999999999999999999999999999999";
+        Adress = "где-то далеко";
+        Passport = "01 01  123456";
+        SNILS = "123456789 01";
+        INN = "123456789012";
     }
     
     public Recruit(int id, string familyName, string name, string fatherName, DateOnly dateOfBirth, string phoneNumber, string adress, string passport, string snils, string inn)

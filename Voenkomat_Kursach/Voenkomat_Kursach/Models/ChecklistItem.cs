@@ -14,7 +14,7 @@ public class ChecklistItem
 
     public ChecklistItem()
     {
-        Id = -1;
+        Id = 0;
         Doctor = new();
         Name = "название";
         Description = "описание";

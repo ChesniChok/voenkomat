@@ -16,7 +16,7 @@ public class Record
 
     public Record()
     {
-        Id = -1;
+        Id = 0;
         Type = "";
         Author = new();
         MedComisiion = new();

@@ -12,7 +12,7 @@ public class Cabinet
 
     public Cabinet()
     {
-        Number = -1;
+        Number = 0;
         Name = "название";
         Description = "описание";
     }

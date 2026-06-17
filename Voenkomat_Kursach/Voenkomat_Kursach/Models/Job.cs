@@ -9,7 +9,7 @@ public class Job
 
     public Job()
     {
-        Id = -1;
+        Id = 0;
         Name = "название";
     }
     

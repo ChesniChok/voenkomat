@@ -11,7 +11,7 @@ public class Employee
 
     public Employee()
     {
-        Id = -1;
+        Id = 0;
         FullName = "имя";
         Cabinet = new();
         Job = new();

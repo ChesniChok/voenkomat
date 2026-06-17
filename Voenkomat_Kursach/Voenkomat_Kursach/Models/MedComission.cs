@@ -22,7 +22,7 @@ public class MedComission
 
     public MedComission()
     {
-        Id = -1;
+        Id = 0;
         Recruit = new();
         StartDate = DateTimeOffset.Now;
         Ter = false;

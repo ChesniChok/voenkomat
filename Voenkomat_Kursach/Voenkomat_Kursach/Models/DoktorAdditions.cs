@@ -9,7 +9,7 @@ public class DoktorAdditions
 
     public DoktorAdditions()
     {
-        Id = -1;
+        Id = 0;
         Value = "";
     }
     

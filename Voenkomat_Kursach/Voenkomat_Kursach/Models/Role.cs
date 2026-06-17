@@ -10,7 +10,7 @@ public class Role
 
     public Role()
     {
-        Id = -1;
+        Id = 0;
         Name = "название";
         IsMed = false;
     }
