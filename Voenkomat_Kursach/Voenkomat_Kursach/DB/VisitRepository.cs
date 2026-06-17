@@ -8,10 +8,10 @@ namespace Voenkomat_Kursach.DB;
 
 public class VisitRepository : BaseRepository<Visit>
 {
-    private RecruitRepository _recruitRepository;
-    public VisitRepository(AppSettings appSettings, RecruitRepository recruitRepository) : base(appSettings)
+    private MedComissionRepository _medComissionRepository;
+    public VisitRepository(AppSettings appSettings, MedComissionRepository medComissionRepository) : base(appSettings)
     {
-        _recruitRepository = recruitRepository;
+        _medComissionRepository = medComissionRepository;
     }
     public List<Visit> GetAll()
         {
@@ -27,7 +27,7 @@ public class VisitRepository : BaseRepository<Visit>
                     {
                         visits.Add(new Visit(
                             dr.GetInt32("Id"),
-                            _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
+                            _medComissionRepository.GetById(dr.GetInt32("Medcomission_Id")),
                             dr.GetDateOnly("Date"),
                             dr.GetTimeOnly("InTime"),
                             dr.GetString("Goal"),
@@ -64,7 +64,7 @@ public class VisitRepository : BaseRepository<Visit>
                         {
                             visit = new Visit(
                                 dr.GetInt32("Id"),
-                                _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
+                                _medComissionRepository.GetById(dr.GetInt32("Medcomission_Id")),
                                 dr.GetDateOnly("Date"),
                                 dr.GetTimeOnly("InTime"),
                                 dr.GetString("Goal"),
@@ -107,7 +107,7 @@ public class VisitRepository : BaseRepository<Visit>
                         {
                             visits.Add(new Visit(
                                 dr.GetInt32("Id"),
-                                _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
+                                _medComissionRepository.GetById(dr.GetInt32("Medcomission_Id")),
                                 dr.GetDateOnly("Date"),
                                 dr.GetTimeOnly("InTime"),
                                 dr.GetString("Goal"),

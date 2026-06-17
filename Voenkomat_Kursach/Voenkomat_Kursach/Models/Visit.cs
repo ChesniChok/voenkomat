@@ -6,7 +6,7 @@ public class Visit
 {
     
     public int Id { get; set; }
-    public Recruit Recruit { get; set; }
+    public MedComission MedComission { get; set; }
     public DateOnly Date { get; set; }
     public TimeOnly InTime { get; set; }
     public string Goal { get; set; }
@@ -16,17 +16,17 @@ public class Visit
     public Visit()
     {
         Id = -1;
-        Recruit = new();
+        MedComission = new();
         Date = DateOnly.FromDateTime(DateTime.Now);
         InTime = TimeOnly.FromDateTime(DateTime.Now);
         Goal = "";
         OutTime = TimeOnly.FromDateTime(DateTime.Now);
     }
     
-    public Visit(int id, Recruit recruit, DateOnly date, TimeOnly inTime, string goal, TimeOnly outTime)
+    public Visit(int id, MedComission medComission, DateOnly date, TimeOnly inTime, string goal, TimeOnly outTime)
     {
         Id = id;
-        Recruit = recruit;
+        MedComission = medComission;
         Date = date;
         InTime = inTime;
         Goal = goal;
