@@ -2,50 +2,117 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Voenkomat_Kursach.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Voenkomat_Kursach.Views.RegistratorWindow"
+        x:DataType="vm:RegistatorViewModel"
         Title="RegistratorWindow">
+    
     <TabControl>
-            <TabItem Header="Посещения">
-                <StackPanel>
-                    <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" Margin="10">
-                        <TextBlock Text="дата | " Grid.Row="0" Grid.Column="0"/>
-                        <TextBlock Text="09.05.2026" Grid.Row="0" Grid.Column="1"/>
-                        <TextBlock Text="имя | " Grid.Row="1" Grid.Column="0"/>
-                        <TextBlock Text="пес патрон" Grid.Row="1" Grid.Column="1"/>
-                    </Grid>
-                    <Button Content="Сохранить" Margin="10" HorizontalAlignment="Center" Width="100"/>
-                </StackPanel>
-            </TabItem>
+        
+        <TabItem Header="Посещения">
+            
+            <StackPanel>
+                
+                <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" Margin="10">
+                    
+                    <TextBlock Text="дата | " Grid.Row="0" Grid.Column="0"/>
+                    
+                    <TextBlock Text="09.05.2026" Grid.Row="0" Grid.Column="1"/>
+                    
+                    <TextBlock Text="имя | " Grid.Row="1" Grid.Column="0"/>
+                    
+                    <TextBlock Text="пес патрон" Grid.Row="1" Grid.Column="1"/>
+                    
+                </Grid>
+                
+                
+                <Button Content="Сохранить" Margin="10" HorizontalAlignment="Center" Width="100"/>
+                
+            </StackPanel>
+            
+        </TabItem>
     
-            <TabItem Header="Личные дела">
-                <TabControl>
-                    <TabItem Header="найти">
-                        <StackPanel Margin="10">
-                            <TextBlock Text="Форма поиска"/>
-                            <TextBox Watermark="Введите данные для поиска"/>
-                            <Button Content="Найти" Margin="5"/>
+        
+        <TabItem Header="Личные дела">
+            
+            <Grid ColumnDefinitions="Auto *">
+                                                        
+                <StackPanel Grid.Column="0">
+                        
+                        <TextBox Watermark="id" Text="{Binding SelectedRec.Id}" IsReadOnly="True"/>
+                        
+                        <TextBox Watermark="фамилия" Text="{Binding SelectedRec.FamilyName}"/>
+                        
+                        <TextBox Watermark="имя" Text="{Binding SelectedRec.Name}"/>
+                        
+                        <TextBox Watermark="отчество" Text="{Binding SelectedRec.FatherName}"/>
+                        
+                        <TextBox Watermark="дата рождения" Text="{Binding SelectedRec.DateOfBirth}"/>
+                        
+                        <TextBox Watermark="номер телефона" Text="{Binding SelectedRec.PhoneNumber}"/>
+                        
+                        <TextBox Watermark="адрес" Text="{Binding SelectedRec.Adress}"/>
+                        
+                        <TextBox Watermark="пасспорт" Text="{Binding SelectedRec.Passport}"/>
+                        
+                        <TextBox Watermark="СНИЛС" Text="{Binding SelectedRec.SNILS}"/>
+                        
+                        <TextBox Watermark="ИНН" Text="{Binding SelectedRec.INN}"/>
+                        
+                        
+                        <StackPanel Orientation="Horizontal">
+                                
+                                <Button Content="добавить" Command="{Binding AddRecCommand}"/>
+                                
+                                <Button Content="обновить" Command="{Binding UpdateRecCommand}"/>
+                                
+                                <Button Content="удалить" Command="{Binding DeleteRecCommand}"/>
+                                
                         </StackPanel>
-                    </TabItem>
-                    <TabItem Header="завести">
-                        <StackPanel Margin="10">
-                            <TextBlock Text="Форма создания"/>
-                            <TextBox Watermark="ФИО"/>
-                            <TextBox Watermark="Дата рождения"/>
-                            <Button Content="Завести" Margin="5"/>
-                        </StackPanel>
-                    </TabItem>
-                </TabControl>
-            </TabItem>
-    
-            <TabItem Header="Повестки">
-                <StackPanel Margin="10">
-                    <TextBox Watermark="ФИО призывника" Margin="0,5"/>
-                    <TextBox Watermark="Дата явки" Margin="0,5"/>
-                    <TextBox Watermark="Причина" Margin="0,5"/>
-                    <TextBox Watermark="Место явки" Margin="0,5"/>
-                    <Button Content="Выдать" Margin="5" HorizontalAlignment="Center" Width="100"/>
+                        
                 </StackPanel>
-            </TabItem>
-        </TabControl>
+                
+                
+                <Grid Grid.Column="1" RowDefinitions="* Auto">
+                        
+                        <DataGrid Grid.Row="0" ItemsSource="{Binding Recs}" SelectedItem="{Binding SelectedRec}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                        
+                                <DataGrid.Columns>
+                                
+                                        <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
+                                
+                                        <DataGridTextColumn Header="фамилия" Binding="{Binding FamilyName}"/>
+                                        
+                                        <DataGridTextColumn Header="имя" Binding="{Binding Name}"/>
+                                        
+                                        <DataGridTextColumn Header="отчество" Binding="{Binding FatherName}"/>
+                                
+                                </DataGrid.Columns>
+                        
+                        </DataGrid>
+                        
+                        
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                
+                                <Button Content="«" Command="{Binding FirstPageRecCommand}"/>
+                                
+                                <Button Content="&lt;" Command="{Binding PrevPageRecCommand}"/>
+                                
+                                <Button Content="обновить" Command="{Binding UpdateRecsCommand}"/>
+                                
+                                <Button Content="&gt;" Command="{Binding NextPageRecCommand}"/>
+                                
+                                <Button Content="»" Command="{Binding LastPageRecCommand}"/>
+                                
+                        </StackPanel>
+                        
+                </Grid>
+                
+        </Grid>
+            
+        </TabItem>
+        
+    </TabControl>
+    
 </Window>
