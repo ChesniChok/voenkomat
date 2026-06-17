@@ -10,11 +10,13 @@
     
         <Grid RowDefinitions="Auto *">
                 
-                <StackPanel Grid.Row="0">
+                <Grid Grid.Row="0" ColumnDefinitions="* Auto">
                         
-                        <TextBox Watermark="системные сообщения" Text="{Binding SystemMessage}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"/>
+                        <TextBox Grid.Column="0" Watermark="системные сообщения" Text="{Binding SystemMessage}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"/>
                         
-                </StackPanel>
+                        <Button Grid.Column="1" Content="назад" Command="{Binding GoBackCommand}"/>
+                        
+                </Grid>
                 
                 
                 <TabControl Grid.Row="1">
