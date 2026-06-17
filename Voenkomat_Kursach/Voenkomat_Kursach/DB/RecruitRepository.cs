@@ -91,6 +91,55 @@ public class RecruitRepository : BaseRepository<Recruit>
             }
             return roles;
         }
+        
+        public List<Recruit> GetPage(int offset, int limit, string search)
+        {
+            List<Recruit> roles = new();
+            try
+            {
+                OpenConnection();
+                string sql = "select * from recruits limit @limit offset @offset";
+                using (var mc = new MySqlCommand(sql, _connection))
+                {
+                    mc.Parameters.AddWithValue("@limit", limit);
+                    mc.Parameters.AddWithValue("@offset", offset);
+                    using (var dr = mc.ExecuteReader())
+                    {
+                        var s = search.ToLower();
+                        while (dr.Read())
+                        {
+                            var fn = dr.GetString("FamilyName");
+                            var n = dr.GetString("Name");
+                            var fa = dr.GetString("FatherName");
+                            var hasSameAsSearch = fn.ToLower().Contains(s) || n.ToLower().Contains(s) || fa.ToLower().Contains(s);
+                            if (hasSameAsSearch)
+                            {
+                                roles.Add(new Recruit
+                                (
+                                    dr.GetInt32("Id"),
+                                    dr.GetString("FamilyName"),
+                                    dr.GetString("Name"),
+                                    dr.GetString("FatherName"),
+                                    dr.GetDateOnly("DateOfBirth"),
+                                    dr.GetString("PhoneNumber"),
+                                    dr.GetString("Adress"),
+                                    dr.GetString("Passport"),
+                                    dr.GetString("SNILS"),
+                                    dr.GetString("INN")
+                                ));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                CloseConnection();
+                Console.WriteLine(e);
+                    
+            }
+            return roles;
+        }
 
         public Recruit GetById(int id)
         {

@@ -28,11 +28,29 @@ public partial class RegistatorViewModel : UserBaseViewModel
     }
 
 
+    [ObservableProperty] private string _search;
 
     [ObservableProperty] private Recruit _selectedRec;
     [ObservableProperty] private ObservableCollection<Recruit> _recs;
     [ObservableProperty] private int _recPage;
-    [RelayCommand] private void UpdateRecs() => Recs = new(_rr.GetPage(RecPage, 10));
+    [RelayCommand] private void UpdateRecs()
+    {
+        
+        ObservableCollection<Recruit> got;
+
+        if (String.IsNullOrEmpty(Search))
+        {
+            got = new(_rr.GetPage(RecPage, 10));
+        }
+        else
+        {
+            got = new(_rr.GetPage(RecPage, 10, Search));
+        }
+
+        Recs = got;
+
+    }
+
     [RelayCommand]
     public void NextPageRec()
     {
