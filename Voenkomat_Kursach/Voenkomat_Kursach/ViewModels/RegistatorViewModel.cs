@@ -101,6 +101,14 @@ public partial class RegistatorViewModel : UserBaseViewModel
     [ObservableProperty] private ObservableCollection<MedComission> _coms;
     [ObservableProperty] private int _comPage;
     [RelayCommand] private void UpdateComs() => Coms = new(_mr.GetPage(RecPage, 10, SelectedRec));
+
+    [RelayCommand]
+    private void FinishCom()
+    {
+        SelectedCom.EndDate = DateOnly.FromDateTime(DateTime.Now);
+        _mr.Update(SelectedCom);
+        UpdateComs();
+    }
     [RelayCommand]
     public void NextPageCom()
     {
@@ -178,6 +186,7 @@ public partial class RegistatorViewModel : UserBaseViewModel
     [RelayCommand] public void AddVis()
     {
         var vis = new Visit();
+        vis.MedComission = SelectedCom;
         _vr.Add(vis);
         UpdateViss();
     }

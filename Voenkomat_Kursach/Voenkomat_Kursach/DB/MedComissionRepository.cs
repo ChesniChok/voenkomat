@@ -63,7 +63,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
         try
         {
             OpenConnection();
-            string sql = "select * from medcomissions where Recruit_Id = @rid limit @limit offset @offset";
+            string sql = "select * from medcomissions where Recruit_Id = @rid and EndDate is null limit @limit offset @offset";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@limit", limit);
@@ -110,7 +110,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
             MedComission medcomission = new MedComission();
             try
             {
-                _connection.Open();
+                OpenConnection();
                 string sql = "SELECT * FROM medcomissions WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
@@ -119,11 +119,13 @@ public class MedComissionRepository : BaseRepository<MedComission>
                     {
                         if (dr.Read())
                         {
-                            int recruitId = dr.GetInt32("Recruit_Id");
-                            medcomission = new MedComission(
-                            
+                            var date = dr.GetOrdinal("EndDate");
+                            var cat = dr.GetOrdinal("Category");
+                            var desc = dr.GetOrdinal("Description");
+                            medcomission = new MedComission
+                            (
                                 dr.GetInt32("Id"),
-                                _recruitRepository.GetById(recruitId),
+                                _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
                                 dr.GetDateOnly("StartDate"),
                                 dr.GetBoolean("Ter"),
                                 dr.GetBoolean("Otor"),
@@ -132,9 +134,9 @@ public class MedComissionRepository : BaseRepository<MedComission>
                                 dr.GetBoolean("Hir"),
                                 dr.GetBoolean("Stom"),
                                 dr.GetBoolean("Okul"),
-                                dr.GetDateOnly("EndDate"),
-                                dr.GetString("Category"),
-                                dr.GetString("Description")
+                                dr.IsDBNull(date) ? null : dr.GetDateOnly(date),
+                                dr.IsDBNull(cat) ? null : dr.GetString("Category"),
+                                dr.IsDBNull(desc) ? null : dr.GetString("Description")
                             );
                         }
                     }

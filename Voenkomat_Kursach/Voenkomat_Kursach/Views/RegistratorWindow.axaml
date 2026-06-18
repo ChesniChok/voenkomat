@@ -130,6 +130,12 @@
                         <Button Content="удалить" Command="{Binding DeleteComCommand}"/>
                                 
                     </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        
+                        <Button Content="завершить" Command="{Binding FinishComCommand}" HorizontalAlignment="Stretch"/>
+                        
+                    </StackPanel>
                         
                 </StackPanel>
                 
