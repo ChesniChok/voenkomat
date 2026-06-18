@@ -98,36 +98,32 @@ public class RecruitRepository : BaseRepository<Recruit>
             try
             {
                 OpenConnection();
-                string sql = "select * from recruits limit @limit offset @offset";
+                string sql = "select * from recruits where Name like @name or FatherName like @fath or FamilyName like @fname limit 10 offset 0";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
                     mc.Parameters.AddWithValue("@limit", limit);
                     mc.Parameters.AddWithValue("@offset", offset);
+                    mc.Parameters.AddWithValue("@name", $"%{search}%");
+                    mc.Parameters.AddWithValue("@fath", $"%{search}%");
+                    mc.Parameters.AddWithValue("@fname", $"%{search}%");
                     using (var dr = mc.ExecuteReader())
                     {
                         var s = search.ToLower();
                         while (dr.Read())
                         {
-                            var fn = dr.GetString("FamilyName");
-                            var n = dr.GetString("Name");
-                            var fa = dr.GetString("FatherName");
-                            var hasSameAsSearch = fn.ToLower().Contains(s) || n.ToLower().Contains(s) || fa.ToLower().Contains(s);
-                            if (hasSameAsSearch)
-                            {
-                                roles.Add(new Recruit
-                                (
-                                    dr.GetInt32("Id"),
-                                    dr.GetString("FamilyName"),
-                                    dr.GetString("Name"),
-                                    dr.GetString("FatherName"),
-                                    dr.GetDateOnly("DateOfBirth"),
-                                    dr.GetString("PhoneNumber"),
-                                    dr.GetString("Adress"),
-                                    dr.GetString("Passport"),
-                                    dr.GetString("SNILS"),
-                                    dr.GetString("INN")
-                                ));
-                            }
+                            roles.Add(new Recruit
+                            (
+                                dr.GetInt32("Id"),
+                                dr.GetString("FamilyName"),
+                                dr.GetString("Name"),
+                                dr.GetString("FatherName"),
+                                dr.GetDateOnly("DateOfBirth"),
+                                dr.GetString("PhoneNumber"),
+                                dr.GetString("Adress"),
+                                dr.GetString("Passport"),
+                                dr.GetString("SNILS"),
+                                dr.GetString("INN")
+                            ));
                         }
                     }
                 }

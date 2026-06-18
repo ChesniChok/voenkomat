@@ -28,7 +28,7 @@ public partial class RegistatorViewModel : UserBaseViewModel
 
     private void Start()
     {
-        Recs = new(_rr.GetPage(0, 10));
+        UpdateRecs();
     }
 
 
@@ -109,7 +109,14 @@ public partial class RegistatorViewModel : UserBaseViewModel
     [ObservableProperty] private MedComission _selectedCom;
     [ObservableProperty] private ObservableCollection<MedComission> _coms;
     [ObservableProperty] private int _comPage;
-    [RelayCommand] private void UpdateComs() => Coms = new(_mr.GetPage(RecPage, 10, SelectedRec));
+    [RelayCommand] private void UpdateComs()
+    {
+        
+        Coms = new(_mr.GetPage(RecPage, 10, SelectedRec));
+
+        var a = MedTip;
+
+    }
 
     [RelayCommand]
     public void NextPageCom()
