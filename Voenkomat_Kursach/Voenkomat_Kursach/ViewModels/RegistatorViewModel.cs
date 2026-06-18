@@ -96,28 +96,11 @@ public partial class RegistatorViewModel : UserBaseViewModel
         _rr.Delete(SelectedRec);
         UpdateRecs();
     }
-
-    public string MedTip
-    {
-        get
-        {
-            if (SelectedRec == null) return "выберите призывника";
-
-            return "";
-        }
-    }
+    
     [ObservableProperty] private MedComission _selectedCom;
     [ObservableProperty] private ObservableCollection<MedComission> _coms;
     [ObservableProperty] private int _comPage;
-    [RelayCommand] private void UpdateComs()
-    {
-        
-        Coms = new(_mr.GetPage(RecPage, 10, SelectedRec));
-
-        var a = MedTip;
-
-    }
-
+    [RelayCommand] private void UpdateComs() => Coms = new(_mr.GetPage(RecPage, 10, SelectedRec));
     [RelayCommand]
     public void NextPageCom()
     {
@@ -141,7 +124,7 @@ public partial class RegistatorViewModel : UserBaseViewModel
     [RelayCommand]
     public void LastPageCom()
     {
-        ComPage = (_rr.Count()-1) / 10 * 10;
+        ComPage = (_mr.Count()-1) / 10 * 10;
         UpdateComs();
     }
     [RelayCommand] public void AddCom()
@@ -160,6 +143,53 @@ public partial class RegistatorViewModel : UserBaseViewModel
     {
         _mr.Delete(SelectedCom);
         UpdateComs();
+    }
+    
+    [ObservableProperty] private Visit _selectedVis;
+    [ObservableProperty] private ObservableCollection<Visit> _viss;
+    [ObservableProperty] private int _visPage;
+    [RelayCommand] private void UpdateViss() => Viss = new(_vr.GetPage(VisPage, 10, SelectedCom));
+    [RelayCommand]
+    public void NextPageVis()
+    {
+        if (VisPage == _vr.Count() / 10) return;
+        VisPage += 10;
+        UpdateViss();
+    }
+    [RelayCommand]
+    public void PrevPageVis()
+    {
+        if (VisPage == 0) return;
+        VisPage -= 10;
+        UpdateViss();
+    }
+    [RelayCommand]
+    public void FirstPageVis()
+    {
+        VisPage = 0;
+        UpdateViss();
+    }
+    [RelayCommand]
+    public void LastPageVis()
+    {
+        VisPage = (_vr.Count()-1) / 10 * 10;
+        UpdateViss();
+    }
+    [RelayCommand] public void AddVis()
+    {
+        var vis = new Visit();
+        _vr.Add(vis);
+        UpdateViss();
+    }
+    [RelayCommand] public void UpdateVis()
+    {
+        _vr.Update(SelectedVis);
+        UpdateVis();
+    }
+    [RelayCommand] public void DeleteVis()
+    {
+        _vr.Delete(SelectedVis);
+        UpdateViss();
     }
     
     

@@ -48,17 +48,18 @@ public class VisitRepository : BaseRepository<Visit>
             return visits;
         }
     
-    public List<Visit> GetPage(int offset, int limit)
+    public List<Visit> GetPage(int offset, int limit, MedComission m)
     {
         List<Visit> visits = new();
         try
         {
             OpenConnection();
-            string sql = "select * from visits limit @limit offset @offset";
+            string sql = "select * from visits where Medcomission_Id = @mid limit @limit offset @offset";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@limit", limit);
                 mc.Parameters.AddWithValue("@offset", offset);
+                mc.Parameters.AddWithValue("@mid", m.Id);
                 using (var dr = mc.ExecuteReader())
                 {
                     while (dr.Read())

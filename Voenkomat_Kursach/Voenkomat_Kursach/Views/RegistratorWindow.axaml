@@ -134,11 +134,9 @@
                 </StackPanel>
                 
                 
-                <Grid Grid.Column="1" RowDefinitions="Auto * Auto">
-                    
-                    <TextBox Grid.Row="0" Text="{Binding MedTip}"/>
+                <Grid Grid.Column="1" RowDefinitions="* Auto">
                         
-                    <DataGrid Grid.Row="1" ItemsSource="{Binding Coms}" SelectedItem="{Binding SelectedCom}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                    <DataGrid Grid.Row="0" ItemsSource="{Binding Coms}" SelectedItem="{Binding SelectedCom}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
                         
                         <DataGrid.Columns>
                                 
@@ -165,7 +163,7 @@
                     </DataGrid>
                         
                         
-                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                                 
                         <Button Content="«" Command="{Binding FirstPageComCommand}"/>
                                 
@@ -188,24 +186,73 @@
 
         <TabItem Header="Посещения">
             
-            <StackPanel>
+            <Grid ColumnDefinitions="Auto *">
+                                                        
+                <StackPanel Grid.Column="0">
+                        
+                    <TextBox Watermark="id" Text="{Binding SelectedVis.Id}" IsReadOnly="True"/>
+                        
+                    <StackPanel Orientation="Horizontal">
+                                
+                        <Button Content="добавить" Command="{Binding AddVisCommand}"/>
+                                
+                        <Button Content="обновить" Command="{Binding UpdateVisCommand}"/>
+                                
+                        <Button Content="удалить" Command="{Binding DeleteVisCommand}"/>
+                                
+                    </StackPanel>
+                        
+                </StackPanel>
                 
-                <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" Margin="10">
-                    
-                    <TextBlock Text="дата | " Grid.Row="0" Grid.Column="0"/>
-                    
-                    <TextBlock Text="09.05.2026" Grid.Row="0" Grid.Column="1"/>
-                    
-                    <TextBlock Text="имя | " Grid.Row="1" Grid.Column="0"/>
-                    
-                    <TextBlock Text="пес патрон" Grid.Row="1" Grid.Column="1"/>
-                    
+                
+                <Grid Grid.Column="1" RowDefinitions="* Auto">
+                        
+                    <DataGrid Grid.Row="0" ItemsSource="{Binding Viss}" SelectedItem="{Binding SelectedVis}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                        
+                        <DataGrid.Columns>
+                                
+                            <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
+                            
+                            <DataGridTemplateColumn Header="полное имя">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding MedComission.Recruit.FamilyName}"/>
+                                            <TextBlock Text=" "/>
+                                            <TextBlock Text="{Binding MedComission.Recruit.Name}"/>
+                                            <TextBlock Text=" "/>
+                                            <TextBlock Text="{Binding MedComission.Recruit.FatherName}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                                        
+                            <DataGridTextColumn Header="дата начала" Binding="{Binding MedComission.StartDate}"/>
+                            
+                            <DataGridTextColumn Header="время прихода" Binding="{Binding InTime}"/>
+                                
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                        
+                        
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                
+                        <Button Content="«" Command="{Binding FirstPageVisCommand}"/>
+                                
+                        <Button Content="&lt;" Command="{Binding PrevPageVisCommand}"/>
+                                
+                        <Button Content="обновить" Command="{Binding UpdateVissCommand}"/>
+                                
+                        <Button Content="&gt;" Command="{Binding NextPageVisCommand}"/>
+                                
+                        <Button Content="»" Command="{Binding LastPageVisCommand}"/>
+                                
+                    </StackPanel>
+                        
                 </Grid>
                 
-                
-                <Button Content="Сохранить" Margin="10" HorizontalAlignment="Center" Width="100"/>
-                
-            </StackPanel>
+            </Grid>
             
         </TabItem>
         
