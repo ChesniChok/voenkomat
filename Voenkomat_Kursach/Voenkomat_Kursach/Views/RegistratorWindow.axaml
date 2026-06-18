@@ -9,31 +9,8 @@
         Title="RegistratorWindow">
     
     <TabControl>
-        
-        <TabItem Header="Посещения">
-            
-            <StackPanel>
-                
-                <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" Margin="10">
-                    
-                    <TextBlock Text="дата | " Grid.Row="0" Grid.Column="0"/>
-                    
-                    <TextBlock Text="09.05.2026" Grid.Row="0" Grid.Column="1"/>
-                    
-                    <TextBlock Text="имя | " Grid.Row="1" Grid.Column="0"/>
-                    
-                    <TextBlock Text="пес патрон" Grid.Row="1" Grid.Column="1"/>
-                    
-                </Grid>
-                
-                
-                <Button Content="Сохранить" Margin="10" HorizontalAlignment="Center" Width="100"/>
-                
-            </StackPanel>
-            
-        </TabItem>
-    
-        
+
+
         <TabItem Header="Личные дела">
             
             <Grid ColumnDefinitions="Auto *">
@@ -113,7 +90,108 @@
                         
                 </Grid>
                 
-        </Grid>
+            </Grid>
+            
+        </TabItem>
+        
+        
+        <TabItem Header="Медкомиссии">
+            
+            <Grid ColumnDefinitions="Auto *">
+                                                        
+                <StackPanel Grid.Column="0">
+                        
+                    <TextBox Watermark="id" Text="{Binding SelectedCom.Id}" IsReadOnly="True"/>
+                        
+                    <TextBox Watermark="id призывника" Text="{Binding SelectedCom.Recruit.Id}"/>
+                        
+                    <TextBox Watermark="дата начала" Text="{Binding SelectedCom.StartDate}"/>
+                        
+                    <TextBox Watermark="терапевт" Text="{Binding SelectedCom.Ter}"/>
+                    <TextBox Watermark="отороларинголог" Text="{Binding SelectedCom.Otor}"/>
+                    <TextBox Watermark="псизиатр" Text="{Binding SelectedCom.Psih}"/>
+                    <TextBox Watermark="невролог" Text="{Binding SelectedCom.Nevr}"/>
+                    <TextBox Watermark="хирург" Text="{Binding SelectedCom.Hir}"/>
+                    <TextBox Watermark="стомтолог" Text="{Binding SelectedCom.Stom}"/>
+                    <TextBox Watermark="окулист" Text="{Binding SelectedCom.Okul}"/>
+                        
+                    <TextBox Watermark="дата окончания" Text="{Binding SelectedCom.EndDate}"/>
+                        
+                    <TextBox Watermark="категория" Text="{Binding SelectedCom.Category}"/>
+                        
+                    <TextBox Watermark="комментарий" Text="{Binding SelectedCom.Description}"/>
+                        
+                    <StackPanel Orientation="Horizontal">
+                                
+                        <Button Content="добавить" Command="{Binding AddComCommand}"/>
+                                
+                        <Button Content="обновить" Command="{Binding UpdateComCommand}"/>
+                                
+                        <Button Content="удалить" Command="{Binding DeleteComCommand}"/>
+                                
+                    </StackPanel>
+                        
+                </StackPanel>
+                
+                
+                <Grid Grid.Column="1" RowDefinitions="Auto * Auto">
+                    
+                    <TextBox Grid.Row="0" Text="{Binding MedTip}"/>
+                        
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Coms}" SelectedItem="{Binding SelectedCom}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                        
+                        <DataGrid.Columns>
+                                
+                            <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
+                                        
+                            <DataGridTextColumn Header="id" Binding="{Binding StartDate}"/>
+                                
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                        
+                        
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                                
+                        <Button Content="«" Command="{Binding FirstPageRecCommand}"/>
+                                
+                        <Button Content="&lt;" Command="{Binding PrevPageRecCommand}"/>
+                                
+                        <Button Content="обновить" Command="{Binding UpdateRecsCommand}"/>
+                                
+                        <Button Content="&gt;" Command="{Binding NextPageRecCommand}"/>
+                                
+                        <Button Content="»" Command="{Binding LastPageRecCommand}"/>
+                                
+                    </StackPanel>
+                        
+                </Grid>
+                
+            </Grid>
+            
+        </TabItem>
+
+
+        <TabItem Header="Посещения">
+            
+            <StackPanel>
+                
+                <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" Margin="10">
+                    
+                    <TextBlock Text="дата | " Grid.Row="0" Grid.Column="0"/>
+                    
+                    <TextBlock Text="09.05.2026" Grid.Row="0" Grid.Column="1"/>
+                    
+                    <TextBlock Text="имя | " Grid.Row="1" Grid.Column="0"/>
+                    
+                    <TextBlock Text="пес патрон" Grid.Row="1" Grid.Column="1"/>
+                    
+                </Grid>
+                
+                
+                <Button Content="Сохранить" Margin="10" HorizontalAlignment="Center" Width="100"/>
+                
+            </StackPanel>
             
         </TabItem>
         

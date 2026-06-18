@@ -12,11 +12,15 @@ public partial class RegistatorViewModel : UserBaseViewModel
 {
 
     private RecruitRepository _rr;
+    private MedComissionRepository _mr;
+    private VisitRepository _vr;
     
-    public RegistatorViewModel(IServiceProvider sp, User user, Window win, RecruitRepository rr) : base(sp, user, win)
+    public RegistatorViewModel(IServiceProvider sp, User user, Window win, RecruitRepository rr, MedComissionRepository mr, VisitRepository vr) : base(sp, user, win)
     {
         
         _rr = rr;
+        _mr = mr;
+        _vr = vr;
         
         Start();
         
@@ -91,6 +95,64 @@ public partial class RegistatorViewModel : UserBaseViewModel
     {
         _rr.Delete(SelectedRec);
         UpdateRecs();
+    }
+
+    public string MedTip
+    {
+        get
+        {
+            if (SelectedRec == null) return "выберите призывника";
+
+            return "";
+        }
+    }
+    [ObservableProperty] private MedComission _selectedCom;
+    [ObservableProperty] private ObservableCollection<MedComission> _coms;
+    [ObservableProperty] private int _comPage;
+    [RelayCommand] private void UpdateComs() => Coms = new(_mr.GetPage(RecPage, 10, SelectedRec));
+
+    [RelayCommand]
+    public void NextPageCom()
+    {
+        if (ComPage == _mr.Count() / 10) return;
+        ComPage += 10;
+        UpdateComs();
+    }
+    [RelayCommand]
+    public void PrevPageCom()
+    {
+        if (ComPage == 0) return;
+        ComPage -= 10;
+        UpdateComs();
+    }
+    [RelayCommand]
+    public void FirstPageCom()
+    {
+        ComPage = 0;
+        UpdateComs();
+    }
+    [RelayCommand]
+    public void LastPageCom()
+    {
+        ComPage = (_rr.Count()-1) / 10 * 10;
+        UpdateComs();
+    }
+    [RelayCommand] public void AddCom()
+    {
+        var com = new MedComission();
+        com.Recruit = SelectedRec;
+        _mr.Add(com);
+        UpdateComs();
+    }
+    [RelayCommand] public void UpdateCom()
+    {
+        _mr.Update(SelectedCom);
+        UpdateComs();
+    }
+    [RelayCommand] public void DeleteCom()
+    {
+        _mr.Delete(SelectedCom);
+        UpdateComs();
     }
     
     

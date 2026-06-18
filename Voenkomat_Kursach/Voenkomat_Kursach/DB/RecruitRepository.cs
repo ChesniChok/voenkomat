@@ -146,7 +146,7 @@ public class RecruitRepository : BaseRepository<Recruit>
             Recruit recruit = new Recruit();
             try
             {
-                _connection.Open();
+                OpenConnection();
                 string sql = "SELECT * FROM recruits WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
