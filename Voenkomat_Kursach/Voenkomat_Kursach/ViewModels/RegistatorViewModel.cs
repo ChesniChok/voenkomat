@@ -158,6 +158,13 @@ public partial class RegistatorViewModel : UserBaseViewModel
     [ObservableProperty] private int _visPage;
     [RelayCommand] private void UpdateViss() => Viss = new(_vr.GetPage(VisPage, 10, SelectedCom));
     [RelayCommand]
+    private void FinishVis()
+    {
+        SelectedVis.OutTime = TimeOnly.FromDateTime(DateTime.Now);
+        _vr.Update(SelectedVis);
+        UpdateViss();
+    }
+    [RelayCommand]
     public void NextPageVis()
     {
         if (VisPage == _vr.Count() / 10) return;

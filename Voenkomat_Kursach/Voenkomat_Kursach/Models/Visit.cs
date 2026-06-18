@@ -10,7 +10,7 @@ public class Visit
     public DateOnly Date { get; set; }
     public TimeOnly InTime { get; set; }
     public string Goal { get; set; }
-    public TimeOnly OutTime { get; set; }
+    public TimeOnly? OutTime { get; set; }
 
 
     public Visit()
@@ -20,10 +20,10 @@ public class Visit
         Date = DateOnly.FromDateTime(DateTime.Now);
         InTime = TimeOnly.FromDateTime(DateTime.Now);
         Goal = "";
-        OutTime = TimeOnly.FromDateTime(DateTime.Now);
+        OutTime = null;
     }
     
-    public Visit(int id, MedComission medComission, DateOnly date, TimeOnly inTime, string goal, TimeOnly outTime)
+    public Visit(int id, MedComission medComission, DateOnly date, TimeOnly inTime, string goal, TimeOnly? outTime)
     {
         Id = id;
         MedComission = medComission;

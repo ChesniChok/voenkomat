@@ -131,9 +131,9 @@
                                 
                     </StackPanel>
                     
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         
-                        <Button Content="завершить" Command="{Binding FinishComCommand}" HorizontalAlignment="Stretch"/>
+                        <Button Content="завершить" Command="{Binding FinishComCommand}"/>
                         
                     </StackPanel>
                         
@@ -197,6 +197,17 @@
                 <StackPanel Grid.Column="0">
                         
                     <TextBox Watermark="id" Text="{Binding SelectedVis.Id}" IsReadOnly="True"/>
+                    
+                    <TextBox Watermark="дата начала медкомиссии" Text="{Binding SelectedVis.MedComission.StartDate}" IsReadOnly="True"/>
+                    
+                    <TextBox Watermark="дата" Text="{Binding SelectedVis.Date}"/>
+                    
+                    <TextBox Watermark="время прихода" Text="{Binding SelectedVis.InTime}"/>
+                    
+                    <TextBox Watermark="цель" Text="{Binding SelectedVis.Goal}"/>
+                    
+                    <TextBox Watermark="время ухода" Text="{Binding SelectedVis.OutTime}"/>
+                    
                         
                     <StackPanel Orientation="Horizontal">
                                 
@@ -206,6 +217,12 @@
                                 
                         <Button Content="удалить" Command="{Binding DeleteVisCommand}"/>
                                 
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        
+                        <Button Content="завершить" Command="{Binding FinishVisCommand}"/>
+                        
                     </StackPanel>
                         
                 </StackPanel>

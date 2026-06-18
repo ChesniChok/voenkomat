@@ -54,7 +54,7 @@ public class VisitRepository : BaseRepository<Visit>
         try
         {
             OpenConnection();
-            string sql = "select * from visits where Medcomission_Id = @mid limit @limit offset @offset";
+            string sql = "select * from visits where Medcomission_Id = @mid and OutTime is null limit @limit offset @offset";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@limit", limit);
@@ -64,6 +64,7 @@ public class VisitRepository : BaseRepository<Visit>
                 {
                     while (dr.Read())
                     {
+                        var ou = dr.GetOrdinal("OutTime");
                         visits.Add(new Visit
                         (
                             dr.GetInt32("Id"),
@@ -71,7 +72,7 @@ public class VisitRepository : BaseRepository<Visit>
                             dr.GetDateOnly("Date"),
                             dr.GetTimeOnly("InTime"),
                             dr.GetString("Goal"),
-                            dr.GetTimeOnly("OutTime")
+                            dr.IsDBNull("OutTime") ? null : dr.GetTimeOnly("OutTime")
                         ));
                     }
                 }
@@ -238,10 +239,10 @@ public class VisitRepository : BaseRepository<Visit>
         try
         {
             OpenConnection();
-            string sql = "update visits set @mid, @date, @int, @goal, @out where Id = @id";
+            string sql = "update visits set Medcomission_Id = @mid, Date = @date, InTime = @int, Goal = @goal, OutTime = @out where Id = @id";
             using (var mc = new MySqlCommand(sql, _connection))
             {
-                mc.Parameters.AddWithValue("@mid", v.Id);
+                mc.Parameters.AddWithValue("@id", v.Id);
                 mc.Parameters.AddWithValue("@mid", v.MedComission.Id);
                 mc.Parameters.AddWithValue("@date", v.Date);
                 mc.Parameters.AddWithValue("@int", v.InTime);
