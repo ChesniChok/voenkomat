@@ -7,7 +7,7 @@ public class MedComission
     
     public int Id { get; set; }
     public Recruit Recruit { get; set; }
-    public DateTimeOffset StartDate { get; set; }
+    public DateOnly StartDate { get; set; }
     public bool Ter { get; set; }
     public bool Otor { get; set; }
     public bool Psih { get; set; }
@@ -15,7 +15,7 @@ public class MedComission
     public bool Hir { get; set; }
     public bool Stom { get; set; }
     public bool Okul { get; set; }
-    public DateTimeOffset? EndDate { get; set; }
+    public DateOnly? EndDate { get; set; }
     public string? Category { get; set; }
     public string? Description { get; set; }
 
@@ -24,7 +24,7 @@ public class MedComission
     {
         Id = 0;
         Recruit = new();
-        StartDate = DateTimeOffset.Now;
+        StartDate = DateOnly.FromDateTime(DateTime.Now);
         Ter = false;
         Otor = false;
         Psih = false;
@@ -37,7 +37,7 @@ public class MedComission
         Description = null;
     }
     
-    public MedComission(int id, Recruit recruit, DateTimeOffset startDate, bool ter, bool otor, bool psih, bool nevr, bool hir, bool stom, bool okul, DateTimeOffset? endDate, string category, string? description)
+    public MedComission(int id, Recruit recruit, DateOnly startDate, bool ter, bool otor, bool psih, bool nevr, bool hir, bool stom, bool okul, DateOnly? endDate, string category, string? description)
     {
         Id = id;
         Recruit = recruit;

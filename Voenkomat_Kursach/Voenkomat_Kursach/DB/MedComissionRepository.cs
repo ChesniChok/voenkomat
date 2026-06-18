@@ -30,7 +30,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
                     
                         dr.GetInt32("Id"),
                         _recruitRepository.GetById(recruitId),
-                        dr.GetDateTimeOffset("StartDate"),
+                        dr.GetDateOnly("StartDate"),
                         dr.GetBoolean("Ter"),
                         dr.GetBoolean("Otor"),
                         dr.GetBoolean("Psih"),
@@ -38,7 +38,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
                         dr.GetBoolean("Hir"),
                         dr.GetBoolean("Stom"),
                         dr.GetBoolean("Okul"),
-                        dr.GetDateTimeOffset("EndDate"),
+                        dr.GetDateOnly("EndDate"),
                         dr.GetString("Category"),
                         dr.GetString("Description")
                     ));
@@ -80,7 +80,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
                         (
                             dr.GetInt32("Id"),
                             _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
-                            dr.GetDateTimeOffset("StartDate"),
+                            dr.GetDateOnly("StartDate"),
                             dr.GetBoolean("Ter"),
                             dr.GetBoolean("Otor"),
                             dr.GetBoolean("Psih"),
@@ -88,7 +88,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
                             dr.GetBoolean("Hir"),
                             dr.GetBoolean("Stom"),
                             dr.GetBoolean("Okul"),
-                            dr.IsDBNull(date) ? null : dr.GetDateTimeOffset(date),
+                            dr.IsDBNull(date) ? null : dr.GetDateOnly(date),
                             dr.IsDBNull(cat) ? null : dr.GetString("Category"),
                              dr.IsDBNull(desc) ? null : dr.GetString("Description")
                         ));
@@ -124,7 +124,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
                             
                                 dr.GetInt32("Id"),
                                 _recruitRepository.GetById(recruitId),
-                                dr.GetDateTimeOffset("StartDate"),
+                                dr.GetDateOnly("StartDate"),
                                 dr.GetBoolean("Ter"),
                                 dr.GetBoolean("Otor"),
                                 dr.GetBoolean("Psih"),
@@ -132,7 +132,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
                                 dr.GetBoolean("Hir"),
                                 dr.GetBoolean("Stom"),
                                 dr.GetBoolean("Okul"),
-                                dr.GetDateTimeOffset("EndDate"),
+                                dr.GetDateOnly("EndDate"),
                                 dr.GetString("Category"),
                                 dr.GetString("Description")
                             );
