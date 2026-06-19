@@ -22,6 +22,20 @@ public partial class ComissionViewModel : MedWorkersViewModel
     }
 
 
+    private void GetChecks()
+    {
+
+        HirChecks = new(_rr.GetAllTyped("хирург осмотр"));
+
+    }
+
+    private void GetAdds()
+    {
+
+        HirAdds = new(_rr.GetAllTyped("хирург дополнение"));
+
+    }
+
 
     [ObservableProperty] private ObservableCollection<Record> _hirChecks;
     [ObservableProperty] private ObservableCollection<Record> _hirAdds;

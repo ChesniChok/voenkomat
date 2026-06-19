@@ -25,7 +25,7 @@
                         
                                 <TabControl>
                                 
-                                        <TabItem Header="терапевт">
+                                        <TabItem Header="терапевт">     
                                         
                                                 <Grid RowDefinitions="Auto *">
                                                         
