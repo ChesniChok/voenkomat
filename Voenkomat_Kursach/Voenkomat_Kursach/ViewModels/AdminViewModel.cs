@@ -255,7 +255,7 @@ public partial class AdminViewModel : UserBaseViewModel
     }
     [RelayCommand] public void AddCheck()
     {
-        _chr.Add(new(0, new Job(), "название", "описание"));
+        _chr.AddNull(new());
         UpdateChecks();
     }
     [RelayCommand] public void UpdateCheck()

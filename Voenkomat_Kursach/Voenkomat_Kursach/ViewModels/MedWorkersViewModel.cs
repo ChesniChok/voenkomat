@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
+using Voenkomat_Kursach.DB;
 using Voenkomat_Kursach.Models;
 using Voenkomat_Kursach.Views;
 
@@ -14,9 +15,13 @@ public abstract partial class MedWorkersViewModel : UserBaseViewModel
 
     [ObservableProperty] private string _recFullName;
 
+    protected MedComissionRepository _mr;
 
-    public MedWorkersViewModel(IServiceProvider sp, User user, Window win, Recruit rec) : base(sp, user, win)
+
+    public MedWorkersViewModel(IServiceProvider sp, MedComissionRepository mr, User user, Window win, Recruit rec) : base(sp, user, win)
     {
+
+        _mr = mr;
         
         _recruit = rec;
         

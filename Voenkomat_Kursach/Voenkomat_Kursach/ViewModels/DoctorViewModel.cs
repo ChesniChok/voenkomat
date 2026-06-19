@@ -4,6 +4,7 @@ using System.Linq;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Voenkomat_Kursach.DB;
 using Voenkomat_Kursach.Models;
 
 namespace Voenkomat_Kursach.ViewModels;
@@ -14,12 +15,14 @@ public partial class DoctorViewModel : MedWorkersViewModel
     protected override void GoBack() => GoToChoose();
 
 
-    public DoctorViewModel(User user, Window win, IServiceProvider sp, Recruit rec) : base(sp, user, win, rec)
+    private ChecklistItemRepository _cr;
+
+    public DoctorViewModel(IServiceProvider sp, MedComissionRepository mr, ChecklistItemRepository cr, User user, Window win, Recruit rec) : base(sp, mr, user, win, rec)
     {
         
+        _cr = cr;
         
-        CheckItems = new ObservableCollection<ChecklistItem>();
-        checks();//тут получаем из базы
+        CheckItems = new(_cr.GetAll(user.Employee.Job));
         
         DoktorAdditions =  new ObservableCollection<DoktorAdditions>();
         
@@ -36,16 +39,19 @@ public partial class DoctorViewModel : MedWorkersViewModel
     [ObservableProperty] private bool _isCheckEnded;
     [ObservableProperty] private bool _isAddsEnded;
 
-    private bool IsCheckRealyEnded()
+    private bool IsCheckRealyEnded
     {
-        var a = true;
-
-        foreach (var item in CheckItems)
+        get
         {
-            a &= item.IsChecked;
-        }
+            var a = true;
+
+            foreach (var item in CheckItems)
+            {
+                a &= item.IsChecked;
+            }
         
-        return a;
+            return a;
+        }
     }
 
 
@@ -94,10 +100,10 @@ public partial class DoctorViewModel : MedWorkersViewModel
     public void End()//завершение 
     {
 
-        if (IsCheckRealyEnded() && IsCheckEnded && IsAddsEnded)
+        if (IsCheckRealyEnded && IsCheckEnded && IsAddsEnded)
         {
             
-            _win.Hide();
+            
             
         }
         

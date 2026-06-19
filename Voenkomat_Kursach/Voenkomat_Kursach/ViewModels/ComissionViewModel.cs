@@ -10,15 +10,11 @@ namespace Voenkomat_Kursach.ViewModels;
 public partial class ComissionViewModel : MedWorkersViewModel
 {
 
-    private MedComissionRepository _mr;
     private RecordRepository _rr;
-
-    public ComissionViewModel(IServiceProvider sp, MedComissionRepository mr, RecordRepository rr, User user, Window win, Recruit rec) : base(sp, user, win, rec)
+    
+    public ComissionViewModel(IServiceProvider sp, MedComissionRepository mr, RecordRepository rr, User user, Window win, Recruit rec) : base(sp, mr, user, win, rec)
     {
-        
-        _mr = mr;
         _rr = rr;
-        
     }
 
 

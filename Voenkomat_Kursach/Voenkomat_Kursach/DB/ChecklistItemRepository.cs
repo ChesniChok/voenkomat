@@ -49,6 +49,40 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         return checks;
     }
     
+    public List<ChecklistItem> GetAll(Job doc)
+    {
+        List<ChecklistItem> checks = new List<ChecklistItem>();
+        try
+        {
+            _connection.Open();
+            string sql = "SELECT * FROM checkitems where Job_Id  = @docid";
+            using (var mc = new MySqlCommand(sql, _connection))
+            using (var dr = mc.ExecuteReader())
+            {
+                mc.Parameters.AddWithValue("@docid", doc.Id);
+                while (dr.Read())
+                {
+                    checks.Add(new ChecklistItem(
+                        dr.GetInt32("Id"),
+                        _jr.GetById(dr.GetInt32("Job_Id")),
+                        dr.GetString("Name"),
+                        dr.GetString("Description")
+                    ));
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
+        finally
+        {
+            CloseConnection();
+        }
+        return checks;
+    }
+    
     public List<ChecklistItem> GetPage(int offset, int limit)
     {
         List<ChecklistItem> checks = new();
@@ -64,10 +98,11 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
                 {
                     while (dr.Read())
                     {
+                        var jid = dr.GetOrdinal("Job_Id");
                         checks.Add(new ChecklistItem
                         (
                             dr.GetInt32("Id"),
-                            _jr.GetById(dr.GetInt32("Job_Id")),
+                            dr.IsDBNull(jid) ? null : _jr.GetById(dr.GetInt32("Job_Id")),
                             dr.GetString("Name"),
                             dr.GetString("Description")
                         ));
@@ -125,11 +160,37 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         try
         {
             OpenConnection();
-            string sql = "insert into checkitems values(@id, @jid, @name, @description)";
+            string sql = "insert into checkitems values(@id, @jid, @name, @desc)";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@id", c.Id);
                 mc.Parameters.AddWithValue("@jid", c.Doctor.Id);
+                mc.Parameters.AddWithValue("@name", c.Name);
+                mc.Parameters.AddWithValue("@desc", c.Description);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
+    
+    public void AddNull(ChecklistItem c)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "insert into checkitems values(@id, @jid, @name, @desc)";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", c.Id);
+                mc.Parameters.AddWithValue("@jid", DBNull.Value);
                 mc.Parameters.AddWithValue("@name", c.Name);
                 mc.Parameters.AddWithValue("@desc", c.Description);
                 mc.ExecuteNonQuery();
