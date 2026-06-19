@@ -292,7 +292,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             u.Role.Name = Login;
 
-            if (Login is "doctor" or "comissman")
+            if (Login is "doc" or "med")
             {
                 u.Role.IsMed = true;
             }

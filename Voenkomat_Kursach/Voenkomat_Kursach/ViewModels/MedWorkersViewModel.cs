@@ -1,21 +1,31 @@
 ﻿using System;
 using Avalonia.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 using Voenkomat_Kursach.Models;
 using Voenkomat_Kursach.Views;
 
 namespace Voenkomat_Kursach.ViewModels;
 
-public abstract class MedWorkersViewModel : UserBaseViewModel
+public abstract partial class MedWorkersViewModel : UserBaseViewModel
 {
 
-    private Recruit _rec;
+    [ObservableProperty] private Recruit _recruit;
+
+    [ObservableProperty] private string _recFullName;
+
+
+    public MedWorkersViewModel(IServiceProvider sp, User user, Window win, Recruit rec) : base(sp, user, win)
+    {
+        
+        _recruit = rec;
+        
+        RecFullName = $"{Recruit.FamilyName} {Recruit.Name} {Recruit.FatherName}";
+        
+    }
     
     
-    public MedWorkersViewModel(IServiceProvider sp, User user, Window win) : base(sp, user, win) {}
-    
-    
-    public void SetRec(Recruit rec) => _rec = rec;
+    public void SetRec(Recruit rec) => Recruit = rec;
     
     protected void GoToChoose()
     {

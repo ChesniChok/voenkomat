@@ -82,10 +82,8 @@ public partial class RecruitChooseViewModel : ViewModelBase
         {
             
             var win = ActivatorUtilities.CreateInstance(_sp, _winT) as Window;
-            var vm = ActivatorUtilities.CreateInstance(_sp, _vmT, win, _u) as MedWorkersViewModel;
+            var vm = ActivatorUtilities.CreateInstance(_sp, _vmT, win, _u, SelectedRecruit) as MedWorkersViewModel;
             win.DataContext = vm;
-
-            vm.SetRec(SelectedRecruit);
             
             
             win.Position = _thisWin.Position;

@@ -14,7 +14,7 @@ public partial class DoctorViewModel : MedWorkersViewModel
     protected override void GoBack() => GoToChoose();
 
 
-    public DoctorViewModel(User user, Window win, IServiceProvider sp) : base(sp, user, win)
+    public DoctorViewModel(User user, Window win, IServiceProvider sp, Recruit rec) : base(sp, user, win, rec)
     {
         
         

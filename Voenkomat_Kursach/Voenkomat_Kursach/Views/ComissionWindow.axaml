@@ -2,33 +2,138 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Voenkomat_Kursach.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Voenkomat_Kursach.Views.ComissionWindow"
+        x:DataType="vm:ComissionViewModel"
         Title="ComissionWindow">
     
-        <TabControl>
+        <Grid RowDefinitions="Auto *">
                 
-                <TabItem Header="заключения">
+                <Grid Grid.Row="0" ColumnDefinitions="* Auto">
                         
-                        <TabControl>
+                        <TextBox Grid.Row="0" Text="{Binding RecFullName}"/>
+                        
+                        <Button Grid.Column="1" Content="назад" Command="{Binding GoBackCommand}"/>
+                        
+                </Grid>
+                
+                
+                <TabControl Grid.Row="1">
+                
+                        <TabItem Header="заключения">
+                        
+                                <TabControl>
                                 
-                                <TabItem Header="хирург">
+                                        <TabItem Header="терапевт">
+                                        
+                                                <Grid RowDefinitions="Auto *">
+                                                        
+                                                         <Grid Grid.Row="0" ColumnDefinitions="* *">
+                                                                 
+                                                                 <TextBlock Grid.Column="0" Text="имя врача" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                                 <TextBlock Grid.Column="1" Text="должность" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                         </Grid>
+                                                        
+                                                        
+                                                        <TabControl Grid.Row="1">
+                                                                
+                                                                <TabItem Header="осмотр">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding HirChecks}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="дополнения">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding HirAdds}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                        </TabControl>
+                                                        
+                                                </Grid>
+                                        
+                                        </TabItem>
                                         
                                         
+                                        <TabItem Header="оториноларинголог">
+                                                
+                                                
+                                                
+                                        </TabItem>
                                         
-                                </TabItem>
+                                        
+                                        <TabItem Header="психиатр">
+                                                
+                                                
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="невролог">
+                                                
+                                                
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="хирург">
+                                                
+                                                
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="стоматолог">
+                                                
+                                                
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="окулист">
+                                                
+                                                
+                                                
+                                        </TabItem>
                                 
-                        </TabControl>
+                                </TabControl>
                         
-                </TabItem>
+                        </TabItem>
                 
                 
-                <TabItem Header="завершение">
+                        <TabItem Header="завершение">
                         
                         
                         
-                </TabItem>
+                        </TabItem>
                 
-        </TabControl>
+                </TabControl>
+                
+        </Grid>
         
 </Window>

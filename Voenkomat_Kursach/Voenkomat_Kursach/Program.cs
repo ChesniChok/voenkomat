@@ -71,6 +71,8 @@ sealed class Program
                 services.AddSingleton<RecordRepository>();
                 services.AddSingleton<VisitRepository>();
                 
+                services.AddTransient<Recruit>();
+                
             }).Build();
         
         BuildAvaloniaApp(host.Services)
