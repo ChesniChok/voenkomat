@@ -39,7 +39,6 @@ public class RecordRepository : BaseRepository<Record>
                             dr.GetString("Type"),
                             _employeeRepository.GetById(employeeId),
                             _medComissionRepository.GetById(medComiddionId),
-                            _recruitRepository.GetById(recruitId),
                             dr.GetString("Content"),
                             dr.GetString("Description")
                         ));
@@ -82,7 +81,6 @@ public class RecordRepository : BaseRepository<Record>
                                 dr.GetString("Type"),
                                 _employeeRepository.GetById(employeeId),
                                 _medComissionRepository.GetById(medComiddionId),
-                                _recruitRepository.GetById(recruitId),
                                 dr.GetString("Content"),
                                 dr.GetString("Description")
                             );

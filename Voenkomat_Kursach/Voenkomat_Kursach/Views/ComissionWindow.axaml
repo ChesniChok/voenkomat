@@ -5,5 +5,30 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Voenkomat_Kursach.Views.ComissionWindow"
         Title="ComissionWindow">
-    Welcome to Avalonia!
+    
+        <TabControl>
+                
+                <TabItem Header="заключения">
+                        
+                        <TabControl>
+                                
+                                <TabItem Header="хирург">
+                                        
+                                        
+                                        
+                                </TabItem>
+                                
+                        </TabControl>
+                        
+                </TabItem>
+                
+                
+                <TabItem Header="завершение">
+                        
+                        
+                        
+                </TabItem>
+                
+        </TabControl>
+        
 </Window>
