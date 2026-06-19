@@ -51,6 +51,50 @@ public class RecruitRepository : BaseRepository<Recruit>
             return recruits;
         }
     
+    public List<Recruit> GetAll(string search)
+    {
+        List<Recruit> recruits = new List<Recruit>();
+        try
+        {
+            _connection.Open();
+            string sql = "SELECT * FROM recruits where Name like @name or FatherName like @fath or FamilyName like @fname";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@name", $"%{search}%");
+                mc.Parameters.AddWithValue("@fath", $"%{search}%");
+                mc.Parameters.AddWithValue("@fname", $"%{search}%");
+                using (var dr = mc.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        recruits.Add(new Recruit(
+                            dr.GetInt32("Id"),
+                            dr.GetString("FamilyName"),
+                            dr.GetString("Name"),
+                            dr.GetString("FatherName"),
+                            dr.GetDateOnly("DateOfBirth"),
+                            dr.GetString("PhoneNumber"),
+                            dr.GetString("Adress"),
+                            dr.GetString("Passport"),
+                            dr.GetString("SNILS"),
+                            dr.GetString("INN")
+                        ));
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+                
+        }
+        finally
+        {
+            CloseConnection();
+        }
+        return recruits;
+    }
+    
         public List<Recruit> GetPage(int offset, int limit)
         {
             List<Recruit> roles = new();
@@ -108,7 +152,6 @@ public class RecruitRepository : BaseRepository<Recruit>
                     mc.Parameters.AddWithValue("@fname", $"%{search}%");
                     using (var dr = mc.ExecuteReader())
                     {
-                        var s = search.ToLower();
                         while (dr.Read())
                         {
                             roles.Add(new Recruit

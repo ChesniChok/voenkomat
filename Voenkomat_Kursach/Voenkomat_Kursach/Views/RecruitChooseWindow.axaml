@@ -11,13 +11,14 @@
         <Grid RowDefinitions="Auto *">
         
                 <!-- поиск и выбор -->
-                <Grid Grid.Row="0" ColumnDefinitions="* Auto Auto">
+                <Grid Grid.Row="0" ColumnDefinitions="* Auto Auto Auto">
                         
-                        <!-- поле для поиска по ФИО [ой чё придумал баляяя))))] {иф поле контеинс имя или фамилия или отчество} -->
+                        <!-- поле для поиска по ФИО -->
                         <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Text="{Binding SearchString}"/>
                         
-                        <Button Grid.Column="1" Content="{Binding GoToNextWinText}" Command="{Binding GoNextCommand}" Width="80" HorizontalContentAlignment="Center"/>
-                        <Button Grid.Column="2" Content="назад" Command="{Binding GoBackCommand}" Width="80" HorizontalContentAlignment="Center"/>
+                        <Button Grid.Column="1" Content="обновить" Command="{Binding UpdateRecsCommand}"/>
+                        <Button Grid.Column="2" Content="{Binding GoToNextWinText}" Command="{Binding GoNextCommand}" Width="80" HorizontalContentAlignment="Center"/>
+                        <Button Grid.Column="3" Content="назад" Command="{Binding GoBackCommand}" Width="80" HorizontalContentAlignment="Center"/>
                         
                 </Grid>
 
@@ -27,13 +28,19 @@
                         <ListBox ItemsSource="{Binding Recruits}" SelectedItem="{Binding SelectedRecruit}">
                                 <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="{Binding FamilyName}"/>
-                                                        <TextBlock Text=" "/>
-                                                        <TextBlock Text="{Binding Name}"/>
-                                                        <TextBlock Text=" "/>
-                                                        <TextBlock Text="{Binding FatherName}"/>
-                                                </StackPanel>
+                                                <Grid ColumnDefinitions="120 120 120 90 100">
+                                                        
+                                                        <TextBlock Grid.Column="0" Text="{Binding FamilyName}"/>
+                                                        
+                                                        <TextBlock Grid.Column="1" Text="{Binding Name}"/>
+                                                        
+                                                        <TextBlock Grid.Column="2" Text="{Binding FatherName}"/>
+                                                        
+                                                        <TextBlock Grid.Column="3" Text="{Binding DateOfBirth}"/>
+                                                        
+                                                        <TextBlock Grid.Column="4" Text="{Binding PhoneNumber}"/>
+                                                        
+                                                </Grid>
                                         </DataTemplate>
                                 </ListBox.ItemTemplate>
                         </ListBox>

@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using Voenkomat_Kursach.DB;
 using Voenkomat_Kursach.Models;
 
 namespace Voenkomat_Kursach.ViewModels;
@@ -17,9 +18,11 @@ public partial class RecruitChooseViewModel : ViewModelBase
     private Type _winT;
     private Type _vmT;
     private User _u;
+
+    private RecruitRepository _rr;
     
 
-    public RecruitChooseViewModel(IServiceProvider sp, Window thisWin, Type winT, Type vmT, User u) : base(sp)
+    public RecruitChooseViewModel(IServiceProvider sp, RecruitRepository rr, Window thisWin, Type winT, Type vmT, User u) : base(sp)
     {
         
         _sp = sp;
@@ -29,6 +32,8 @@ public partial class RecruitChooseViewModel : ViewModelBase
         _winT = winT;
         _vmT = vmT;
         _u = u;
+
+        _rr = rr;
 
         Start();
         
@@ -40,26 +45,11 @@ public partial class RecruitChooseViewModel : ViewModelBase
         GoToNextWinText = "Выбрать";
         SearchString = "";
 
-        FillRecruits();
+        UpdateRecruits();
         
     }
     
-    private void FillRecruits()
-    {
-
-        Recruits = new ObservableCollection<Recruit>();
-        
-        var r = new Recruit();
-        r.Id = -3;
-        
-        Recruits.Add(new());
-        Recruits.Add(new());
-        Recruits.Add(new());
-        Recruits.Add(new());
-        Recruits.Add(new());
-        Recruits.Add(r);
-        
-    }
+    private void UpdateRecruits() => Recruits = new(_rr.GetAll(SearchString));
 
 
     [ObservableProperty] private string _searchString;
@@ -71,6 +61,8 @@ public partial class RecruitChooseViewModel : ViewModelBase
 
 
     protected override void GoBack() => GoToMain(_thisWin);
+    
+    [RelayCommand] private void UpdateRecs() =>  UpdateRecruits();
 
 
     [RelayCommand]
