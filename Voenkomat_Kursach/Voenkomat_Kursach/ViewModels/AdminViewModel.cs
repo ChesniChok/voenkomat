@@ -274,7 +274,7 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand]
     public void NextPageUser()
     {
-        if (UserPage == _ur.Count() / 10) return;
+        if (UserPage == _ur.Count()) return;
         UserPage += 10;
         UpdateUsers();
     }
