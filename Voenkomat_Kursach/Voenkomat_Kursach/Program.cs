@@ -74,6 +74,10 @@ sealed class Program
                 
             }).Build();
         
+        //var sets = ActivatorUtilities.CreateInstance<AppSettings>(host.Services);
+        var sets = host.Services.GetService(typeof(AppSettings)) as  AppSettings;
+        sets.Load("appsettings.json");
+        
         BuildAvaloniaApp(host.Services)
             .StartWithClassicDesktopLifetime(args);
         

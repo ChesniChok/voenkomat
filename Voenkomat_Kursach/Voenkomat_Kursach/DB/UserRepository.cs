@@ -94,7 +94,7 @@ public class UserRepository : BaseRepository<User>
             User user = new User();
             try
             {
-                _connection.Open();
+                OpenConnection();
                 string sql = "SELECT * FROM users WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {
@@ -128,6 +128,47 @@ public class UserRepository : BaseRepository<User>
             }
             return user;
         }
+        
+    public User GetUser(string login, string password)
+    {
+        User user = new User();
+        try
+        {
+            OpenConnection();
+            string sql = "SELECT * FROM users WHERE Login = @log and Password = @pas";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@log", login);
+                mc.Parameters.AddWithValue("@pas", password);
+                using (var dr = mc.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        int employeeId = dr.GetInt32("EmployeeId");
+                        int roleId = dr.GetInt32("RoleId");
+                        user = new User(
+                        
+                            dr.GetInt32("Id"),
+                            _employeeRepository.GetById(employeeId),
+                            dr.GetString("Login"),
+                            dr.GetString("Password"),
+                            _roleRepository.GetById(roleId)
+                        );
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
+        finally
+        {
+            CloseConnection();
+        }
+        return user;
+    }
     
     public void Add(User u)
     {

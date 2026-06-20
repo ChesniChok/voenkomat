@@ -22,6 +22,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private MainWindow thiswin;//окно этой ВМ
     private Window nextWin;//окно выбора призывников
     private AppSettings _appSettings;
+    private UserRepository _ur;
 
     public void SetWin(MainWindow win)
     {
@@ -29,14 +30,17 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
 
-    public MainWindowViewModel(IServiceProvider sp, AppSettings aps) : base(sp)
+    public MainWindowViewModel(IServiceProvider sp, AppSettings aps, UserRepository ur) : base(sp)
     {
         
         _sp = sp;
         _appSettings = aps;
+
+
+        //_appSettings.Load("appsettings.json");
         
-        _appSettings.Load("appsettings.json");
-        
+        _ur = ur;
+
 
         Start();
 

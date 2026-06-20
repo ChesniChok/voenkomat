@@ -6,6 +6,7 @@ using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
+using Voenkomat_Kursach.Models;
 using Voenkomat_Kursach.ViewModels;
 using Voenkomat_Kursach.Views;
 
