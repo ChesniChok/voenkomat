@@ -15,7 +15,7 @@
                 <TextBox Text="{Binding Login}" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 <TextBox Text="{Binding Password}" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 
-                <Button Content="{Binding LoginText}" Command="{Binding ACommand}" HotKey="Enter" MinWidth="220" Grid.Row="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Button Content="{Binding LoginText}" Command="{Binding FindUserCommand}" HotKey="Enter" MinWidth="220" Grid.Row="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 
         </Grid>
         

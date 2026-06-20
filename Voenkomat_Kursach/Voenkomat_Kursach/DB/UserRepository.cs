@@ -144,8 +144,8 @@ public class UserRepository : BaseRepository<User>
                 {
                     if (dr.Read())
                     {
-                        int employeeId = dr.GetInt32("EmployeeId");
-                        int roleId = dr.GetInt32("RoleId");
+                        int employeeId = dr.GetInt32("Employee_Id");
+                        int roleId = dr.GetInt32("Role_Id");
                         user = new User(
                         
                             dr.GetInt32("Id"),

@@ -35,9 +35,6 @@ public partial class MainWindowViewModel : ViewModelBase
         
         _sp = sp;
         _appSettings = aps;
-
-
-        //_appSettings.Load("appsettings.json");
         
         _ur = ur;
 
@@ -66,11 +63,11 @@ public partial class MainWindowViewModel : ViewModelBase
 
 
     [RelayCommand]
-    private void FindUser()
+    private void FindUserr()
     {
 
         //тут надо получить пользователя из базы
-        var user = GenerateUser();
+        var user = GetUser();
         
         //если такой пользователь есть
         if (user.Id != -1)
@@ -171,12 +168,12 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private void A()
+    private void FindUser()
     {
         
-        var user = GenerateUser();
+        var user = GetUser();
 
-        if (user.Id != -1)
+        if (user.Id != 0)
         {
             
             Type userWinT;//сюда запишем тип окна пользователя
@@ -308,4 +305,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
     }
 
+    private User GetUser() => _ur.GetUser(Login, Password);
+    
 }
