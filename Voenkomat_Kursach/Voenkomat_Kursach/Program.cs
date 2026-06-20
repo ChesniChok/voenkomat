@@ -47,9 +47,6 @@ sealed class Program
                 services.AddTransient<AdminWIndow>();
                 services.AddTransient<AdminViewModel>();
 
-                services.AddTransient<ArchiverWindow>();
-                services.AddTransient<ArchiverViewModel>();
-
                 services.AddTransient<RegistratorWindow>();
                 services.AddTransient<RegistatorViewModel>();
 

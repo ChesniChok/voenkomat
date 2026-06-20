@@ -54,7 +54,6 @@ public partial class AdminViewModel : UserBaseViewModel
     [ObservableProperty] private string _filePath;
     
     [ObservableProperty] private string _adm;
-    [ObservableProperty] private string _arc;
     [ObservableProperty] private string _reg;
     [ObservableProperty] private string _doc;
     [ObservableProperty] private string _com;
@@ -105,8 +104,6 @@ public partial class AdminViewModel : UserBaseViewModel
     {
         
         Adm = _ap.Roles.First(r => r.Value == "admin").Key;
-
-        Arc = _ap.Roles.First(r => r.Value == "arch").Key;
 
         Reg = _ap.Roles.First(r => r.Value == "reg").Key;
 
@@ -452,7 +449,6 @@ public partial class AdminViewModel : UserBaseViewModel
         Dictionary<string, string> dict = new();
         
         dict.Add(Adm, "admin");
-        dict.Add(Arc, "arch");
         dict.Add(Reg, "reg");
         dict.Add(Doc, "doctor");
         dict.Add(Com, "comis");

@@ -102,14 +102,6 @@ public partial class MainWindowViewModel : ViewModelBase
                     break;
                 }
                 
-                case "arch":
-                {
-                    userWin = ActivatorUtilities.CreateInstance<ArchiverWindow>(_sp);
-                    userVm = ActivatorUtilities.CreateInstance<ArchiverViewModel>(_sp, user, userWin);
-
-                    break;
-                }
-                
                 case "reg":
                 {
                     userWin = ActivatorUtilities.CreateInstance<RegistratorWindow>(_sp);
@@ -190,14 +182,6 @@ public partial class MainWindowViewModel : ViewModelBase
                 {
                     userWinT = typeof(AdminWIndow);
                     userVmT = typeof(AdminViewModel);
-                    
-                    break;
-                }
-
-                case "arch":
-                {
-                    userWinT = typeof(ArchiverWindow);
-                    userVmT = typeof(ArchiverViewModel);
                     
                     break;
                 }

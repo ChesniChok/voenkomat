@@ -18,7 +18,6 @@ public class AppSettings
         Roles = new Dictionary<string, string>();
         
         Roles.Add("админ", "admin");
-        Roles.Add("архивариус", "arch");
         Roles.Add("регистрирующий", "reg");
         Roles.Add("Врач", "doctor");
         Roles.Add("комиссионщик", "comis");

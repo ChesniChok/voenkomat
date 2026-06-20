@@ -54,7 +54,6 @@
                                                 
                                                         <TextBox Text="роль в приложении" IsReadOnly="True"/>
                                                         <TextBox Text="админимтратор" IsReadOnly="True"/>
-                                                        <TextBox Text="архивариус" IsReadOnly="True"/>
                                                         <TextBox Text="регистрирующий" IsReadOnly="True"/>
                                                         <TextBox Text="врач" IsReadOnly="True"/>
                                                         <TextBox Text="медкомиссия" IsReadOnly="True"/>
@@ -65,7 +64,6 @@
                                                 
                                                         <TextBox Text="в базе называется:"/>
                                                         <TextBox Text="{Binding Adm}"/>
-                                                        <TextBox Text="{Binding Arc}"/>
                                                         <TextBox Text="{Binding Reg}"/>
                                                         <TextBox Text="{Binding Doc}"/>
                                                         <TextBox Text="{Binding Com}"/>
