@@ -95,6 +95,51 @@ public class RecruitRepository : BaseRepository<Recruit>
         return recruits;
     }
     
+    public List<Recruit> GetAllToday(string search)
+    {
+        List<Recruit> recruits = new List<Recruit>();
+        try
+        {
+            OpenConnection();
+            string sql = "select distinct \n\tr.*\nfrom\n\tvisits v \n\tjoin \n\tmedcomissions m\n\ton\n\t\tv.Medcomission_Id = m.Id \n\tjoin\n\trecruits r\n\ton\n\t\tm.Recruit_Id = r.Id\nwhere \n\tv.Date = @date\n\tand \n\tv.OutTime is null \n\tand\n\t(Name like \"%так%\" or FatherName like \"%так%\" or FamilyName like \"%так%\")\norder by \n\tm.StartDate \n;";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@name", $"%{search}%");
+                mc.Parameters.AddWithValue("@fath", $"%{search}%");
+                mc.Parameters.AddWithValue("@fname", $"%{search}%");
+                mc.Parameters.AddWithValue("@date", DateOnly.FromDateTime(DateTime.Now));
+                using (var dr = mc.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        recruits.Add(new Recruit(
+                            dr.GetInt32("Id"),
+                            dr.GetString("FamilyName"),
+                            dr.GetString("Name"),
+                            dr.GetString("FatherName"),
+                            dr.GetDateOnly("DateOfBirth"),
+                            dr.GetString("PhoneNumber"),
+                            dr.GetString("Adress"),
+                            dr.GetString("Passport"),
+                            dr.GetString("SNILS"),
+                            dr.GetString("INN")
+                        ));
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+                
+        }
+        finally
+        {
+            CloseConnection();
+        }
+        return recruits;
+    }
+    
         public List<Recruit> GetPage(int offset, int limit)
         {
             List<Recruit> roles = new();

@@ -49,7 +49,7 @@ public partial class RecruitChooseViewModel : ViewModelBase
         
     }
     
-    private void UpdateRecruits() => Recruits = new(_rr.GetAll(SearchString));
+    private void UpdateRecruits() => Recruits = new(_rr.GetAllToday(SearchString));
 
 
     [ObservableProperty] private string _searchString;
