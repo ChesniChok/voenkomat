@@ -62,7 +62,6 @@ sealed class Program
 
                 services.AddSingleton<RecruitRepository>();
                 services.AddSingleton<RoleRepository>();
-                services.AddSingleton<CabinetRepository>();
                 services.AddSingleton<JobRepository>();
                 services.AddSingleton<ChecklistItemRepository>();
                 services.AddSingleton<EmployeeRepository>();

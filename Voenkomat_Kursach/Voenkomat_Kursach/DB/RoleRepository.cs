@@ -85,7 +85,7 @@ public class RoleRepository : BaseRepository<Role>
             Role role = new Role();
             try
             {
-                _connection.Open();
+                OpenConnection();
                 string sql = "SELECT * FROM roles WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {

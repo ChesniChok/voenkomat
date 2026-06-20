@@ -99,70 +99,6 @@
                                 
                                 <TabControl>
                                         
-                                        <TabItem Header="кабинеты">
-                                                
-                                                <Grid ColumnDefinitions="Auto *">
-                                                        
-                                                        <StackPanel Grid.Column="0">
-                                                                
-                                                                <TextBox Watermark="id" Text="{Binding SelectedCab.Number}"/>
-                                                                
-                                                                <TextBox Watermark="название" Text="{Binding SelectedCab.Name}"/>
-                                                                
-                                                                <TextBox Watermark="описание" Text="{Binding SelectedCab.Description}"/>
-                                                                
-                                                                
-                                                                <StackPanel Orientation="Horizontal">
-                                                                        
-                                                                        <Button Content="добавить" Command="{Binding AddCabCommand}"/>
-                                                                        
-                                                                        <Button Content="обновить" Command="{Binding UpdateCabCommand}"/>
-                                                                        
-                                                                        <Button Content="удалить" Command="{Binding DeleteCabCommand}"/>
-                                                                        
-                                                                </StackPanel>
-                                                                
-                                                        </StackPanel>
-                                                        
-                                                        
-                                                        <Grid Grid.Column="1" RowDefinitions="* Auto">
-                                                                
-                                                                <DataGrid Grid.Row="0" ItemsSource="{Binding Cabs}" SelectedItem="{Binding SelectedCab}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
-                                                                
-                                                                        <DataGrid.Columns>
-                                                                        
-                                                                                <DataGridTextColumn Header="id" Binding="{Binding Number}"/>
-                                                                        
-                                                                                <DataGridTextColumn Header="название" Binding="{Binding Name}"/>
-                                                                                
-                                                                                <DataGridTextColumn Header="описание" Binding="{Binding Description}"/>
-                                                                        
-                                                                        </DataGrid.Columns>
-                                                                
-                                                                </DataGrid>
-                                                                
-                                                                
-                                                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                                                                        
-                                                                        <Button Content="«" Command="{Binding FirstPageCabCommand}"/>
-                                                                        
-                                                                        <Button Content="&lt;" Command="{Binding PrevPageCabCommand}"/>
-                                                                        
-                                                                        <Button Content="обновить" Command="{Binding UpdateCabsCommand}"/>
-                                                                        
-                                                                        <Button Content="&gt;" Command="{Binding NextPageCabCommand}"/>
-                                                                        
-                                                                        <Button Content="»" Command="{Binding LastPageCabCommand}"/>
-                                                                        
-                                                                </StackPanel>
-                                                                
-                                                        </Grid>
-                                                        
-                                                </Grid>
-                                                
-                                        </TabItem>
-                                        
-                                        
                                         <TabItem Header="должности">
                                                 
                                                 <Grid ColumnDefinitions="Auto *">
@@ -258,8 +194,6 @@
                                                                         <DataGrid.Columns>
                                                                         
                                                                                 <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
-                                                                        
-                                                                                <DataGridTextColumn Header="для врача" Binding="{Binding Doctor.Id}"/>
                                                                                 
                                                                                 <DataGridTextColumn Header="должность врача" Binding="{Binding Doctor.Name}"/>
                                                                                 
@@ -301,11 +235,9 @@
                                                                 
                                                                 <TextBox Watermark="id" Text="{Binding SelectedEmp.Id}" IsReadOnly="True"/>
                                                                 
-                                                                <TextBox Watermark="название" Text="{Binding SelectedEmp.Cabinet}"/>
+                                                                <TextBox Watermark="id должности" Text="{Binding SelectedEmp.Job.Id}"/>
                                                                 
-                                                                <TextBox Watermark="название" Text="{Binding SelectedEmp.Job}"/>
-                                                                
-                                                                <TextBox Watermark="название" Text="{Binding SelectedEmp.FullName}"/>
+                                                                <TextBox Watermark="ФИО сотрудника" Text="{Binding SelectedEmp.FullName}"/>
                                                                 
                                                                 
                                                                 <StackPanel Orientation="Horizontal">
@@ -328,12 +260,10 @@
                                                                         <DataGrid.Columns>
                                                                         
                                                                                 <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
-                                                                        
-                                                                                <DataGridTextColumn Header="название" Binding="{Binding Cabinet}"/>
                                                                                 
-                                                                                <DataGridTextColumn Header="название" Binding="{Binding Job}"/>
+                                                                                <DataGridTextColumn Header="должность" Binding="{Binding Job.Name}"/>
                                                                                 
-                                                                                <DataGridTextColumn Header="название" Binding="{Binding FullName}"/>
+                                                                                <DataGridTextColumn Header="ФИО сотрудника" Binding="{Binding FullName}"/>
                                                                         
                                                                         </DataGrid.Columns>
                                                                 
@@ -369,13 +299,13 @@
                                                                 
                                                                 <TextBox Watermark="id" Text="{Binding SelectedUser.Id}" IsReadOnly="True"/>
 
-                                                                <TextBox Watermark="название" Text="{Binding SelectedUser.Login}"/>
+                                                                <TextBox Watermark="логин" Text="{Binding SelectedUser.Login}"/>
 
-                                                                <TextBox Watermark="название" Text="{Binding SelectedUser.Password}"/>
+                                                                <TextBox Watermark="пароль" Text="{Binding SelectedUser.Password}"/>
                                                                 
-                                                                <TextBox Watermark="название" Text="{Binding SelectedUser.Role.Id}"/>
+                                                                <TextBox Watermark="id роли" Text="{Binding SelectedUser.Role.Id}"/>
                                                                 
-                                                                <TextBox Watermark="название" Text="{Binding SelectedUser.Employee.Id}"/>
+                                                                <TextBox Watermark="id сотрудника" Text="{Binding SelectedUser.Employee.Id}"/>
 
 
                                                                 <StackPanel Orientation="Horizontal">
@@ -399,13 +329,13 @@
                                                                         
                                                                                 <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
                                                                         
-                                                                                <DataGridTextColumn Header="название" Binding="{Binding Login}"/>
+                                                                                <DataGridTextColumn Header="логин" Binding="{Binding Login}"/>
                                                                                 
-                                                                                <DataGridTextColumn Header="название" Binding="{Binding Password}"/>
+                                                                                <DataGridTextColumn Header="пароль" Binding="{Binding Password}"/>
                                                                                 
-                                                                                <DataGridTextColumn Header="название" Binding="{Binding Role.Id}"/>
+                                                                                <DataGridTextColumn Header="роль" Binding="{Binding Role.Name}"/>
                                                                                 
-                                                                                <DataGridTextColumn Header="название" Binding="{Binding Employee.Id}"/>
+                                                                                <DataGridTextColumn Header="ФИО сотрудника" Binding="{Binding Employee.FullName}"/>
                                                                         
                                                                         </DataGrid.Columns>
                                                                 

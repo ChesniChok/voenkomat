@@ -9,11 +9,10 @@ namespace Voenkomat_Kursach.DB;
 
 public class EmployeeRepository : BaseRepository<Employee>
 {
-    private CabinetRepository _cabinetRepository;
+    
     private JobRepository _jobRepository;
-    public EmployeeRepository(AppSettings appSettings, CabinetRepository cabinetRepository, JobRepository jobRepository) : base(appSettings)
+    public EmployeeRepository(AppSettings appSettings, JobRepository jobRepository) : base(appSettings)
     {
-        _cabinetRepository = cabinetRepository;
         _jobRepository = jobRepository;
     }
 
@@ -35,7 +34,6 @@ public class EmployeeRepository : BaseRepository<Employee>
                     employees.Add(new Employee(
                         dr.GetInt32("Id"),
                         dr.GetString("FullName"),
-                        _cabinetRepository.GetById(cabinetNumber),
                         _jobRepository.GetById(jobId)
                     ));
                 }
@@ -72,7 +70,6 @@ public class EmployeeRepository : BaseRepository<Employee>
                         (
                             dr.GetInt32("Id"),
                             dr.GetString("FullName"),
-                            _cabinetRepository.GetById(dr.GetInt32("Cabinet_Number")),
                             _jobRepository.GetById(dr.GetInt32("Job_Id")
                             )
                         ));
@@ -103,13 +100,11 @@ public class EmployeeRepository : BaseRepository<Employee>
                 {
                     if (dr.Read())
                     {
-                        int cabinetNumber = dr.GetInt32("Cabinet_Number");
                         int jobId = dr.GetInt32("Job_Id");
                         
                         employee = new Employee(
                             dr.GetInt32("Id"),
                             dr.GetString("FullName"),
-                            _cabinetRepository.GetById(cabinetNumber),
                             _jobRepository.GetById(jobId)
                         );
                     }
@@ -133,12 +128,11 @@ public class EmployeeRepository : BaseRepository<Employee>
         try
         {
             OpenConnection();
-            string sql = "insert into employees values(@id, @fname, @cnum, @jid)";
+            string sql = "insert into employees values(@id, @fname, @jid)";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@id", e.Id);
                 mc.Parameters.AddWithValue("@fname", e.FullName);
-                mc.Parameters.AddWithValue("@cnum", e.Cabinet.Number);
                 mc.Parameters.AddWithValue("@jid", e.Job.Id);
                 mc.ExecuteNonQuery();
             }
@@ -159,12 +153,11 @@ public class EmployeeRepository : BaseRepository<Employee>
         try
         {
             OpenConnection();
-            string sql = "update employees set FullName = @fname, Cabinet_Number = @cnum, Job_Id = @jid where Id = @id";
+            string sql = "update employees set FullName = @fname, Job_Id = @jid where Id = @id";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@id", e.Id);
                 mc.Parameters.AddWithValue("@fname", e.FullName);
-                mc.Parameters.AddWithValue("@cnum", e.Cabinet.Number);
                 mc.Parameters.AddWithValue("@jid", e.Job.Id);
                 mc.ExecuteNonQuery();
             }

@@ -71,10 +71,10 @@ public class UserRepository : BaseRepository<User>
                         users.Add(new User
                         (
                             dr.GetInt32("Id"),
-                            _employeeRepository.GetById(dr.GetInt32("EmployeeId")),
+                            _employeeRepository.GetById(dr.GetInt32("Employee_Id")),
                             dr.GetString("Login"),
                             dr.GetString("Password"),
-                            _roleRepository.GetById(dr.GetInt32("RoleId"))
+                            _roleRepository.GetById(dr.GetInt32("Role_Id"))
                         ));
                     }
                 }
@@ -134,7 +134,7 @@ public class UserRepository : BaseRepository<User>
         try
         {
             OpenConnection();
-            string sql = "insert into users values(@id, @eid, @jog, @pas, @rid)";
+            string sql = "insert into users values(@id, @eid, @log, @pas, @rid)";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@id", u.Id);

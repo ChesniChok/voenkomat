@@ -19,21 +19,18 @@ public partial class AdminViewModel : UserBaseViewModel
     
     private AppSettings _ap;
 
-    private CabinetRepository _cr;
     private JobRepository _jr;
     private ChecklistItemRepository _chr;
     private EmployeeRepository _er;
     private UserRepository _ur;
     private RoleRepository _rr;
 
-    public AdminViewModel(IServiceProvider sp, 
-        CabinetRepository cr, JobRepository jr, ChecklistItemRepository chr, EmployeeRepository er, UserRepository ur, RoleRepository rr,
+    public AdminViewModel(IServiceProvider sp, JobRepository jr, ChecklistItemRepository chr, EmployeeRepository er, UserRepository ur, RoleRepository rr, 
         User user, Window win, AppSettings ap) : base(sp, user, win)
     {
         
         _ap = ap;
         
-        _cr = cr;
         _jr = jr;
         _chr = chr;
         _er = er;
@@ -63,7 +60,6 @@ public partial class AdminViewModel : UserBaseViewModel
     [ObservableProperty] private string _com;
     
 
-    [ObservableProperty] private ObservableCollection<Cabinet> _cabs;
     [ObservableProperty] private ObservableCollection<Job> _jobs;
     [ObservableProperty] private ObservableCollection<ChecklistItem> _checks;
     [ObservableProperty] private ObservableCollection<Employee> _emps;
@@ -123,7 +119,6 @@ public partial class AdminViewModel : UserBaseViewModel
     private void GetCollections()
     {
 
-        Cabs = new(_cr.GetPage(0, 10));
         Jobs = new(_jr.GetPage(0, 10));
         Checks = new(_chr.GetPage(0, 10));
         Emps = new(_er.GetPage(0, 10));
@@ -131,51 +126,7 @@ public partial class AdminViewModel : UserBaseViewModel
         Roles = new(_rr.GetPage(0, 10));
 
     }
-
-    [ObservableProperty] private Cabinet _selectedCab;
-    [ObservableProperty] private int _cabPage;
-    [RelayCommand] private void UpdateCabs() => Cabs = new(_cr.GetPage(CabPage, 10));
-    [RelayCommand]
-    public void NextPageCab()
-    {
-        if (CabPage == _cr.Count() / 10) return;
-        CabPage += 10;
-        UpdateCabs();
-    }
-    [RelayCommand]
-    public void PrevPageCab()
-    {
-        if (CabPage == 0) return;
-        CabPage -= 10;
-        UpdateCabs();
-    }
-    [RelayCommand]
-    public void FirstPageCab()
-    {
-        CabPage = 0;
-        UpdateCabs();
-    }
-    [RelayCommand]
-    public void LastPageCab()
-    {
-        CabPage = (_cr.Count()-1) / 10 * 10;
-        UpdateJobs();
-    }
-    [RelayCommand] public void AddCab()
-    {
-        _cr.Add(new(0, "название", "описание"));
-        UpdateCabs();
-    }
-    [RelayCommand] public void UpdateCab()
-    {
-        _cr.Update(SelectedCab);
-        UpdateCabs();
-    }
-    [RelayCommand] public void DeleteCab()
-    {
-        _cr.Delete(SelectedCab);
-        UpdateCabs();
-    }
+    
     
     
     [ObservableProperty] private Job _selectedJob;
@@ -233,7 +184,7 @@ public partial class AdminViewModel : UserBaseViewModel
     {
         if (CheckPage == _chr.Count() / 10) return;
         CheckPage += 10;
-        UpdateCabs();
+        UpdateChecks();
     }
     [RelayCommand]
     public void PrevPageCheck()
@@ -302,8 +253,8 @@ public partial class AdminViewModel : UserBaseViewModel
     }
     [RelayCommand] public void AddEmp()
     {
-        _er.Add(new(0, "Иван Иванович Иванов", new(), new()));
-        UpdateChecks();
+        _er.Add(new(0, "Иван Иванович Иванов", new(1, "")));
+        UpdateEmps();
     }
     [RelayCommand] public void UpdateEmp()
     {
@@ -348,8 +299,8 @@ public partial class AdminViewModel : UserBaseViewModel
     }
     [RelayCommand] public void AddUser()
     {
-        _ur.Add(new(0, new(), "", "", new()));
-        UpdateChecks();
+        _ur.Add(new(0, new(1, "", new(1, "")), "", "", new(1, "", false)));
+        UpdateUsers();
     }
     [RelayCommand] public void UpdateUser()
     {

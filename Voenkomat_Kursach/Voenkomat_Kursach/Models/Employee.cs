@@ -5,7 +5,6 @@ public class Employee
     
     public int Id { get; set; }
     public string FullName { get; set; }
-    public Cabinet Cabinet { get; set; }
     public Job Job { get; set; }
 
 
@@ -13,15 +12,13 @@ public class Employee
     {
         Id = 0;
         FullName = "имя";
-        Cabinet = new();
         Job = new();
     }
     
-    public Employee(int id, string fullName, Cabinet cabinet, Job job)
+    public Employee(int id, string fullName, Job job)
     {
         Id = id;
         FullName = fullName;
-        Cabinet = cabinet;
         Job = job;
     }
     
