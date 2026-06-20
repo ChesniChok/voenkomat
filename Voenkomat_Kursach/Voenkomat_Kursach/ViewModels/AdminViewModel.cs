@@ -226,6 +226,7 @@ public partial class AdminViewModel : UserBaseViewModel
     
     [ObservableProperty] private ChecklistItem _selectedCheck;
     [ObservableProperty] private int _checkPage;
+    [ObservableProperty] private bool _checkJobNull;
     [RelayCommand] private void UpdateChecks() => Checks = new(_chr.GetPage(CheckPage, 10));
     [RelayCommand]
     public void NextPageCheck()
@@ -255,7 +256,7 @@ public partial class AdminViewModel : UserBaseViewModel
     }
     [RelayCommand] public void AddCheck()
     {
-        _chr.AddNull(new());
+        _chr.AddNull(new(0, new Job(null, ""), "", ""));
         UpdateChecks();
     }
     [RelayCommand] public void UpdateCheck()

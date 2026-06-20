@@ -102,7 +102,7 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
                         checks.Add(new ChecklistItem
                         (
                             dr.GetInt32("Id"),
-                            dr.IsDBNull(jid) ? null : _jr.GetById(dr.GetInt32("Job_Id")),
+                            dr.IsDBNull(jid) ? new(0, "") : _jr.GetById(dr.GetInt32("Job_Id")),
                             dr.GetString("Name"),
                             dr.GetString("Description")
                         ));

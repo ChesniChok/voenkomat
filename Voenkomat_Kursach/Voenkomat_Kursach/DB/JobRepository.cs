@@ -84,7 +84,7 @@ public class JobRepository : BaseRepository<Job>
             Job job = new Job();
             try
             {
-                _connection.Open();
+                OpenConnection();
                 string sql = "SELECT * FROM jobs WHERE id = @id";
                 using (var mc = new MySqlCommand(sql, _connection))
                 {

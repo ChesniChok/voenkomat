@@ -295,6 +295,7 @@ public partial class MainWindowViewModel : ViewModelBase
             if (Login is "doc" or "med")
             {
                 u.Role.IsMed = true;
+                u.Employee.Job.Id = 4;
             }
 
         }

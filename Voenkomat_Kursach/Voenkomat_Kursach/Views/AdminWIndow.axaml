@@ -63,7 +63,7 @@
                                         
                                                 <StackPanel Grid.Column="1">
                                                 
-                                                        <TextBox Text="называется:"/>
+                                                        <TextBox Text="в базе называется:"/>
                                                         <TextBox Text="{Binding Adm}"/>
                                                         <TextBox Text="{Binding Arc}"/>
                                                         <TextBox Text="{Binding Reg}"/>
@@ -231,7 +231,7 @@
                                                                 
                                                                 <TextBox Watermark="id" Text="{Binding SelectedCheck.Id}" IsReadOnly="True"/>
                                                                 
-                                                                <TextBox Watermark="для врача" Text="{Binding SelectedCheck.Doctor.Id}"/>
+                                                                <TextBox Watermark="id врача" Text="{Binding SelectedCheck.Doctor.Id}"/>
                                                                 
                                                                 <TextBox Watermark="название" Text="{Binding SelectedCheck.Name}"/>
                                                                 
@@ -260,6 +260,8 @@
                                                                                 <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
                                                                         
                                                                                 <DataGridTextColumn Header="для врача" Binding="{Binding Doctor.Id}"/>
+                                                                                
+                                                                                <DataGridTextColumn Header="должность врача" Binding="{Binding Doctor.Name}"/>
                                                                                 
                                                                                 <DataGridTextColumn Header="название" Binding="{Binding Name}"/>
                                                                                 
@@ -440,8 +442,8 @@
                                                                 <TextBox Watermark="id" Text="{Binding SelectedRole.Id}" IsReadOnly="True"/>
 
                                                                 <TextBox Watermark="название" Text="{Binding SelectedRole.Name}"/>
-
-                                                                <TextBox Watermark="название" Text="{Binding SelectedRole.IsMed}"/>
+                                                                
+                                                                <CheckBox Content="" IsChecked="{Binding SelectedRole.IsMed}"/>
 
 
                                                                 <StackPanel Orientation="Horizontal">
@@ -467,7 +469,7 @@
                                                                         
                                                                                 <DataGridTextColumn Header="название" Binding="{Binding Name}"/>
                                                                                 
-                                                                                <DataGridTextColumn Header="название" Binding="{Binding IsMed}"/>
+                                                                                <DataGridCheckBoxColumn Header="медицинский работник?" Binding="{Binding IsMed, Mode=OneWay}"/>
                                                                         
                                                                         </DataGrid.Columns>
                                                                 

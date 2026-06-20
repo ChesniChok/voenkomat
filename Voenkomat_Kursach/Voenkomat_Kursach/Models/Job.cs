@@ -3,7 +3,7 @@
 public class Job
 {
     
-    public int Id { get; set; }
+    public int? Id { get; set; }
     public string Name { get; set; }
 
 
@@ -13,7 +13,7 @@ public class Job
         Name = "название";
     }
     
-    public Job(int id, string name)
+    public Job(int? id, string name)
     {
         Id = id;
         Name = name;
