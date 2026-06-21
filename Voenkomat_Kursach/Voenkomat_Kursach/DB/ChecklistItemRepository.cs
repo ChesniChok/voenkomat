@@ -54,20 +54,22 @@ public class ChecklistItemRepository : BaseRepository<ChecklistItem>
         List<ChecklistItem> checks = new List<ChecklistItem>();
         try
         {
-            _connection.Open();
+            OpenConnection();
             string sql = "SELECT * FROM checkitems where Job_Id  = @docid";
             using (var mc = new MySqlCommand(sql, _connection))
-            using (var dr = mc.ExecuteReader())
             {
                 mc.Parameters.AddWithValue("@docid", doc.Id);
-                while (dr.Read())
+                using (var dr = mc.ExecuteReader())
                 {
-                    checks.Add(new ChecklistItem(
-                        dr.GetInt32("Id"),
-                        _jr.GetById(dr.GetInt32("Job_Id")),
-                        dr.GetString("Name"),
-                        dr.GetString("Description")
-                    ));
+                    while (dr.Read())
+                    {
+                        checks.Add(new ChecklistItem(
+                            dr.GetInt32("Id"),
+                            _jr.GetById(dr.GetInt32("Job_Id")),
+                            dr.GetString("Name"),
+                            dr.GetString("Description")
+                        ));
+                    }
                 }
             }
         }
