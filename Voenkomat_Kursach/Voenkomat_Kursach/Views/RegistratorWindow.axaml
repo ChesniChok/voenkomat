@@ -53,7 +53,13 @@
                 
                 <Grid Grid.Column="1" RowDefinitions="Auto * Auto">
                     
-                    <TextBox Grid.Row="0" Text="{Binding Search}" Watermark="поиск"/>
+                    <Grid Grid.Row="0" ColumnDefinitions="* Auto">
+                        
+                        <TextBox Grid.Column="0" Grid.Row="0" Text="{Binding Search}" Watermark="поиск"/>
+                        
+                        <Button Grid.Column="1" Content="назад" Command="{Binding GoBackCommand}"/>
+                        
+                    </Grid>
                         
                     <DataGrid Grid.Row="1" ItemsSource="{Binding Recs}" SelectedItem="{Binding SelectedRec}" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
                         
