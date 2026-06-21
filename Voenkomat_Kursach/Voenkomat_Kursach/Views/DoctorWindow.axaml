@@ -13,42 +13,54 @@
             
     
             <!-- чеклист -->
-            <TabItem Header="Чеклист">
+            <TabItem Header="осмотр">
                 
-                <DataGrid ItemsSource="{Binding CheckItems}" AutoGenerateColumns="False" Padding="5" HorizontalAlignment="Stretch">
+                <Grid RowDefinitions="Auto *">
                     
-                    <DataGrid.Columns>
+                    <Grid Grid.Row="0" ColumnDefinitions="* Auto">
                         
-                        <DataGridTextColumn Binding="{Binding Name}" IsReadOnly="True"/>
+                        <TextBox Grid.Column="0" Text="{Binding RecFullName}"/>
                         
-                        <DataGridTextColumn Binding="{Binding Description}" IsReadOnly="True"/>
+                        <Button Grid.Column="1" Content="назад" Command="{Binding GoBackCommand}"/>
                         
-                        <DataGridTemplateColumn Header="запись" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox Text="{Binding Written}" TextWrapping="Wrap"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        
-                        <DataGridCheckBoxColumn Header="пройдено" Binding="{Binding IsChecked}" Width="Auto"/>
-                        
-                    </DataGrid.Columns>
+                    </Grid>
                     
-                </DataGrid>
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding CheckItems}" AutoGenerateColumns="False" Padding="5" HorizontalAlignment="Stretch">
+                    
+                        <DataGrid.Columns>
+                        
+                            <DataGridTextColumn Binding="{Binding Name}" IsReadOnly="True"/>
+                        
+                            <DataGridTextColumn Binding="{Binding Description}" IsReadOnly="True"/>
+                        
+                            <DataGridTemplateColumn Header="запись" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Written}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        
+                            <DataGridCheckBoxColumn Header="пройдено" Binding="{Binding IsChecked}" Width="Auto"/>
+                        
+                        </DataGrid.Columns>
+                    
+                    </DataGrid>
+                    
+                </Grid>
                 
             </TabItem>
             
             
             <!-- дополнения -->
-            <TabItem Header="Дополнения">
+            <TabItem Header="дополнения">
                 
                 <Grid RowDefinitions="Auto *">
                     
                     <Grid Grid.Row="0" ColumnDefinitions="* Auto">
                         
                         <!-- текст -->
-                        <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Text="Дополнения по состоянию осматриваемого"/>
+                        <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Text="дополнения по состоянию осматриваемого"/>
                     
                         <!-- кнопка -->
                         <Button Grid.Column="1" HorizontalAlignment="Stretch" Content="добавить" Command="{Binding AddAdditionCommand}"/>
@@ -86,7 +98,7 @@
             
             
             <!-- завершение -->
-            <TabItem Header="Завершение">
+            <TabItem Header="заключение">
                 
                 <StackPanel>
                     
@@ -116,7 +128,7 @@
                     
                     <TextBox Watermark="заключение" Text="{Binding Conclusion}"/>
                     
-                    <Button Content="Завершить" Margin="5" HorizontalAlignment="Center" Width="100" Command="{Binding EndCommand}"/>
+                    <Button Content="завершить" Margin="5" HorizontalAlignment="Center" Width="100" Command="{Binding EndCommand}"/>
                     
                 </StackPanel>
                 

@@ -423,9 +423,11 @@
                 
                         <TabItem Header="завершение">
                         
-                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" RowDefinitions="Auto Auto">
                                 
-                                <Button Content="завершить" Command="{Binding FinishHimCommand}"/>
+                                <TextBox Grid.Row="0" Text="{Binding Category}"/>
+                                
+                                <Button Grid.Row="1" Content="завершить" Command="{Binding FinishHimCommand}" HorizontalAlignment="Center"/>
                                 
                         </Grid>
                         

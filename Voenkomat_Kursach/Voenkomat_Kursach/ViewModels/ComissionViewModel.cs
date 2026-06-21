@@ -145,16 +145,22 @@ public partial class ComissionViewModel : MedWorkersViewModel
         
     }
 
+    [ObservableProperty] private string _category;
+    
     [RelayCommand]
     public void FinishHim()
     {
+        if (!string.IsNullOrEmpty(Category))
+        {
+            
+            _currentMedcomission.EndDate = DateOnly.FromDateTime(DateTime.Now);
+            _currentMedcomission.Category = Category;
         
-        _currentMedcomission.EndDate = DateOnly.FromDateTime(DateTime.Now);
+            _mr.Update(_currentMedcomission);
         
-        _mr.Update(_currentMedcomission);
-        
-        GoBack();
-        
+            GoBack();
+            
+        }
     }
     
 

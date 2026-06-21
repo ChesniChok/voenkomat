@@ -113,14 +113,6 @@
                         
                     <TextBox Watermark="дата начала" Text="{Binding SelectedCom.StartDate}"/>
                         
-                    <TextBox Watermark="терапевт" Text="{Binding SelectedCom.Ter}"/>
-                    <TextBox Watermark="отороларинголог" Text="{Binding SelectedCom.Otor}"/>
-                    <TextBox Watermark="психиатр" Text="{Binding SelectedCom.Psih}"/>
-                    <TextBox Watermark="невролог" Text="{Binding SelectedCom.Nevr}"/>
-                    <TextBox Watermark="хирург" Text="{Binding SelectedCom.Hir}"/>
-                    <TextBox Watermark="стомтолог" Text="{Binding SelectedCom.Stom}"/>
-                    <TextBox Watermark="окулист" Text="{Binding SelectedCom.Okul}"/>
-                        
                     <TextBox Watermark="дата окончания" Text="{Binding SelectedCom.EndDate}"/>
                         
                     <TextBox Watermark="категория" Text="{Binding SelectedCom.Category}"/>

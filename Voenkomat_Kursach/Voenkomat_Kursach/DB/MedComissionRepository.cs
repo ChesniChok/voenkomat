@@ -31,13 +31,6 @@ public class MedComissionRepository : BaseRepository<MedComission>
                         dr.GetInt32("Id"),
                         _recruitRepository.GetById(recruitId),
                         dr.GetDateOnly("StartDate"),
-                        dr.GetBoolean("Ter"),
-                        dr.GetBoolean("Otor"),
-                        dr.GetBoolean("Psih"),
-                        dr.GetBoolean("Nevr"),
-                        dr.GetBoolean("Hir"),
-                        dr.GetBoolean("Stom"),
-                        dr.GetBoolean("Okul"),
                         dr.GetDateOnly("EndDate"),
                         dr.GetString("Category"),
                         dr.GetString("Description")
@@ -81,13 +74,6 @@ public class MedComissionRepository : BaseRepository<MedComission>
                             dr.GetInt32("Id"),
                             _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
                             dr.GetDateOnly("StartDate"),
-                            dr.GetBoolean("Ter"),
-                            dr.GetBoolean("Otor"),
-                            dr.GetBoolean("Psih"),
-                            dr.GetBoolean("Nevr"),
-                            dr.GetBoolean("Hir"),
-                            dr.GetBoolean("Stom"),
-                            dr.GetBoolean("Okul"),
                             dr.IsDBNull(date) ? null : dr.GetDateOnly(date),
                             dr.IsDBNull(cat) ? null : dr.GetString("Category"),
                              dr.IsDBNull(desc) ? null : dr.GetString("Description")
@@ -127,13 +113,6 @@ public class MedComissionRepository : BaseRepository<MedComission>
                             dr.GetInt32("Id"),
                             _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
                             dr.GetDateOnly("StartDate"),
-                            dr.GetBoolean("Ter"),
-                            dr.GetBoolean("Otor"),
-                            dr.GetBoolean("Psih"),
-                            dr.GetBoolean("Nevr"),
-                            dr.GetBoolean("Hir"),
-                            dr.GetBoolean("Stom"),
-                            dr.GetBoolean("Okul"),
                             dr.IsDBNull(date) ? null : dr.GetDateOnly(date),
                             dr.IsDBNull(cat) ? null : dr.GetString("Category"),
                             dr.IsDBNull(desc) ? null : dr.GetString("Description")
@@ -174,13 +153,6 @@ public class MedComissionRepository : BaseRepository<MedComission>
                                 dr.GetInt32("Id"),
                                 _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
                                 dr.GetDateOnly("StartDate"),
-                                dr.GetBoolean("Ter"),
-                                dr.GetBoolean("Otor"),
-                                dr.GetBoolean("Psih"),
-                                dr.GetBoolean("Nevr"),
-                                dr.GetBoolean("Hir"),
-                                dr.GetBoolean("Stom"),
-                                dr.GetBoolean("Okul"),
                                 dr.IsDBNull(date) ? null : dr.GetDateOnly(date),
                                 dr.IsDBNull(cat) ? null : dr.GetString("Category"),
                                 dr.IsDBNull(desc) ? null : dr.GetString("Description")
@@ -206,18 +178,11 @@ public class MedComissionRepository : BaseRepository<MedComission>
         try
         {
             OpenConnection();
-            string sql = "insert into medcomissions values(0, @rid, @sdate, @ter, @otor, @psih, @nevr, @hir, @stom, @okul, @edate, @categ, @desc);";
+            string sql = "insert into medcomissions values(0, @rid, @sdate, @edate, @categ, @desc);";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@rid", m.Recruit.Id);
                 mc.Parameters.AddWithValue("@sdate", m.StartDate);
-                mc.Parameters.AddWithValue("@ter", m.Ter);
-                mc.Parameters.AddWithValue("@otor", m.Otor);
-                mc.Parameters.AddWithValue("@psih", m.Psih);
-                mc.Parameters.AddWithValue("@nevr", m.Nevr);
-                mc.Parameters.AddWithValue("@hir", m.Hir);
-                mc.Parameters.AddWithValue("@stom", m.Stom);
-                mc.Parameters.AddWithValue("@okul", m.Okul);
                 mc.Parameters.AddWithValue("@edate", m.EndDate);
                 mc.Parameters.AddWithValue("@categ", m.Category);
                 mc.Parameters.AddWithValue("@desc", m.Description);
@@ -240,19 +205,12 @@ public class MedComissionRepository : BaseRepository<MedComission>
         try
         {
             OpenConnection();
-            string sql = "update medcomissions set Recruit_Id = @rid, StartDate = @sdate, Ter = @ter, Otor = @otor, Psih = @psih, Nevr = @nevr, Hir = @hir, Stom = @stom, Okul = @okul, EndDate = @edate, Category = @categ, Description = @desc where Id = @id";
+            string sql = "update medcomissions set Recruit_Id = @rid, StartDate = @sdate, EndDate = @edate, Category = @categ, Description = @desc where Id = @id";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@id", m.Id);
                 mc.Parameters.AddWithValue("@rid", m.Recruit.Id);
                 mc.Parameters.AddWithValue("@sdate", m.StartDate);
-                mc.Parameters.AddWithValue("@ter", m.Ter);
-                mc.Parameters.AddWithValue("@otor", m.Otor);
-                mc.Parameters.AddWithValue("@psih", m.Psih);
-                mc.Parameters.AddWithValue("@nevr", m.Nevr);
-                mc.Parameters.AddWithValue("@hir", m.Hir);
-                mc.Parameters.AddWithValue("@stom", m.Stom);
-                mc.Parameters.AddWithValue("@okul", m.Okul);
                 mc.Parameters.AddWithValue("@edate", m.EndDate);
                 mc.Parameters.AddWithValue("@categ", m.Category);
                 mc.Parameters.AddWithValue("@desc", m.Description);
