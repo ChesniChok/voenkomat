@@ -16,28 +16,36 @@ public partial class DoctorViewModel : MedWorkersViewModel
 
 
     private ChecklistItemRepository _cr;
+    private RecordRepository _rr;
+    
+    private MedComission _currentMedComission;
 
-    public DoctorViewModel(IServiceProvider sp, MedComissionRepository mr, ChecklistItemRepository cr, User user, Window win, Recruit rec) : base(sp, mr, user, win, rec)
+    public DoctorViewModel(IServiceProvider sp, MedComissionRepository mr, ChecklistItemRepository cr, RecordRepository rr, User user, Window win, Recruit rec) : base(sp, mr, user, win, rec)
     {
         
         _cr = cr;
+        _rr = rr;
         
         CheckItems = new(_cr.GetAll(user.Employee.Job));
         
-        DoktorAdditions =  new ObservableCollection<DoktorAdditions>();
+        DoctorAdditions =  new ObservableCollection<DoktorAddition>();
         
         IsCheckEnded = false;
         IsAddsEnded = false;
+
+        _currentMedComission = _mr.GetRecsLast(rec);
 
     }
     
     
     [ObservableProperty] private ObservableCollection<ChecklistItem> _checkItems;
     
-    [ObservableProperty] private ObservableCollection<DoktorAdditions> _doktorAdditions;
+    [ObservableProperty] private ObservableCollection<DoktorAddition> _doctorAdditions;
 
     [ObservableProperty] private bool _isCheckEnded;
     [ObservableProperty] private bool _isAddsEnded;
+
+    [ObservableProperty] private string _conclusion;
 
     private bool IsCheckRealyEnded
     {
@@ -86,27 +94,35 @@ public partial class DoctorViewModel : MedWorkersViewModel
     [RelayCommand]
     public void AddAddition()
     {
-        DoktorAdditions.Add(new DoktorAdditions(DoktorAdditions.Count,""));
+        DoctorAdditions.Add(new DoktorAddition(DoctorAdditions.Count,""));
     }
 
     [RelayCommand]
-    public void RemoveAddition(DoktorAdditions item)
+    public void RemoveAddition(DoktorAddition item)
     {
-        DoktorAdditions.Remove(item);
+        DoctorAdditions.Remove(item);
     }
 
 
     [RelayCommand]
     public void End()//завершение 
     {
-
-        if (IsCheckRealyEnded && IsCheckEnded && IsAddsEnded)
+        if (IsCheckRealyEnded && IsCheckEnded && IsAddsEnded && !String.IsNullOrEmpty(Conclusion))
         {
+
+            foreach (var check in CheckItems)
+            {
+                _rr.Add(new(0, "осмотр", _user.Employee, _currentMedComission, check.Written, check.Description));
+            }
             
+            foreach (var addition in DoctorAdditions)
+            {
+                _rr.Add(new(0, "дополнения", _user.Employee, _currentMedComission, addition.Value, ""));
+            }
             
+            _rr.Add(new(0, "заключение", _user.Employee, _currentMedComission, Conclusion, "заключение"));
             
         }
-        
     }
     
 }

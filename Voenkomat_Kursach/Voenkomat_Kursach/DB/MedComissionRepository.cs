@@ -104,6 +104,53 @@ public class MedComissionRepository : BaseRepository<MedComission>
         }
         return coms;
     }
+    
+    public MedComission GetRecsLast(Recruit r)
+    {
+        MedComission com = new();
+        try
+        {
+            OpenConnection();
+            string sql = "select * from medcomissions where Recruit_Id = @rid order by StartDate";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@rid", r.Id);
+                using (var dr = mc.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        var date = dr.GetOrdinal("EndDate");
+                        var cat = dr.GetOrdinal("Category");
+                        var desc = dr.GetOrdinal("Description");
+                        com = new MedComission
+                        (
+                            dr.GetInt32("Id"),
+                            _recruitRepository.GetById(dr.GetInt32("Recruit_Id")),
+                            dr.GetDateOnly("StartDate"),
+                            dr.GetBoolean("Ter"),
+                            dr.GetBoolean("Otor"),
+                            dr.GetBoolean("Psih"),
+                            dr.GetBoolean("Nevr"),
+                            dr.GetBoolean("Hir"),
+                            dr.GetBoolean("Stom"),
+                            dr.GetBoolean("Okul"),
+                            dr.IsDBNull(date) ? null : dr.GetDateOnly(date),
+                            dr.IsDBNull(cat) ? null : dr.GetString("Category"),
+                            dr.IsDBNull(desc) ? null : dr.GetString("Description")
+                        );
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            CloseConnection();
+            Console.WriteLine(e);
+                    
+        }
+        CloseConnection();
+        return com;
+    }
 
         public MedComission GetById(int id)
         {

@@ -1,19 +1,19 @@
 ﻿namespace Voenkomat_Kursach.Models;
 
-public class DoktorAdditions
+public class DoktorAddition
 {
     
     public int Id { get; set; }
     public string Value { get; set; }
 
 
-    public DoktorAdditions()
+    public DoktorAddition()
     {
         Id = 0;
         Value = "";
     }
     
-    public DoktorAdditions(int id, string value)
+    public DoktorAddition(int id, string value)
     {
         Id = id;
         Value = value;
