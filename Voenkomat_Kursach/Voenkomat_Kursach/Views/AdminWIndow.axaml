@@ -53,10 +53,10 @@
                                                 <StackPanel Grid.Column="0">
                                                 
                                                         <TextBox Text="роль в приложении" IsReadOnly="True"/>
-                                                        <TextBox Text="админимтратор" IsReadOnly="True"/>
+                                                        <TextBox Text="администратор" IsReadOnly="True"/>
                                                         <TextBox Text="регистрирующий" IsReadOnly="True"/>
                                                         <TextBox Text="врач" IsReadOnly="True"/>
-                                                        <TextBox Text="медкомиссия" IsReadOnly="True"/>
+                                                        <TextBox Text="главврач" IsReadOnly="True"/>
                                                 
                                                 </StackPanel>
                                         

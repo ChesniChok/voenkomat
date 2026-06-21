@@ -267,7 +267,7 @@ public partial class AdminViewModel : UserBaseViewModel
     
     [ObservableProperty] private User _selectedUser;
     [ObservableProperty] private int _userPage;
-    [RelayCommand] private void UpdateUsers() => Users = new(_ur.GetPage(EmpPage, 10));
+    [RelayCommand] private void UpdateUsers() => Users = new(_ur.GetPage(UserPage, 10));
     [RelayCommand]
     public void NextPageUser()
     {
@@ -278,7 +278,7 @@ public partial class AdminViewModel : UserBaseViewModel
     [RelayCommand]
     public void PrevPageUser()
     {
-        if (EmpPage == 0) return;
+        if (UserPage == 0) return;
         UserPage -= 10;
         UpdateUsers();
     }
