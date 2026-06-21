@@ -25,8 +25,256 @@
                         
                                 <TabControl>
                                 
-                                        <TabItem Header="терапевт">     
+                                        <TabItem Header="терапевт">
                                         
+                                                <Grid RowDefinitions="Auto *">
+                                                        
+                                                         <Grid Grid.Row="0" ColumnDefinitions="* *">
+                                                                 
+                                                                 <TextBlock Grid.Column="0" Text="имя врача" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                                 <TextBlock Grid.Column="1" Text="должность" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                         </Grid>
+                                                        
+                                                        
+                                                        <TabControl Grid.Row="1">
+                                                                
+                                                                <TabItem Header="осмотр">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding TerChecks}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="дополнения">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding TerAdds}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="заключение">
+                                                                        
+                                                                        <TextBox Text="{Binding TerConclusion}"/>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                        </TabControl>
+                                                        
+                                                </Grid>
+                                        
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="оториноларинголог">
+                                                
+                                                <Grid RowDefinitions="Auto *">
+                                                        
+                                                         <Grid Grid.Row="0" ColumnDefinitions="* *">
+                                                                 
+                                                                 <TextBlock Grid.Column="0" Text="имя врача" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                                 <TextBlock Grid.Column="1" Text="должность" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                         </Grid>
+                                                        
+                                                        
+                                                        <TabControl Grid.Row="1">
+                                                                
+                                                                <TabItem Header="осмотр">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding OtorChecks}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="дополнения">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding OtorAdds}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="заключение">
+                                                                        
+                                                                        <TextBox Text="{Binding OtorConclusion}"/>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                        </TabControl>
+                                                        
+                                                </Grid>
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="психиатр">
+                                                
+                                                <Grid RowDefinitions="Auto *">
+                                                        
+                                                         <Grid Grid.Row="0" ColumnDefinitions="* *">
+                                                                 
+                                                                 <TextBlock Grid.Column="0" Text="имя врача" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                                 <TextBlock Grid.Column="1" Text="должность" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                         </Grid>
+                                                        
+                                                        
+                                                        <TabControl Grid.Row="1">
+                                                                
+                                                                <TabItem Header="осмотр">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding PsihChecks}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="дополнения">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding PsihAdds}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="заключение">
+                                                                        
+                                                                        <TextBox Text="{Binding PsihConclusion}"/>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                        </TabControl>
+                                                        
+                                                </Grid>
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="невролог">
+                                                
+                                                <Grid RowDefinitions="Auto *">
+                                                        
+                                                         <Grid Grid.Row="0" ColumnDefinitions="* *">
+                                                                 
+                                                                 <TextBlock Grid.Column="0" Text="имя врача" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                                 <TextBlock Grid.Column="1" Text="должность" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                         </Grid>
+                                                        
+                                                        
+                                                        <TabControl Grid.Row="1">
+                                                                
+                                                                <TabItem Header="осмотр">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding NevrChecks}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="дополнения">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding NevrAdds}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="заключение">
+                                                                        
+                                                                        <TextBox Text="{Binding NevrConclusion}"/>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                        </TabControl>
+                                                        
+                                                </Grid>
+                                                
+                                        </TabItem>
+                                        
+                                        
+                                        <TabItem Header="хирург">
+                                                
                                                 <Grid RowDefinitions="Auto *">
                                                         
                                                          <Grid Grid.Row="0" ColumnDefinitions="* *">
@@ -73,51 +321,140 @@
                                                                         
                                                                 </TabItem>
                                                                 
+                                                                
+                                                                <TabItem Header="заключение">
+                                                                        
+                                                                        <TextBox Text="{Binding HirConclusion}"/>
+                                                                        
+                                                                </TabItem>
+                                                                
                                                         </TabControl>
                                                         
                                                 </Grid>
-                                        
-                                        </TabItem>
-                                        
-                                        
-                                        <TabItem Header="оториноларинголог">
-                                                
-                                                
-                                                
-                                        </TabItem>
-                                        
-                                        
-                                        <TabItem Header="психиатр">
-                                                
-                                                
-                                                
-                                        </TabItem>
-                                        
-                                        
-                                        <TabItem Header="невролог">
-                                                
-                                                
-                                                
-                                        </TabItem>
-                                        
-                                        
-                                        <TabItem Header="хирург">
-                                                
-                                                
                                                 
                                         </TabItem>
                                         
                                         
                                         <TabItem Header="стоматолог">
                                                 
-                                                
+                                                <Grid RowDefinitions="Auto *">
+                                                        
+                                                         <Grid Grid.Row="0" ColumnDefinitions="* *">
+                                                                 
+                                                                 <TextBlock Grid.Column="0" Text="имя врача" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                                 <TextBlock Grid.Column="1" Text="должность" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                         </Grid>
+                                                        
+                                                        
+                                                        <TabControl Grid.Row="1">
+                                                                
+                                                                <TabItem Header="осмотр">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding StomChecks}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="дополнения">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding StomAdds}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="заключение">
+                                                                        
+                                                                        <TextBox Text="{Binding StomConclusion}"/>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                        </TabControl>
+                                                        
+                                                </Grid>
                                                 
                                         </TabItem>
                                         
                                         
                                         <TabItem Header="окулист">
                                                 
-                                                
+                                                <Grid RowDefinitions="Auto *">
+                                                        
+                                                         <Grid Grid.Row="0" ColumnDefinitions="* *">
+                                                                 
+                                                                 <TextBlock Grid.Column="0" Text="имя врача" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                                 <TextBlock Grid.Column="1" Text="должность" HorizontalAlignment="Stretch"/>
+                                                                 
+                                                         </Grid>
+                                                        
+                                                        
+                                                        <TabControl Grid.Row="1">
+                                                                
+                                                                <TabItem Header="осмотр">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding OkulChecks}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="дополнения">
+                                                                        
+                                                                        <DataGrid ItemsSource="{Binding OkulAdds}">
+                                                                                
+                                                                                <DataGrid.Columns>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                </DataGrid.Columns>
+                                                                                
+                                                                        </DataGrid>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                                
+                                                                <TabItem Header="заключение">
+                                                                        
+                                                                        <TextBox Text="{Binding OkulConclusion}"/>
+                                                                        
+                                                                </TabItem>
+                                                                
+                                                        </TabControl>
+                                                        
+                                                </Grid>
                                                 
                                         </TabItem>
                                 
@@ -128,7 +465,11 @@
                 
                         <TabItem Header="завершение">
                         
-                        
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                
+                                <Button Content="завершить" Command="{Binding FinishHimCommand}"/>
+                                
+                        </Grid>
                         
                         </TabItem>
                 
