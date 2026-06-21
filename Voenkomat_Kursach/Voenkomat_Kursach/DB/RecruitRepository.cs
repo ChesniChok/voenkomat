@@ -101,7 +101,7 @@ public class RecruitRepository : BaseRepository<Recruit>
         try
         {
             OpenConnection();
-            string sql = "select distinct \n\tr.*\nfrom\n\tvisits v \n\tjoin \n\tmedcomissions m\n\ton\n\t\tv.Medcomission_Id = m.Id \n\tjoin\n\trecruits r\n\ton\n\t\tm.Recruit_Id = r.Id\nwhere \n\tv.Date = @date\n\tand \n\tv.OutTime is null \n\tand\n\t(Name like @name or FatherName like @fath or FamilyName like @fname)\norder by \n\tm.StartDate \n;";
+            string sql = "select distinct \n\tr.*\nfrom\n\tvisits v \n\tjoin \n\tmedcomissions m\n\ton\n\t\tv.Medcomission_Id = m.Id \n\tjoin\n\trecruits r\n\ton\n\t\tm.Recruit_Id = r.Id\nwhere \n\tv.Date = @date\n\tand \n\tv.OutTime is null \n\tand \t\n\tm.EndDate is null\n\tand\n\t(Name like @name or FatherName like @fath or FamilyName like @fname)\norder by \n\tm.StartDate \n;";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@name", $"%{search}%");

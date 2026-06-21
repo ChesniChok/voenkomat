@@ -151,6 +151,8 @@ public partial class ComissionViewModel : MedWorkersViewModel
         
         _currentMedcomission.EndDate = DateOnly.FromDateTime(DateTime.Now);
         
+        _mr.Update(_currentMedcomission);
+        
         GoBack();
         
     }

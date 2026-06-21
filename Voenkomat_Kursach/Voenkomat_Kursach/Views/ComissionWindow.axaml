@@ -40,9 +40,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Content}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -57,9 +57,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -70,7 +70,7 @@
                                                                 
                                                                 <TabItem Header="заключение">
                                                                         
-                                                                        <TextBox Text="{Binding TerConclusion}"/>
+                                                                        <TextBox Text="{Binding TerConclusion.Description}"/>
                                                                         
                                                                 </TabItem>
                                                                 
@@ -96,9 +96,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Content}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -113,9 +113,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -126,7 +126,7 @@
                                                                 
                                                                 <TabItem Header="заключение">
                                                                         
-                                                                        <TextBox Text="{Binding OtorConclusion}"/>
+                                                                        <TextBox Text="{Binding OtorConclusion.Description}"/>
                                                                         
                                                                 </TabItem>
                                                                 
@@ -152,9 +152,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Content}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -169,9 +169,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -182,7 +182,7 @@
                                                                 
                                                                 <TabItem Header="заключение">
                                                                         
-                                                                        <TextBox Text="{Binding PsihConclusion}"/>
+                                                                        <TextBox Text="{Binding PsihConclusion.Description}"/>
                                                                         
                                                                 </TabItem>
                                                                 
@@ -208,9 +208,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Content}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -225,9 +225,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -238,7 +238,7 @@
                                                                 
                                                                 <TabItem Header="заключение">
                                                                         
-                                                                        <TextBox Text="{Binding NevrConclusion}"/>
+                                                                        <TextBox Text="{Binding NevrConclusion.Description}"/>
                                                                         
                                                                 </TabItem>
                                                                 
@@ -264,9 +264,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Content}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -281,9 +281,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -294,7 +294,7 @@
                                                                 
                                                                 <TabItem Header="заключение">
                                                                         
-                                                                        <TextBox Text="{Binding HirConclusion}"/>
+                                                                        <TextBox Text="{Binding HirConclusion.Description}"/>
                                                                         
                                                                 </TabItem>
                                                                 
@@ -320,9 +320,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Content}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -337,9 +337,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -350,7 +350,7 @@
                                                                 
                                                                 <TabItem Header="заключение">
                                                                         
-                                                                        <TextBox Text="{Binding StomConclusion}"/>
+                                                                        <TextBox Text="{Binding StomConclusion.Description}"/>
                                                                         
                                                                 </TabItem>
                                                                 
@@ -376,9 +376,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Description}"/>
+                                                                                        <DataGridTextColumn Header="пункт осмотра" Binding="{Binding Content}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -393,9 +393,9 @@
                                                                                 
                                                                                 <DataGrid.Columns>
                                                                                         
-                                                                                        <DataGridTextColumn Header="тема" Binding="{Binding Description}"/>
                                                                                         
-                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Content}"/>
+                                                                                        
+                                                                                        <DataGridTextColumn Header="содержание" Binding="{Binding Description}"/>
                                                                                         
                                                                                 </DataGrid.Columns>
                                                                                 
@@ -406,7 +406,7 @@
                                                                 
                                                                 <TabItem Header="заключение">
                                                                         
-                                                                        <TextBox Text="{Binding OkulConclusion}"/>
+                                                                        <TextBox Text="{Binding OkulConclusion.Description}"/>
                                                                         
                                                                 </TabItem>
                                                                 
