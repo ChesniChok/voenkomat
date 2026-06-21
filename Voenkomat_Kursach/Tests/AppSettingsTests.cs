@@ -29,7 +29,6 @@ public class AppSettingsTests
         
         sets.Load("testsSettings.json");
 
-        Assert.That(sets.ConnectionString, Is.Not.EqualTo("server=revres;user=reus;password=drowssap;database=esabatad"));
         Assert.That(sets.ConnectionString, Is.EqualTo("server=localhost;user=root;password=root;database=fake_voenkomat"));
 
 

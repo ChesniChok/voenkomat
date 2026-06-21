@@ -39,7 +39,7 @@
                                                         <TextBox Grid.Row="2" Grid.Column="0" Text="пароль" IsReadOnly="True"/>
                                                         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PasswordVal}"/>
                                                         
-                                                        <TextBox Grid.Row="3" Grid.Column="0" Text="база дынных" IsReadOnly="True"/>
+                                                        <TextBox Grid.Row="3" Grid.Column="0" Text="база данных" IsReadOnly="True"/>
                                                         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DatabaseVal}"/>
                                                         
                                                 </Grid>

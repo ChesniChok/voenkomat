@@ -29,9 +29,9 @@
                     
                         <DataGrid.Columns>
                         
-                            <DataGridTextColumn Binding="{Binding Name}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="название" Binding="{Binding Name}" IsReadOnly="True"/>
                         
-                            <DataGridTextColumn Binding="{Binding Description}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="описание" Binding="{Binding Description}" IsReadOnly="True"/>
                         
                             <DataGridTemplateColumn Header="запись" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
