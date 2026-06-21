@@ -117,10 +117,12 @@ public partial class DoctorViewModel : MedWorkersViewModel
             
             foreach (var addition in DoctorAdditions)
             {
-                _rr.Add(new(0, "дополнения", _user.Employee, _currentMedComission, addition.Value, ""));
+                _rr.Add(new(0, "дополнение", _user.Employee, _currentMedComission, addition.Value, ""));
             }
             
             _rr.Add(new(0, "заключение", _user.Employee, _currentMedComission, Conclusion, "заключение"));
+            
+            GoBack();
             
         }
     }

@@ -98,7 +98,7 @@
                                 
                                 <TextBlock Text="осмотр" Width="100"/>
                                 
-                                <CheckBox Margin="10,0"/>
+                                <CheckBox Margin="10,0" IsChecked="{Binding IsCheckEnded}"/>
                                 
                             </StackPanel>
                             
@@ -106,7 +106,7 @@
                                 
                                 <TextBlock Text="документы" Width="100"/>
                                 
-                                <CheckBox Margin="10,0"/>
+                                <CheckBox Margin="10,0" IsChecked="{Binding IsAddsEnded}"/>
                                 
                             </StackPanel>
                             
@@ -116,7 +116,7 @@
                     
                     <TextBox Watermark="заключение" Text="{Binding Conclusion}"/>
                     
-                    <Button Content="Завершить" Margin="5" HorizontalAlignment="Center" Width="100" Command="{Binding GoBackCommand}"/>
+                    <Button Content="Завершить" Margin="5" HorizontalAlignment="Center" Width="100" Command="{Binding EndCommand}"/>
                     
                 </StackPanel>
                 

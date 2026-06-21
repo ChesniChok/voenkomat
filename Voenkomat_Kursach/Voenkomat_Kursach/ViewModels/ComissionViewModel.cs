@@ -37,94 +37,94 @@ public partial class ComissionViewModel : MedWorkersViewModel
     private List<Record> _allChecks;
     private List<Record> _allAdds;
     private List<Record> _allConclusions;
-    private void GetChecks() => _allRecords.Where(r => r.Type == "осмотр");
-    private void GetAdds() => _allRecords.Where(r => r.Type == "дополнение");
-    private void GetConclusions() => _allRecords.Where(r => r.Type == "заключение");
+    private void GetChecks() => _allChecks = new(_allRecords.Where(r => r.Type == "осмотр"));
+    private void GetAdds() => _allAdds = new(_allRecords.Where(r => r.Type == "дополнение"));
+    private void GetConclusions() => _allConclusions = new(_allRecords.Where(r => r.Type == "заключение"));
     
     
     
-    [ObservableProperty] private ObservableCollection<Record> _terChecks;
-    [ObservableProperty] private ObservableCollection<Record> _terAdds;
-    [ObservableProperty] private Record _terConclusion;
+    [ObservableProperty] private ObservableCollection<Record>? _terChecks;
+    [ObservableProperty] private ObservableCollection<Record>? _terAdds;
+    [ObservableProperty] private Record? _terConclusion;
     private void SetTerProperties()
     {
         var jobName = "терапевт";
         
-        TerChecks = new(_allChecks.Where(c => c.Author.Job.Name == jobName));
-        TerAdds = new(_allAdds.Where(а => а.Author.Job.Name == jobName));
-        TerConclusion = _allConclusions.First(c => c.Author.Job.Name == jobName);
+        TerChecks = new(_allChecks.Where(c => c.Author?.Job.Name == jobName));
+        TerAdds = new(_allAdds.Where(а => а.Author?.Job.Name == jobName));
+        TerConclusion = _allConclusions.FirstOrDefault(c => c.Author?.Job.Name == jobName);
     }
     
-    [ObservableProperty] private ObservableCollection<Record> _otorChecks;
-    [ObservableProperty] private ObservableCollection<Record> _otorAdds;
-    [ObservableProperty] private Record _otorConclusion;
+    [ObservableProperty] private ObservableCollection<Record>? _otorChecks;
+    [ObservableProperty] private ObservableCollection<Record>? _otorAdds;
+    [ObservableProperty] private Record? _otorConclusion;
     private void SetOtorProperties()
     {
         var jobName = "оториноларинголог";
         
-        OtorChecks = new(_allChecks.Where(c => c.Author.Job.Name == jobName));
-        OtorAdds = new(_allAdds.Where(а => а.Author.Job.Name == jobName));
-        OtorConclusion = _allConclusions.First(c => c.Author.Job.Name == jobName);
+        OtorChecks = new(_allChecks.Where(c => c?.Author.Job.Name == jobName));
+        OtorAdds = new(_allAdds.Where(а => а?.Author.Job.Name == jobName));
+        OtorConclusion = _allConclusions.FirstOrDefault(c => c.Author?.Job.Name == jobName);
     }
     
-    [ObservableProperty] private ObservableCollection<Record> _psihChecks;
-    [ObservableProperty] private ObservableCollection<Record> _psihAdds;
-    [ObservableProperty] private Record _psihConclusion;
+    [ObservableProperty] private ObservableCollection<Record>? _psihChecks;
+    [ObservableProperty] private ObservableCollection<Record>? _psihAdds;
+    [ObservableProperty] private Record? _psihConclusion;
     private void SetPsihProperties()
     {
         var jobName = "психиатр";
         
-        PsihChecks = new(_allChecks.Where(c => c.Author.Job.Name == jobName));
-        PsihAdds = new(_allAdds.Where(а => а.Author.Job.Name == jobName));
-        PsihConclusion = _allConclusions.First(c => c.Author.Job.Name == jobName);
+        PsihChecks = new(_allChecks.Where(c => c.Author?.Job.Name == jobName));
+        PsihAdds = new(_allAdds.Where(а => а.Author?.Job.Name == jobName));
+        PsihConclusion = _allConclusions.FirstOrDefault(c => c.Author?.Job.Name == jobName);
     }
     
-    [ObservableProperty] private ObservableCollection<Record> _nevrChecks;
-    [ObservableProperty] private ObservableCollection<Record> _nevrAdds;
-    [ObservableProperty] private Record _nevrConclusion;
+    [ObservableProperty] private ObservableCollection<Record>? _nevrChecks;
+    [ObservableProperty] private ObservableCollection<Record>? _nevrAdds;
+    [ObservableProperty] private Record? _nevrConclusion;
     private void SetNevrProperties()
     {
         var jobName = "невролог";
         
-        NevrChecks = new(_allChecks.Where(c => c.Author.Job.Name == jobName));
-        NevrAdds = new(_allAdds.Where(а => а.Author.Job.Name == jobName));
-        NevrConclusion = _allConclusions.First(c => c.Author.Job.Name == jobName);
+        NevrChecks = new(_allChecks.Where(c => c.Author?.Job.Name == jobName));
+        NevrAdds = new(_allAdds.Where(а => а.Author?.Job.Name == jobName));
+        NevrConclusion = _allConclusions.FirstOrDefault(c => c.Author?.Job.Name == jobName);
     }
     
-    [ObservableProperty] private ObservableCollection<Record> _hirChecks;
-    [ObservableProperty] private ObservableCollection<Record> _hirAdds;
-    [ObservableProperty] private Record _hirConclusion;
+    [ObservableProperty] private ObservableCollection<Record>? _hirChecks;
+    [ObservableProperty] private ObservableCollection<Record>? _hirAdds;
+    [ObservableProperty] private Record? _hirConclusion;
     private void SetHirProperties()
     {
         var jobName = "хирург";
         
-        HirChecks = new(_allChecks.Where(c => c.Author.Job.Name == jobName));
-        HirAdds = new(_allAdds.Where(а => а.Author.Job.Name == jobName));
-        HirConclusion = _allConclusions.First(c => c.Author.Job.Name == jobName);
+        HirChecks = new(_allChecks.Where(c => c.Author?.Job.Name == jobName));
+        HirAdds = new(_allAdds.Where(а => а.Author?.Job.Name == jobName));
+        HirConclusion = _allConclusions.FirstOrDefault(c => c.Author?.Job.Name == jobName);
     }
     
-    [ObservableProperty] private ObservableCollection<Record> _stomChecks;
-    [ObservableProperty] private ObservableCollection<Record> _stomAdds;
-    [ObservableProperty] private Record _stomConclusion;
+    [ObservableProperty] private ObservableCollection<Record>? _stomChecks;
+    [ObservableProperty] private ObservableCollection<Record>? _stomAdds;
+    [ObservableProperty] private Record? _stomConclusion;
     private void SetStomProperties()
     {
         var jobName = "стоматолог";
         
-        StomChecks = new(_allChecks.Where(c => c.Author.Job.Name == jobName));
-        StomAdds = new(_allAdds.Where(а => а.Author.Job.Name == jobName));
-        StomConclusion = _allConclusions.First(c => c.Author.Job.Name == jobName);
+        StomChecks = new(_allChecks.Where(c => c.Author?.Job.Name == jobName));
+        StomAdds = new(_allAdds.Where(а => а.Author?.Job.Name == jobName));
+        StomConclusion = _allConclusions.FirstOrDefault(c => c.Author?.Job.Name == jobName);
     }
     
-    [ObservableProperty] private ObservableCollection<Record> _okulChecks;
-    [ObservableProperty] private ObservableCollection<Record> _okulAdds;
-    [ObservableProperty] private Record _okulConclusion;
+    [ObservableProperty] private ObservableCollection<Record>? _okulChecks;
+    [ObservableProperty] private ObservableCollection<Record>? _okulAdds;
+    [ObservableProperty] private Record? _okulConclusion;
     private void SetOkulProperties()
     {
         var jobName = "окулист";
         
-        OkulChecks = new(_allChecks.Where(c => c.Author.Job.Name == jobName));
-        OkulAdds = new(_allAdds.Where(а => а.Author.Job.Name == jobName));
-        OkulConclusion = _allConclusions.First(c => c.Author.Job.Name == jobName);
+        OkulChecks = new(_allChecks.Where(c => c.Author?.Job.Name == jobName));
+        OkulAdds = new(_allAdds.Where(а => а.Author?.Job.Name == jobName));
+        OkulConclusion = _allConclusions.FirstOrDefault(c => c.Author?.Job.Name == jobName);
     }
 
     private void GetAllProperties()
@@ -150,6 +150,8 @@ public partial class ComissionViewModel : MedWorkersViewModel
     {
         
         _currentMedcomission.EndDate = DateOnly.FromDateTime(DateTime.Now);
+        
+        GoBack();
         
     }
     

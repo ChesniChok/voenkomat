@@ -100,24 +100,26 @@ public class RecordRepository : BaseRepository<Record>
         try
         {
             OpenConnection();
-            string sql = "select \n\t*\nfrom\n\trecords r \n\tjoin \n\tmedcomissions m \n\ton\n\t\tr.MedComission_Id = m.Id\nwhere \n\tm.Id = @mid\n;";
+            string sql = "select r.* from records r  join  medcomissions m  on r.MedComission_Id = m.Id where  m.Id = @mid;";
             using (var mc = new MySqlCommand(sql, _connection))
-            using (var dr = mc.ExecuteReader())
             {
                 mc.Parameters.AddWithValue("@mid", m.Id);
-                while (dr.Read())
+                using (var dr = mc.ExecuteReader())
                 {
-                    int medComiddionId = dr.GetInt32("MedComission_Id");
-                    int employeeId = dr.GetInt32("Employee_Id");
+                    while (dr.Read())
+                    {
+
+                        var r = new Record(
+                            dr.GetInt32("Id"),
+                            dr.GetString("Type"),
+                            _employeeRepository.GetById(dr.GetInt32("Author_Id")),
+                            _medComissionRepository.GetById(dr.GetInt32("MedComission_Id")),
+                            dr.GetString("Content"),
+                            dr.GetString("Description")
+                        );
                         
-                    records.Add(new Record(
-                        dr.GetInt32("Id"),
-                        dr.GetString("Type"),
-                        _employeeRepository.GetById(employeeId),
-                        _medComissionRepository.GetById(medComiddionId),
-                        dr.GetString("Content"),
-                        dr.GetString("Description")
-                    ));
+                        records.Add(r);
+                    }
                 }
             }
         }
@@ -214,4 +216,33 @@ public class RecordRepository : BaseRepository<Record>
             }
             return record;
         }
+        
+    public void Add(Record r)
+    {
+        try
+        {
+            OpenConnection();
+            string sql = "insert into records values(@id, @typ, @auth, @med, @rec, @cont, @desc)";
+            using (var mc = new MySqlCommand(sql, _connection))
+            {
+                mc.Parameters.AddWithValue("@id", r.Id);
+                mc.Parameters.AddWithValue("@typ", r.Type);
+                mc.Parameters.AddWithValue("@auth", r.Author?.Id);
+                mc.Parameters.AddWithValue("@med", r.MedComisiion.Id);
+                mc.Parameters.AddWithValue("@rec", r.MedComisiion.Recruit.Id);
+                mc.Parameters.AddWithValue("@cont", r.Content);
+                mc.Parameters.AddWithValue("@desc", r.Description);
+                mc.ExecuteNonQuery();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        
+        }
+        finally
+        {
+            CloseConnection();
+        }
+    }
 }

@@ -100,7 +100,7 @@ public partial class RegistatorViewModel : UserBaseViewModel
     [ObservableProperty] private MedComission _selectedCom;
     [ObservableProperty] private ObservableCollection<MedComission> _coms;
     [ObservableProperty] private int _comPage;
-    [RelayCommand] private void UpdateComs() => Coms = new(_mr.GetPage(RecPage, 10, SelectedRec));
+    [RelayCommand] private void UpdateComs() => Coms = new(_mr.GetPage(ComPage, 10, SelectedRec));
 
     [RelayCommand]
     private void FinishCom()
