@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voenkomat_Kursach", "Voenkomat_Kursach\Voenkomat_Kursach.csproj", "{24F4ED43-29E5-4932-87D5-AE7A37A75642}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{3E448F70-B06A-4272-A119-B229C3800BAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{24F4ED43-29E5-4932-87D5-AE7A37A75642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24F4ED43-29E5-4932-87D5-AE7A37A75642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24F4ED43-29E5-4932-87D5-AE7A37A75642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E448F70-B06A-4272-A119-B229C3800BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E448F70-B06A-4272-A119-B229C3800BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E448F70-B06A-4272-A119-B229C3800BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E448F70-B06A-4272-A119-B229C3800BAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

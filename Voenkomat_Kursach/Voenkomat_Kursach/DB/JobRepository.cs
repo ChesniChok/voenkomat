@@ -19,7 +19,7 @@ public class JobRepository : BaseRepository<Job>
             List<Job> jobs = new List<Job>();
             try
             {
-                _connection.Open();
+                OpenConnection();
                 string sql = "SELECT * FROM jobs";
                 using (var mc = new MySqlCommand(sql, _connection))
                 using (var dr = mc.ExecuteReader())

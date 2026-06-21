@@ -11,6 +11,7 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class
     protected MySqlConnection _connection;
     protected string _connectionString;
     private bool _disposed = false;
+    public MySqlConnection GetConnection() => _connection;
 
     public BaseRepository(AppSettings appSettings)
     {

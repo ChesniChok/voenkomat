@@ -1,0 +1,1 @@
+{"ConnectionString":"server=localhost;user=root;password=root;database=fake_voenkomat","Roles":{"test":"good","no test":"bad"}}
