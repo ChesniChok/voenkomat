@@ -97,7 +97,7 @@ public class MedComissionRepository : BaseRepository<MedComission>
         try
         {
             OpenConnection();
-            string sql = "select * from medcomissions where Recruit_Id = @rid order by StartDate";
+            string sql = "select * from medcomissions where Recruit_Id = @rid order by StartDate desc";
             using (var mc = new MySqlCommand(sql, _connection))
             {
                 mc.Parameters.AddWithValue("@rid", r.Id);

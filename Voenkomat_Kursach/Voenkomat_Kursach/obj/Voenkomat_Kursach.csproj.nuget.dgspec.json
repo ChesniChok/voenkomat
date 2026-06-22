@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка потому что проебался\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj": {}
+    "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj": {}
   },
   "projects": {
-    "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка потому что проебался\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj": {
+    "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка потому что проебался\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj",
+        "projectUniqueName": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj",
         "projectName": "Voenkomat_Kursach",
-        "projectPath": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка потому что проебался\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj",
+        "projectPath": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка\\Voenkomat_Kursach\\Voenkomat_Kursach\\Voenkomat_Kursach.csproj",
         "packagesPath": "C:\\Users\\Чесночел\\.nuget\\packages\\",
-        "outputPath": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка потому что проебался\\Voenkomat_Kursach\\Voenkomat_Kursach\\obj\\",
+        "outputPath": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка\\Voenkomat_Kursach\\Voenkomat_Kursach\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Чесночел\\AppData\\Roaming\\NuGet\\NuGet.Config"

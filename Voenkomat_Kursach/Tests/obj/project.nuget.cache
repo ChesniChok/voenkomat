@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yfyiYgVF3qw=",
+  "dgSpecHash": "oFnuUBIgf1s=",
   "success": true,
-  "projectFilePath": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка потому что проебался\\Voenkomat_Kursach\\Tests\\Tests.csproj",
+  "projectFilePath": "C:\\всякая фигня\\учёба (точно точно)\\курсач первый\\папка-прослойка\\Voenkomat_Kursach\\Tests\\Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Чесночел\\.nuget\\packages\\avalonia\\11.3.9\\avalonia.11.3.9.nupkg.sha512",
     "C:\\Users\\Чесночел\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.25547.20250602\\avalonia.angle.windows.natives.2.1.25547.20250602.nupkg.sha512",
